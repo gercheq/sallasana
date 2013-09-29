@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'sallasana.views.home', name='home'),
+    url(r'^$', 'app.views.home', name='home'),
     # url(r'^sallasana/', include('sallasana.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
