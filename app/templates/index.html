@@ -47,13 +47,20 @@
         <!-- Add your site or application content here -->
 
 
-        <script src="{% static "third_party/zepto.min.js" %}"></script>
+        <script src="{% static "third_party/jquery.pep.min.js" %}" ></script>
 
         <script src="{% static "third_party/helper.js" %}"></script>
 
         <script src="{% static "third_party/underscore-min.js" %}"></script>
         <script src="{% static "third_party/backbone-min.js" %}"  ></script>
 
+        <script>
+          $(document).on('pagecreate', function(){
+            $('.recommendation-front').pep();
+          });
+
+
+        </script>
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
