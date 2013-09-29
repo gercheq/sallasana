@@ -37,7 +37,7 @@
 
         <link rel="stylesheet" href="{% static "styles/style.css" %}">
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="{% static "third_party/modernizr-2.6.2.min.js" %}"></script>
     </head>
     <body>
 
@@ -46,8 +46,10 @@
       <h1>Hello world!</h1>
         <!-- Add your site or application content here -->
 
-        <script src="js/vendor/zepto.min.js"></script>
-        <script src="js/helper.js"></script>
+
+        <script src="{% static "third_party/zepto.min.js" %}"></script>
+
+        <script src="{% static "third_party/helper.js" %}"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
