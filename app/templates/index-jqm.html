@@ -1,0 +1,52 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sallasana!!!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="{% static "third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" %}" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="{% static "third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js" %}"></script>
+
+  <link rel="stylesheet" href="{% static "styles/style.css" %}" />
+</head>
+
+<body>
+
+
+
+
+
+
+  <div data-role="page" id="page-recommendations">
+
+    <div class="ui-panel-wrapper">
+      <div data-role="header">
+        <a href="#navigation" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
+        <h1>Sallasana</h1>
+        <a href="#conversations" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+      </div><!-- /header -->
+
+      <div data-role="content">
+        {% include 'includes/recommendations.html' %}
+      </div><!-- /content -->
+
+    </div>
+
+
+    <div data-role="panel" id="navigation">
+      {% include 'includes/navigation.html' %}
+    </div><!-- /panel -->
+
+    <div data-role="panel" data-position="right" id="conversations">
+        <!-- panel content goes here -->
+    </div><!-- /panel -->
+
+  </div><!-- /page -->
+
+
+
+</body>
+</html>

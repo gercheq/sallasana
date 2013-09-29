@@ -13,6 +13,7 @@ from django.conf.urls.static import static
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'app.views.home', name='home'),
+    url(r'^jqm$', 'app.views.home_jqm', name='home_jqm'),
     # url(r'^sallasana/', include('sallasana.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
