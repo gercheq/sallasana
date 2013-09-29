@@ -11,8 +11,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = patterns('',
-    # Examples:
     url(r'^$', 'app.views.home', name='home'),
+    url(r'^api/user/(?P<uid>\w+)$', 'api.views.get_user', name='get_user'),
     # url(r'^sallasana/', include('sallasana.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
