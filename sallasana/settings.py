@@ -4,7 +4,8 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Gercek Karakus', 'gercek.karakus@gmail.com'),
+    ('Renan Cakirerk', 'renan.cakirerk@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -13,8 +14,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'test.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -31,7 +32,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -91,7 +92,6 @@ SECRET_KEY = ')@_e&m9745f%vg!$^(l=0yyo5m)&q+3!j7e06m7da7e3shn*(o'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,15 +116,16 @@ print TEMPLATE_DIRS
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+
+    'mongoengine.django.mongo_auth',
+
+    'social.apps.django_app.me',
     'app',
 )
 
@@ -156,3 +157,102 @@ LOGGING = {
         },
     }
 }
+
+
+#from mongoengine import register_connection
+#register_connection(alias='default', name='test', host='ren.io', username='sallasana', password='sallasanarocks!')
+
+MONGO_DATABASE_NAME = 'sallasana'
+#MONGO_HOST = 'ren.io'
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+
+MONGO_USERNAME = 'sallasana'
+MONGO_PASSWORD = 'sallasanarocks!'
+
+import mongoengine
+mongoengine.connect(MONGO_DATABASE_NAME, host=MONGO_HOST, port=MONGO_PORT)
+#, username=MONGO_USERNAME, password=MONGO_PASSWORD)
+
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+SOCIAL_AUTH_USER_MODEL = 'mongoengine.django.auth.User'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.username.UsernameAuth',
+    'mongoengine.django.auth.MongoEngineBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home/'
+URL_PATH = ''
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.me.models.DjangoStorage'
+
+
+SOCIAL_AUTH_RAISE_EXCEPTIONS = True
+RAISE_EXCEPTIONS = True
+DEBUG = True
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '406056642850703'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3fba5d844fc88e51eb3bfc33cfc05321'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email',
+                              'user_likes',
+                              'user_photos',
+                              'read_friendlists',
+                              'friends_photos',
+                              'friends_about_me',
+                              #'friends_activities',
+                              'friends_birthday',
+                              #'friends_checkins',
+                              #'friends_education_history',
+                              'friends_events',
+                              'friends_games_activity',
+                              #'friends_groups',
+                              'friends_hometown',
+                              'friends_interests',
+                              'friends_likes',
+                              'friends_location',
+                              #'friends_notes',
+                              #'friends_online_presence',
+                              #'friends_photo_video_tags',
+                              'friends_photos',
+                              'friends_relationship_details',
+                              'friends_relationships',
+                              #'friends_religion_politics',
+                              'friends_status',
+                              #'friends_subscriptions',
+                              #'friends_videos',
+                              #'friends_website',
+                              'friends_work_history',
+                              ]
+
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    #'social.pipeline.mail.mail_validation',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'app.pipeline.create_update_fb_user',
+)
