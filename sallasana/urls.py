@@ -1,23 +1,21 @@
 from django.conf.urls import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
-
-# Necessary for serving static files
 from django.conf import settings
 from django.conf.urls.static import static
 
+PATH = getattr(settings, 'URL_PATH', '')
 
 urlpatterns = patterns('',
-    url(r'^$', 'app.views.home', name='home'),
-    url(r'^api/user/(?P<uid>\w+)$', 'api.views.get_user', name='get_user'),
-    # url(r'^sallasana/', include('sallasana.foo.urls')),
+    url(r'^$', 'app.views.home', name='index'),
+    url(r'^api/fb_user/(?P<username>.*)$', 'api.views.get_fb_user_view', name='get_fb_user_view'),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^home/$', 'app.views.home', name='home'),
+
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
