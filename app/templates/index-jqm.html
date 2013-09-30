@@ -1,0 +1,180 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sallasana!!!</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="{% static "third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" %}" />
+  <link rel="stylesheet" href="{% static "third_party/jqm-icon-pack-fa.css" %}" />
+  <link rel="stylesheet" href="{% static "styles/style.css" %}" />
+
+  <script src="{% static "third_party/require.js" %}" data-main="{% static "script/mobile" %}"></script>
+
+
+
+{#  <script src="{% static "third_party/jquery-1.9.1.min.js"  %}" ></script>#}
+{#	<script src="{% static "third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js" %}"></script>#}
+{#  <script src="{% static "third_party/jquery.pep.min.js" %}"></script>#}
+
+
+</head>
+
+<body>
+
+
+  <div data-role="page" id="page-recommendations">
+
+    <div class="ui-panel-wrapper">
+      <div data-role="header">
+        <a href="#navigation" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
+        <h1>sallasana</h1>
+        <a href="#matches" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+{##}
+{#        <a href="#matches"#}
+{#           data-role="button"#}
+{#           data-iconpos="notext"#}
+{#           data-icon="comments"#}
+{#           data-inline="true"#}
+{#           data-iconshadow="false"#}
+{#           data-theme="d"#}
+{#           class="ui-icon-nodisc ui-icon-alt">Mathes</a>#}
+{##}
+{#        <a href="#matches"#}
+{#           data-role="button"#}
+{#           data-icon="comment-alt"#}
+{#           class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-comment-alt ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>#}
+
+
+      </div><!-- /header -->
+
+      <div data-role="content">
+        {% include 'includes/recommendations.html' %}
+      </div><!-- /content -->
+
+    </div>
+
+
+    <div data-role="panel" id="navigation">
+      {% include 'includes/panel-navigation.html' %}
+    </div><!-- /panel -->
+
+    <div data-role="panel" data-position="right" id="matches">
+        <!-- panel content goes here -->
+        {% include 'includes/panel-matches.html' %}
+
+    </div><!-- /panel -->
+
+  </div><!-- /page -->
+
+
+
+{##}
+{#  <script type="text/javascript">#}
+{##}
+{##}
+{#    //#}
+{#    // http://stackoverflow.com/questions/5023514/how-do-i-normalize-css3-transition-functions-across-browsers#}
+{#    //#}
+{#    function whichTransitionEvent(){#}
+{#        var t;#}
+{#        var el = document.createElement('fakeelement');#}
+{#        var transitions = {#}
+{#          'transition':'transitionend',#}
+{#          'OTransition':'oTransitionEnd',#}
+{#          'MozTransition':'transitionend',#}
+{#          'WebkitTransition':'webkitTransitionEnd'#}
+{#        }#}
+{##}
+{#        for(t in transitions){#}
+{#            if( el.style[t] !== undefined ){#}
+{#                return transitions[t];#}
+{#            }#}
+{#        }#}
+{#    }#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    $( document ).delegate("#page-recommendations", "pagebeforecreate", function() {#}
+{##}
+{#      var windowWidth = $(window).width(),#}
+{#          recommendationWidth = $('.recommendation.front').width(),#}
+{#          threshold = recommendationWidth,#}
+{#          currentPosition;#}
+{##}
+{##}
+{#      $('.recommendation.front').pep({#}
+{##}
+{#        velocityMultiplier: 3,#}
+{##}
+{#        debug: false,#}
+{##}
+{#        initiate: function(e) {#}
+{#          // [≘ touchstart/mousedown] called when first touch / click event is triggered on the object#}
+{#          console.log("INITIATE");#}
+{#        },#}
+{##}
+{#        start: function(e){#}
+{#          // called when dragging starts; when dx or dy are greater than startThreshold[0] or startThreshold[1]#}
+{#          console.log("START");#}
+{#        },#}
+{##}
+{#        drag: function(e, obj) {#}
+{#          // [≘ touchmove/mousemove] called continuously while the object is dragging#}
+{#          console.log("DRAG");#}
+{#          console.log(obj.$el.position().left);#}
+{#        },#}
+{##}
+{#        stop: function(e, obj) {#}
+{#          // [≘ touchend/mouseup] called when dragging stops#}
+{#          console.log("STOP");#}
+{##}
+{#          // This is too early to check for transtion distance#}
+{#          // checkPositionAndMove(obj.$el, threshold);#}
+{##}
+{#        }#}
+{##}
+{#      });#}
+{##}
+{##}
+{#      var transitionEnd = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd';#}
+{#      $(".recommendation.front").on(transitionEnd, function(e, obj) {#}
+{#        //do something#}
+{#        console.log("TRANSITION ENDED");#}
+{##}
+{#        // This is too late to check for transtion distance#}
+{#        // checkPositionAndMove( $(e.currentTarget), threshold);#}
+{#      });#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#    });#}
+{##}
+{##}
+{##}
+{#    function checkPositionAndMove($el, threshold) {#}
+{#      var position = $el.position();#}
+{##}
+{##}
+{#      if(position.left > threshold) {#}
+{#        $.pep.unbind($el);#}
+{#        $el.addClass('liked animated fadeOutRightBig').removeClass('disliked');#}
+{#      } else if (position.left < -threshold){#}
+{#        $.pep.unbind($el);#}
+{#        $el.addClass('disliked animated fadeOutLeftBig').removeClass('liked');#}
+{#      }#}
+{##}
+{#    }#}
+{##}
+{#  </script>#}
+
+</body>
+</html>

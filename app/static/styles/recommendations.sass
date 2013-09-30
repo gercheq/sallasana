@@ -1,0 +1,116 @@
+.recommendations-container
+  width: 90%
+  margin: 0 auto
+  position: relative
+  .recommendation
+    border: 1px solid $light_gray
+    background: #FFF
+    width: 96%
+    height: auto
+    vertical-align: bottom
+    border: .5em solid #fff
+    border-radius: 3px
+    // @include box-sizing(border-box)
+    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.4))
+    img
+      width: 100%
+
+
+    &.front,
+    &.middle
+      position: absolute
+      top: 0
+      left: 0
+
+
+  //
+  // Twisted class gives the double rotate background which creates
+  // deck of cards feeling.
+  // http://inspectelement.com/tutorials/create-the-illusion-of-stacked-elements-with-css3-pseudo-elements/
+  //
+  //
+  .twisted
+    position: relative
+
+  /* twisteds creted by the use of generated content */
+  .twisted:before,
+  .twisted:after
+    background: #FFF
+    content: ""
+    width: 100%
+    height: 100%
+    position: absolute
+    left: 0
+
+    border-radius: 3px
+    // @include box-sizing(border-box)
+    @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.4))
+    -webkit-transition: 0.3s all ease-out
+    -moz-transition: 0.3s all ease-out
+    transition: 0.3s all ease-out
+
+  .twisted:before
+    top: 4px
+    z-index: -10  /* 1st element in twisted (behind image) */
+  .twisted:after
+    top: 8px
+    z-index: -20  /* 2nd element in twisted (behind image) */
+
+  /* Third twisted example (One twisted element rotated in the opposite direction) */
+  .twisted:before
+    -webkit-transform: rotate(4deg)
+    -moz-transform: rotate(4deg)
+    transform: rotate(4deg)
+
+  .twisted:after
+    -webkit-transform: rotate(-4deg)
+    -moz-transform: rotate(-4deg)
+    transform: rotate(-4deg)
+
+
+
+
+
+  .shared
+    font-weight: 300
+    color: $dark_gray
+    vertical-align: middle
+    font-size: .8em
+    margin-top: .2em
+
+  .shared-count
+    float: right
+    font-size: 2em
+    line-height: 1
+    color: #999
+    font-weight: 300
+    margin-top: 0.075em
+
+
+
+
+.liked
+  -moz-transition: right .3s
+  -webkit-transition: right .3s
+  -ms-transition: right .3s
+  -o-transition: right .3s
+  transition: right .3s
+  left: auto
+  right: -999em
+
+
+.disliked
+  -moz-transition: left .3s
+  -webkit-transition: left .3s
+  -ms-transition: left .3s
+  -o-transition: left .3s
+  transition: left .3s
+  left: -999em
+
+
+
+#page-recommendations
+  .ui-content
+    overflow: visible
+    padding: 0
+    margin: 1em 0 0

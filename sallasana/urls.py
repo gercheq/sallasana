@@ -11,6 +11,8 @@ PATH = getattr(settings, 'URL_PATH', '')
 urlpatterns = patterns('',
     url(r'^$', 'app.views.home', name='index'),
     url(r'^api/fb_user/(?P<username>.*)$', 'api.views.get_fb_user_view', name='get_fb_user_view'),
+    url(r'^jqm$', 'app.views.home_jqm', name='home_jqm'),
+    # url(r'^sallasana/', include('sallasana.foo.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

@@ -1,7 +1,26 @@
-@import "variables"
 
 $header-height: 44px
 
-header
-  background: $lightest_gray
-  height: $header-height
+body
+  margin: 0
+  padding: 0
+
+.ui-bar-a, .ui-page-theme-a .ui-bar-inherit
+  background: #FFF
+
+
+.ui-header
+  .ui-btn
+    border: none
+    background: transparent
+    //@include opacity(50)
+  .ui-btn-icon-notext.ui-btn-left
+    top: .5em
+    left: .5em
+  .ui-btn-icon-notext.ui-btn-right
+    top: .5em
+    right: .5em
+  .ui-title
+    letter-spacing: .3em
+    font-weight: 100
+    color: #777
