@@ -8,7 +8,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
     var PhotoStackView = Backbone.View.extend( {
 
 
-        template: '#template-photo-stack',
+        template: _.template($('#tmpl-photo-stack').html()),
 
         events: {
             'click .like': 'like',
@@ -16,10 +16,17 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
         },
 
         initialize: function() {
+            console.log("Initializing PhotoStackView");
 
         },
 
         render: function() {
+            console.log("Rendering PhotoStackView");
+
+            var tmpl = this.template;
+
+            this.$el.html(tmpl);
+
 
         },
 
