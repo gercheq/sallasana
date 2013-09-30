@@ -2,7 +2,12 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery","backbone", "../models/CategoryModel", "../collections/CategoriesCollection", "../views/CategoryView" ], function( $, Backbone, CategoryModel, CategoriesCollection, CategoryView ) {
+define([ "jquery",
+         "backbone",
+         "../models/CategoryModel",
+         "../collections/CategoriesCollection",
+         "../views/CategoryView"
+        ], function( $, Backbone, CategoryModel, CategoriesCollection, CategoryView ) {
 
     // Extends Backbone.Router
     var CategoryRouter = Backbone.Router.extend( {
@@ -60,7 +65,7 @@ define([ "jquery","backbone", "../models/CategoryModel", "../collections/Categor
 
                     // Programatically changes to the current categories page
                     $.mobile.changePage( "#" + type, { reverse: false, changeHash: false } );
-    
+
                 } );
 
             }
