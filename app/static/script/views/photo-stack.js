@@ -2,13 +2,16 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel ) {
+define([ "jquery", "backbone","models/user", 'views/photo' ], function( $, Backbone, UserModel, PhotoView ) {
 
-    // Extends Backbone.View
+    //
+    //
+    //
     var PhotoStackView = Backbone.View.extend( {
 
+        photoHeight: null,
 
-        template: _.template($('#tmpl-photo-stack').html()),
+        template: $('#tmpl-photo-stack').html(),
 
         events: {
             'click #btn-like': 'like',
@@ -26,18 +29,42 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
         render: function() {
             console.log("Rendering PhotoStackView");
 
-            var tmpl = this.template;
+            var renderedTemplate = _.template(this.template, this.recommendationsCollection);
 
-            this.$el.html(tmpl);
+            this.addPhotoToStack();
+
+            this.$el.html(renderedTemplate);
+
+            // Setup Photo Height
+            if(!this.photoHeight){
+                this.photoHeight = this.$el.find('.photo.twisted').width();
+                this.$el.find('.photo').css('height', this.photoHeight);
+            }
 
             this.temporary();
+
+        },
+
+        addPhotoToStack: function(){
+          var self = this;
+          var photoModel = this.recommendationsCollection.pop();
+
+            debugger;
+
+          var photoView = new PhotoView({
+            height: self.photoHeight
+          });
+
+         var photo = photoView.render();
+         this.$el.find('.photo.twisted').after(photo);
 
 
         },
 
+
         like: function(e) {
             debugger;
-            $(e.currentTarget).addClass('fadeOut')
+            this.addPhotoToStack()
 
 
         },
@@ -141,7 +168,107 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
               }
 
             }
-        }
+        },
+
+
+        recommendationsCollection: [
+            {
+                first_name: "Gercek",
+                last_name: "AutoCS",
+                user: 3056,
+                time_updated: "2012-08-29T13:33:10",
+                home: null,
+                pending: false,
+                best_username: "Gercek",
+                id: 2392,
+                time_created: "2012-08-29T13:33:10",
+                email: "gercek+autocs@redbeacon.com"
+            },
+            {
+                first_name: "Melis",
+                last_name: "Karakus",
+                user: 87282,
+                time_updated: "2012-09-13T19:12:00",
+                home: null,
+                pending: false,
+                best_username: "Melis",
+                id: 4892,
+                time_created: "2012-09-13T19:12:00",
+                email: "melis+karakus@redbeacon.com"
+            },
+            {
+                first_name: "Invited",
+                last_name: "FromTask",
+                user: 90382,
+                time_updated: "2012-09-17T21:49:06",
+                home: null,
+                pending: false,
+                best_username: "Invited",
+                id: 5882,
+                time_created: "2012-09-17T21:49:06",
+                email: "gercek+invitedfromtask@redbeacon.com"
+            },
+            {
+                first_name: "Second",
+                last_name: "FromTask",
+                user: 90392,
+                time_updated: "2012-09-17T21:50:13",
+                home: null,
+                pending: false,
+                best_username: "Second",
+                id: 5892,
+                time_created: "2012-09-17T21:50:13",
+                email: "gercek+second@redbeacon.com"
+            },
+            {
+            first_name: "Third ",
+            last_name: "FromTask",
+            user: 90402,
+            time_updated: "2012-09-17T21:56:04",
+            home: null,
+            pending: false,
+            best_username: "Third ",
+            id: 5902,
+            time_created: "2012-09-17T21:56:04",
+            email: "gercek+third@redbeacon.com"
+            },
+            {
+            first_name: "TEXAS",
+            last_name: "A",
+            user: 90422,
+            time_updated: "2012-09-17T22:01:40",
+            home: null,
+            pending: false,
+            best_username: "TEXAS",
+            id: 5922,
+            time_created: "2012-09-17T22:01:40",
+            email: "gercek+texas@redbeacon.com"
+            },
+            {
+            first_name: "a",
+            last_name: "a",
+            user: 107593,
+            time_updated: "2012-10-27T00:46:52",
+            home: null,
+            pending: true,
+            best_username: "a",
+            id: 7363,
+            time_created: "2012-10-27T00:46:52",
+            email: "a"
+            },
+            {
+            first_name: "Another",
+            last_name: "One",
+            user: 1141643,
+            time_updated: "2013-04-12T18:52:29",
+            home: null,
+            pending: true,
+            best_username: "Another",
+            id: 193733,
+            time_created: "2013-04-12T18:52:29",
+            email: "gercek+another@redbeacon.com"
+            }
+            ]
 
 
 
@@ -151,7 +278,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
     // Returns the View class
     return PhotoStackView;
 
-} );
+});
 
 
 
