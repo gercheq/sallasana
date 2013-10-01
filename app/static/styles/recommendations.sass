@@ -1,7 +1,20 @@
+
+//
+// z-indexes for recommendations view
+//
+$containerZ: 10
+$cardStackZ:11
+$controlsZ: 11
+
+$cardZ:12
+$cardFrontZ: 13
+
 .recommendations-container
   width: 90%
-  margin: 0 auto
+  max-width: 600px
+  margin: 3em auto 0
   position: relative
+  z-index: $containerZ
   .recommendation
     border: 1px solid $light_gray
     background: #FFF
@@ -12,6 +25,7 @@
     border-radius: 3px
     // @include box-sizing(border-box)
     @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.4))
+    z-index: $cardZ
     img
       width: 100%
 
@@ -21,6 +35,9 @@
       position: absolute
       top: 0
       left: 0
+
+    &.front
+      z-index: $cardFrontZ
 
 
   //
@@ -114,3 +131,40 @@
     overflow: visible
     padding: 0
     margin: 1em 0 0
+
+
+.recommendation-controls
+  text-align: center
+  margin: 2em 0 0
+  z-index: $controlsZ
+  .ui-btn
+    @include border-radius(20px)
+    font-weight: 300
+    font-size: 1em
+
+
+
+
+/* Large desktop */
+@media (min-width: 1200px)
+  .recommendations-container
+    max-width: 600px
+    margin-top: 3em
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px)
+  .recommendations-container
+    max-width: 600px
+    margin-top: 3em
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px)
+  .recommendations-container
+    max-width: 75%
+    margin-top: 3em
+
+/* Landscape phones and down */
+@media (max-width: 480px)
+  .recommendations-container
+    max-width: 90%
+    margin-top: 1em
