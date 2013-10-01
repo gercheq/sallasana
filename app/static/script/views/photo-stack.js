@@ -41,29 +41,30 @@ define([ "jquery", "backbone","models/user", 'views/photo' ], function( $, Backb
                 this.$el.find('.photo').css('height', this.photoHeight);
             }
 
-            this.temporary();
+            // this.temporary();
 
         },
 
         addPhotoToStack: function(){
+
           var self = this;
           var photoModel = this.recommendationsCollection.pop();
 
-            debugger;
 
           var photoView = new PhotoView({
             height: self.photoHeight
           });
 
          var photo = photoView.render();
-         this.$el.find('.photo.twisted').after(photo);
+         // debugger;
+         this.$el.find('.photo-stack').append(photo);
 
 
         },
 
 
         like: function(e) {
-            debugger;
+//            debugger;
             this.addPhotoToStack()
 
 

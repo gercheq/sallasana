@@ -9,6 +9,10 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
     //
     var PhotoView = Backbone.View.extend( {
 
+        tag: "div",
+
+        className: "photo",
+
         template: _.template($('#tmpl-photo').html()),
 
         events: {
@@ -22,30 +26,36 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
             // this.photoFront;
             // this.photoBack;
 
-            debugger;
-
-            this.$el.pep();
-
         },
 
         render: function() {
             console.log("Rendering PhotoView");
 
-            this.$el.pep();
-                        debugger;
 
-            return this.template;
+
+//            var el = this.$el.html(this.template(_.extend(data, {
+//                mytask: data.submitted_user && (data.submitted_user.id == $('body').data('uid')),
+//                isRegisteredUser: this.memberCollection.isRegisteredUser()
+//            })));
+
+
+
+
+            var el = this.$el.html(this.template());
+            el.pep();
+            return el
+
+
         },
 
         like: function(e) {
-            debugger;
+            console.log("LIKE");
 
 
         },
 
         dislike: function(e) {
-
-            alert('DISLIKED');
+            console.log("DISLIKE");
         }
 
     } );
