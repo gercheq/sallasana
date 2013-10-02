@@ -1,8 +1,7 @@
 <section class="photos-container">
 
   <div class="photo-stack">
-    {% include "includes/photo.html" with extra_class="twisted" %}
-
+    <div class="photo">{% include "includes/photo.html" %}</div>
   </div>
 
 
@@ -30,6 +29,14 @@
            data-icon="grid"
            data-theme="b"
            data-icon="heart">Like</a>
+
+
+        <a id="btn-add"
+           href="#"
+           data-role="button"
+           class="ui-btn ui-btn-inline"
+           data-icon="plus"
+           data-theme="b">Add</a>
     </div>
   </div>
 

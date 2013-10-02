@@ -11,19 +11,26 @@ $cardFrontZ: 13
 
 
 $photoHeight: 600px
+$photoWidth: 400px
 
 
 .photos-container
   width: 90%
   max-width: 600px
   margin: 3em auto 0
-  position: relative
+  //position: relative
   z-index: $containerZ
+  text-align: center
+
+  .photo-stack
+    display: inline-block
+    position: relative
+
+
   .photo
     border: 1px solid $light_gray
     background: #FFF
-    width: 100%
-
+    width: $photoWidth
     height: auto
     vertical-align: bottom
     border: .5em solid #fff
@@ -33,8 +40,27 @@ $photoHeight: 600px
     @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.4))
     @include box-sizing(border-box)
     z-index: $cardZ
-    img
+
+
+    .metadata
+      position: relative
+      display: block
       width: 100%
+      height: 400px
+      background: #FFF no-repeat center center
+      background-size: cover
+      .name-age
+        position: absolute
+        bottom: 0
+        left: 0
+        display: block
+        width: 100%
+        background: rgba(0,0,0,.50)
+        text-shadow: none
+        color: #FFF
+        font-weight: 300
+        @include box-sizing(border-box)
+        padding: .5em 1em
 
 
     &.front,
