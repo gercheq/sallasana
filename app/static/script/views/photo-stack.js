@@ -15,7 +15,8 @@ define([ "jquery", "backbone","models/user", 'views/photo' ], function( $, Backb
 
         events: {
             'click #btn-like': 'like',
-            'click #btn-dislike': 'dislike'
+            'click #btn-dislike': 'dislike',
+            'click #btn-add': 'addPhotoToStack'
         },
 
         initialize: function() {
@@ -57,6 +58,7 @@ define([ "jquery", "backbone","models/user", 'views/photo' ], function( $, Backb
 
          var photo = photoView.render();
          // debugger;
+
          this.$el.find('.photo-stack').append(photo);
 
 
@@ -64,14 +66,21 @@ define([ "jquery", "backbone","models/user", 'views/photo' ], function( $, Backb
 
 
         like: function(e) {
-//            debugger;
-            this.addPhotoToStack()
+            var self = this;
 
+           // debugger;
+
+            var $currentPhoto = self.$el.find('.photo').last();
+
+            $currentPhoto.addClass('animated bounceOutLeft').removeClass('front');
+            $currentPhoto.prev().addClass('front');
+            _.delay(function(){
+                $currentPhoto.remove();
+            }, 300);
 
         },
 
         dislike: function(e) {
-
             alert('DISLIKED');
         },
 
