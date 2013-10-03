@@ -21,7 +21,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
         },
 
         initialize: function() {
-            console.log("Initializing PhotoView");
+            console.log("INIT:  PhotoView");
 
             // this.photoFront;
             // this.photoBack;
@@ -29,7 +29,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
         },
 
         render: function() {
-            console.log("Rendering PhotoView");
+            console.log("RNDR:  PhotoView");
 
 
 
@@ -40,12 +40,11 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
 
 
 
+            var tmpl = this.template(this.model.toJSON());
 
-            var el = this.$el.html(this.template());
-            el.pep();
-            return el
+            var el = this.$el.html(tmpl);
 
-
+            return this;
         },
 
         like: function(e) {
