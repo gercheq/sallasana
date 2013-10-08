@@ -168,7 +168,7 @@ LOGGING = {
 
 MONGO_DATABASE_NAME = 'sallasana'
 #MONGO_HOST = 'ren.io'
-MONGO_HOST = 'localhost'
+MONGO_HOST = 'sallasana.net'
 MONGO_PORT = 27017
 
 MONGO_USERNAME = 'sallasana'
