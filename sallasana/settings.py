@@ -24,6 +24,10 @@ DATABASES = {
     }
 }
 
+# Dev server settings
+#DEV_DOMAIN_PORT = '%s:%d' % (hostname, 10000 + os.geteuid())
+#DEV_DOMAIN = '%s.sallasana.net' % getpass.getuser()
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
