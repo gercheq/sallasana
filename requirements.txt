@@ -1,0 +1,14 @@
+Django==1.5.4
+argparse==1.2.1
+django-facebook==5.2.6
+facebook-sdk==0.4.0
+ipython==1.1.0
+mongoengine==0.8.4
+oauthlib==0.6.0
+pymongo==2.6.2
+python-openid==2.2.5
+python-social-auth==0.1.14
+requests==2.0.0
+requests-oauthlib==0.4.0
+six==1.4.1
+wsgiref==0.1.2
