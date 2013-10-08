@@ -44,7 +44,7 @@ require([ "jquery", "backbone", "router"  ], function( $, Backbone, ApplicationR
 		}
 	);
 
-	require( [ "jquerymobile"  ], function() {
+	require( [ "jquerymobile" , "jquery.pep" ], function() {
 
         console.log("Initialize jQM");
 

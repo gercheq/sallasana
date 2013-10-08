@@ -16,9 +16,10 @@ define([
 
         // The Router constructor
         initialize: function() {
-            console.log("Initializing ApplicationRouter...");
+            console.log("INIT:  ApplicationRouter...");
 
             this.$container = $('#page-app').find('.ui-content');
+            this.$photoStackContainer = this.$container.find('.photos-container');
 //            // Instantiates a new Animal Category View
 //            this.animalsView = new CategoryView( { el: "#animals", collection: new CategoriesCollection( [] , { type: "animals" } ) } );
 //
@@ -44,7 +45,7 @@ define([
 
 
         render: function() {
-            this.activeView.render();
+            // this.activeView.render();
         },
 
         // launch method
@@ -52,14 +53,12 @@ define([
             console.log("Routing to Launch");
 
 
-
             this.photoStackView = new PhotoStackView({
-                el: this.$container
+               //  el: this.$photoStackContainer
             });
 
-            // Set the active view and render it
-            this.activeView = this.photoStackView;
-            this.render();
+
+            this.$photoStackContainer.html( this.photoStackView.render().el );
 
             // Programatically changes to the categories page
             // $.mobile.changePage( "#page-recommendations" , { reverse: false, changeHash: false } );

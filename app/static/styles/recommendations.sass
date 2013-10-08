@@ -1,19 +1,66 @@
-.recommendations-container
+
+//
+// z-indexes for photoss view
+//
+$containerZ: 10
+$cardStackZ:11
+$controlsZ: 11
+
+$cardZ:12
+$cardFrontZ: 13
+
+
+$photoHeight: 600px
+$photoWidth: 400px
+
+
+.photos-container
   width: 90%
-  margin: 0 auto
-  position: relative
-  .recommendation
+  max-width: 600px
+  margin: 3em auto 0
+  //position: relative
+  z-index: $containerZ
+  text-align: center
+
+  .photo-stack
+    display: block
+    position: relative
+
+
+  .photo
     border: 1px solid $light_gray
     background: #FFF
-    width: 96%
+    width: $photoWidth
     height: auto
     vertical-align: bottom
     border: .5em solid #fff
     border-radius: 3px
+
     // @include box-sizing(border-box)
     @include box-shadow(0 1px 4px rgba(0, 0, 0, 0.4))
-    img
+    @include box-sizing(border-box)
+    z-index: $cardZ
+
+
+    .metadata
+      position: relative
+      display: block
       width: 100%
+      height: 400px
+      background: #FFF no-repeat center center
+      background-size: cover
+      .name-age
+        position: absolute
+        bottom: 0
+        left: 0
+        display: block
+        width: 100%
+        background: rgba(0,0,0,.50)
+        text-shadow: none
+        color: #FFF
+        font-weight: 300
+        @include box-sizing(border-box)
+        padding: .5em 1em
 
 
     &.front,
@@ -22,6 +69,9 @@
       top: 0
       left: 0
 
+    &.front
+      z-index: $cardFrontZ
+
 
   //
   // Twisted class gives the double rotate background which creates
@@ -29,8 +79,8 @@
   // http://inspectelement.com/tutorials/create-the-illusion-of-stacked-elements-with-css3-pseudo-elements/
   //
   //
-  .twisted
-    position: relative
+  // .twisted
+
 
   /* twisteds creted by the use of generated content */
   .twisted:before,
@@ -109,8 +159,45 @@
 
 
 
-#page-recommendations
+#page-photos
   .ui-content
     overflow: visible
     padding: 0
     margin: 1em 0 0
+
+
+.photo-controls
+  text-align: center
+  margin: 2em 0 0
+  z-index: $controlsZ
+  .ui-btn
+    @include border-radius(20px)
+    font-weight: 300
+    font-size: 1em
+
+
+
+
+/* Large desktop */
+@media (min-width: 1200px)
+  .photos-container
+    max-width: 600px
+    margin-top: 3em
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px)
+  .photos-container
+    max-width: 600px
+    margin-top: 3em
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px)
+  .photos-container
+    max-width: 75%
+    margin-top: 3em
+
+/* Landscape phones and down */
+@media (max-width: 480px)
+  .photos-container
+    max-width: 90%
+    margin-top: 1em
