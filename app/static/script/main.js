@@ -29,12 +29,12 @@ require.config( {
 // Includes File Dependencies
 require([ "jquery", "backbone", "router"  ], function( $, Backbone, ApplicationRouter ) {
 
-    console.log("REQUIRE");
+    console.log("INIT: RequireJS");
 
 	$(document).on("mobileinit",
 		// Set up the "mobileinit" handler before requiring jQuery Mobile's module
 		function() {
-            console.log("REQUIRE2");
+            console.log("INIT: jQueryMobile");
 
 			// Prevents all anchor click handling including the addition of active button state and alternate link bluring.
 			$.mobile.linkBindingEnabled = false;
@@ -46,7 +46,6 @@ require([ "jquery", "backbone", "router"  ], function( $, Backbone, ApplicationR
 
 	require( [ "jquerymobile" , "jquery.pep" ], function() {
 
-        console.log("Initialize jQM");
 
 		// Instantiates a new Backbone.js Mobile Router
 		this.router = new ApplicationRouter();

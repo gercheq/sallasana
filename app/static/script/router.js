@@ -19,15 +19,8 @@ define([
             console.log("INIT:  ApplicationRouter...");
 
             this.$container = $('#page-app').find('.ui-content');
-            this.$photoStackContainer = this.$container.find('.photos-container');
-//            // Instantiates a new Animal Category View
-//            this.animalsView = new CategoryView( { el: "#animals", collection: new CategoriesCollection( [] , { type: "animals" } ) } );
-//
-//            // Instantiates a new Colors Category View
-//            this.colorsView = new CategoryView( { el: "#colors", collection: new CategoriesCollection( [] , { type: "colors" } ) } );
-//
-//            // Instantiates a new Vehicles Category View
-//            this.vehiclesView = new CategoryView( { el: "#vehicles", collection: new CategoriesCollection( [] , { type: "vehicles" } ) } );
+
+
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
@@ -52,16 +45,11 @@ define([
         launch: function() {
             console.log("Routing to Launch");
 
+            // Launch Photo Stack Automatically
+            this.photoStackView = new PhotoStackView();
+            this.$container.html( this.photoStackView.render().el );
 
-            this.photoStackView = new PhotoStackView({
-               //  el: this.$photoStackContainer
-            });
 
-
-            this.$photoStackContainer.html( this.photoStackView.render().el );
-
-            // Programatically changes to the categories page
-            // $.mobile.changePage( "#page-recommendations" , { reverse: false, changeHash: false } );
         },
 
         settings: function() {
