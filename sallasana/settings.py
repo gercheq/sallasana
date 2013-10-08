@@ -175,8 +175,7 @@ MONGO_USERNAME = 'sallasana'
 MONGO_PASSWORD = 'sallasanarocks!'
 
 import mongoengine
-#mongoengine.connect(MONGO_DATABASE_NAME, host=MONGO_HOST, port=MONGO_PORT)
-#, username=MONGO_USERNAME, password=MONGO_PASSWORD)
+mongoengine.connect(MONGO_DATABASE_NAME, host=MONGO_HOST, port=MONGO_PORT, username=MONGO_USERNAME, password=MONGO_PASSWORD)
 
 
 SESSION_ENGINE = 'mongoengine.django.sessions'
