@@ -7,12 +7,12 @@ from bson import json_util
 from django.http import HttpResponse
 
 
-def get_fb_user_view(request, username=None):
+def get_fb_user_view(request, query=None):
 
     response = []
 
     # Returns All Users
-    if not username:
+    if not query:
         fb_users = get_fb_user()
         if fb_users:
             fb_user_clean = {}
@@ -24,7 +24,7 @@ def get_fb_user_view(request, username=None):
 
     # Returns Specific User
     else:
-        fb_user = get_fb_user(username)
+        fb_user = get_fb_user(query)[0]
         if fb_user:
             fb_user_clean = {}
             for field in fb_user._fields_ordered:
