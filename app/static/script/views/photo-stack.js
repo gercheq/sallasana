@@ -262,7 +262,7 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
 
         _displayDetailsPane: function() {
             var self = this;
-            $('.pane-photo-details').addClass('animated bounceInUp')
+            $('#pane-photo-details').addClass('animated bounceInUp')
 
 
         }
