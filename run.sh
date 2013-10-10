@@ -9,7 +9,7 @@ fi
 
 #echo "^[[32m"
 echo "-----------------------------------------------------------"
-echo "    Your devserver will be: http://sallasana.net:$port/"
+echo "    Your devserver will be: http://$USER.sallasana.net/"
 echo "    Hit Ctrl-C a few times to kill this server."
 echo "-----------------------------------------------------------"
 #echo "^[[0m"
@@ -17,6 +17,7 @@ echo "-----------------------------------------------------------"
 # Start the devserver.
 pkill -U $uid -f 'manage.py runserver'
 while true; do
-    ./manage.py runserver_plus 0.0.0.0:$port
+    #./manage.py runserver_plus 0.0.0.0:$port
+    ./manage.py runfcgi host=127.0.0.1 port=$port daemonize=false debug=true
     sleep 1
 done
