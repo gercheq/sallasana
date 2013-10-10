@@ -15,7 +15,7 @@ echo "-----------------------------------------------------------"
 #echo "^[[0m"
 
 # Start the devserver.
-pkill -U $uid -f 'manage.py runserver'
+pkill -U $uid -f 'manage.py runfcgi'
 while true; do
     #./manage.py runserver_plus 0.0.0.0:$port
     ./manage.py runfcgi host=127.0.0.1 port=$port daemonize=false debug=true
