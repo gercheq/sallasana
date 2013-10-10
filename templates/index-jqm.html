@@ -1,15 +1,13 @@
-{% load staticfiles %}
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Sallasana!!!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="{% static "../../media/third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" %}" />
-  <link rel="stylesheet" href="{% static "../../media/third_party/jqm-icon-pack-fa.css" %}" />
-  <link rel="stylesheet" href="{% static "../../media/styles/style.css" %}" />
-  <script src="{% static "../../media/third_party/require.js" %}" data-main="{% static "../../media/script/mobile" %}"></script>
+	<link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jqm-icon-pack-fa.css" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css" />
+  <script src="{{ MEDIA_URL }}/third_party/require.js" data-main="{{ MEDIA_URL }}/script/mobile"></script>
 </head>
 
 <body>

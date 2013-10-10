@@ -35,9 +35,9 @@
         <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
         -->
 
-        <link rel="stylesheet" href="{% static "../../media/styles/style.css" %}">
+        <link rel="stylesheet" href="{{MEDIA_URL}}styles/style.css">
 
-        <script src="{% static "../../media/third_party/modernizr-2.6.2.min.js" %}"></script>
+        <script src="{{MEDIA_URL}}third_party/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
 
@@ -47,12 +47,12 @@
         <!-- Add your site or application content here -->
 
 
-        <script src="{% static "../../media/third_party/jquery.pep.min.js" %}" ></script>
+        <script src="{{MEDIA_URL}}third_party/jquery.pep.min.js"></script>
 
-        <script src="{% static "../../media/third_party/helper.js" %}"></script>
+        <script src="{{MEDIA_URL}}media/third_party/helper.js"></script>
 
-        <script src="{% static "../../media/third_party/underscore-min.js" %}"></script>
-        <script src="{% static "../../media/third_party/backbone.js" %}"  ></script>
+        <script src="{{MEDIA_URL}}third_party/underscore-min.js"></script>
+        <script src="{{MEDIA_URL}}third_party/backbone.js"></script>
 
         <script>
           $(document).on('pagecreate', function(){
