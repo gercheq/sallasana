@@ -1,11 +1,11 @@
 
-{#<div class="photo">#}
+<div class="photo">
 
   <div class="metadata"
-      style='background-image: url("<%= photo %>")'>
+      style='background-image: url("<%= recommendation.photo %>")'>
 
     <div class="name-age">
-      <span class="name"><%= first_name %><%= last_name %></span>, <span class="age"><%= age %></span>
+      <span class="name"><%= recommendation.first_name %><%= recommendation.last_name %></span>, <span class="age"><%= recommendation.age %></span>
     </div>
   </div>
 
@@ -24,7 +24,6 @@
         </div>
       </div>
     </div><!-- /grid-a -->
-    </div>
   </div>
 
-{#</div> <!-- .photo -->#}
+</div> <!-- .photo -->

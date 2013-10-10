@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="{% static "../../media/third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" %}" />
   <link rel="stylesheet" href="{% static "../../media/third_party/jqm-icon-pack-fa.css" %}" />
   <link rel="stylesheet" href="{% static "../../media/styles/style.css" %}" />
-
   <script src="{% static "../../media/third_party/require.js" %}" data-main="{% static "../../media/script/mobile" %}"></script>
 </head>
 
@@ -19,26 +18,10 @@
   <div data-role="page" id="page-app">
 
     <div class="ui-panel-wrapper">
-      <div data-role="header">
-        <a href="#navigation" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
-        <h1>sallasana</h1>
-        <a href="#matches" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
-{##}
-{#        <a href="#matches"#}
-{#           data-role="button"#}
-{#           data-iconpos="notext"#}
-{#           data-icon="comments"#}
-{#           data-inline="true"#}
-{#           data-iconshadow="false"#}
-{#           data-theme="d"#}
-{#           class="ui-icon-nodisc ui-icon-alt">Mathes</a>#}
-{##}
-{#        <a href="#matches"#}
-{#           data-role="button"#}
-{#           data-icon="comment-alt"#}
-{#           class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-comment-alt ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>#}
-
-
+      <div id="header" data-role="header">
+          <a href="#navigation" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
+          <h1>sallasana</h1>
+          <a href="#matches" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
       </div><!-- /header -->
 
       <div data-role="content">
@@ -68,6 +51,7 @@
       <script type="text/template" id="tmpl-photo-stack">
         {% include 'includes/photos.html' %}
       </script>
+
 
       <script type="text/template" id="tmpl-photo">
         {% include 'includes/photo.html' %}

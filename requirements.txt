@@ -1,5 +1,7 @@
 Django==1.5.4
+Werkzeug==0.9.4
 argparse==1.2.1
+django-extensions==1.2.2
 django-facebook==5.2.6
 facebook-sdk==0.4.0
 ipython==1.1.0

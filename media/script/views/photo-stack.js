@@ -9,7 +9,7 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
     //
     var PhotoStackView = Backbone.View.extend( {
 
-        className: 'photo-stack',
+        className: 'photo-stack-view',
 
         photoHeight: null,
 
@@ -18,7 +18,8 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
         events: {
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
-            'click #btn-add': 'addPhotoToStack'
+            // 'click #btn-add': 'addPhotoToStack',
+            'click .photo': 'showProfileDetails'
         },
 
         initialize: function() {
@@ -31,59 +32,40 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
             this.createCollection();
         },
 
-        render: function() {
+        render: function() {2
             console.log("RNDR:  PhotoStackView");
             var self = this;
 
-            var photoView,
-                $photoStack = $('<div></div>');
+            var options = {
+                'recommendations': self.tempCollection.toJSON()
+            };
+            self.$el.html( self.template(options) );
 
-            self.tempCollection.forEach(function(recommendation) {
-
-
-                photoView = new PhotoView({
-                    model: recommendation,
-                    height: self.photoHeight
-                });
-
-                $photoStack.append( photoView.render().el );
-
-            });
-
-
-            self.$el.html( $photoStack.html() );
-
+            // Initialize touch and drag
             self.$el.find('.photo').pep();
 
-
-            // Setup Photo Height
-            if(!this.photoHeight){
-                this.photoHeight = this.$el.find('.photo.twisted').width();
-                this.$el.find('.photo').css('height', this.photoHeight);
-            }
-
-            this.temporary();
-
-            return this
+            return this;
         },
 
-        addPhotoToStack: function(){
-
-          var self = this;
 
 
-          var photoView = new PhotoView({
-              collection: self.recommendationsCollection,
-              height: self.photoHeight
-          });
-
-         var photo = photoView.render();
-         // debugger;
-
-         this.$el.find('.photo-stack').append(photo);
-
-
-        },
+//        addPhotoToStack: function(){
+//
+//          var self = this;
+//
+//
+//          var photoView = new PhotoView({
+//              collection: self.recommendationsCollection,
+//              height: self.photoHeight
+//          });
+//
+//         var photo = photoView.render();
+//         // debugger;
+//
+//         this.$el.find('.photo-stack').append(photo);
+//
+//
+//        },
 
 
         like: function(e) {
@@ -230,8 +212,60 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
 
 
             this.tempCollection = new RecommendationsCollection([user3, user2, user1]);
-        }
+        },
 
+
+        showProfileDetails: function(e) {
+
+            e.preventDefault();
+
+            var self = this;
+
+            // Setup current photo
+            self.$currentPhoto = $(e.currentTarget);
+
+            // Disable touch and drag
+            $.pep.unbind(self.$currentPhoto);
+
+
+            // Setup fullscreen styles w/ an extra class
+            self.$currentPhoto.addClass('photo-active');
+
+            self.$currentPhoto.parents('.photo-stack').css('position','static');
+
+
+
+            self._hideComponents();
+
+            self._displayDetailsPane();
+
+
+
+        },
+
+
+        _hideComponents: function(){
+            this.$currentPhoto.siblings().hide();
+
+
+            $('.ui-header').addClass('animated fadeOutUp');
+            $('.photo-controls').addClass('animated fadeOut');
+
+
+            this.$currentPhoto.find('.name-age, .stats').hide();
+
+        },
+
+        _showComponents: function() {
+            $('.ui-header').removeClass('fadeOutUp').addClass('fadeInTop');
+        },
+
+        _displayDetailsPane: function() {
+            var self = this;
+            $('#pane-photo-details').addClass('animated bounceInUp')
+
+
+        }
 
 
 
