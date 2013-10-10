@@ -1,7 +1,9 @@
 import datetime
 from social.pipeline.partial import partial
 
+from app.models import FBUser
 from api.tasks import create_fb_users_from_friends
+
 
 @partial
 def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
@@ -19,7 +21,6 @@ def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
     fb_user = FBUser(**fb_data)
     fb_user.save()
 
-
     # Save the access token in the session
     access_token = response['access_token']
     strategy.session['access_token'] = access_token
@@ -30,4 +31,4 @@ def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
         user.save()
 
     # Celery Task
-    create_fb_users_from_friends(user, access_token)
+    create_fb_users_from_friends.delay(fb_user, access_token)

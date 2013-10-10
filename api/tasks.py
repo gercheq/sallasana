@@ -7,24 +7,23 @@ from api.core import create_user_from_friend
 
 
 @task()
-def create_fb_users_from_friends(user, access_token):
+def create_fb_users_from_friends(fb_user, access_token):
     graph_api = facebook.GraphAPI(access_token)
 
     # Add friends
     friends = graph_api.get_object('me/friends')['data']
 
     # Saving friends
-    user.friends = friends
-    user.save()
+    fb_user.update(add_to_set__friends=friends)
+    fb_user.save()
 
     # Saving user picture
     user_picture = graph_api.get_object('me', fields='picture.height(1200).width(1200)')
-    user.picture = user_picture
-    user.save()
+    fb_user.picture = user_picture
+    fb_user.save()
 
     # Creating a user for each friend
     for friend_summary in friends:
-
         try:
             # is my friend in the db?
             fb_user = FBUser.objects.get(fb_id=friend_summary['id'])
