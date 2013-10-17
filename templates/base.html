@@ -2,11 +2,42 @@
 <html>
 <head>
   <title></title>
+  <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css">
+  <script src="{{ MEDIA_URL }}third_party/modernizr-2.6.2.min.js"></script>
+  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
+  <script src="{{ MEDIA_URL }}script/sperm.js"></script>
 </head>
 <body style="background: #CAFBFF;">
-  <div style="text-align: center; color: #f08080; margin-top: 200px; font-family: Helvetica, Arial, sans-serif  Helvetica, Arial, sans-serif">
-    <h1 style="font-size: 80px; text-shadow: 1px 1px 1px rgb(206, 86, 153); color: rgb(255, 181, 181); letter-spacing: -4px;">sallasana</h1>
+<div class="camera">
+  <h1>sallasana</h1>
+
+  <div class="fond0"></div>
+  <section class="appareil">
+    <div class="fond"></div>
+    <div class="fond2"></div>
+    <div class="fond3"></div>
+    <div class="fond4"></div>
+
+    <div class="object">
+      <div class="lens0"></div>
+      <div class="lens"></div>
+      <div class="lens2"></div>
+      <div class="lens3"></div>
+      <div class="lens4"></div>
+      <div class="lens5"></div>
+      <div class="lens6"></div>
+    </div>
+
+    <div class="flash">
+      <div class="red">
+        <div class="red2">
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section>
     {% block content %}{% endblock %}
-  </div>
+    </section>
 </body>
 </html>
