@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
-  <a href="/login/facebook" class="btn">Login with facebook</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <a href="/login/facebook" class="btn">
+    <img style="width: 224px;" src="{{ MEDIA_URL }}img/facebook-connect-button.png">
+  </a>
+{% endblock %}

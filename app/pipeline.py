@@ -1,4 +1,8 @@
 import datetime
+
+from celery.result import AsyncResult
+from celery.states import STARTED
+
 from social.pipeline.partial import partial
 
 from app.models import FBUser
@@ -17,18 +21,27 @@ def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
     # Adding the last update time
     fb_data['time_updated'] = datetime.datetime.now()
 
-    # Creating the user
-    fb_user = FBUser(**fb_data)
-    fb_user.save()
+    # Creating the fb user
+    created_fb_user = FBUser(**fb_data)
 
     # Save the access token in the session
     access_token = response['access_token']
     strategy.session['access_token'] = access_token
 
-    # Saving the access token in sallasana user
-    if user:
-        user.access_token = access_token
-        user.save()
+    prev_task = None
 
-    # Celery Task
-    create_fb_users_from_friends.delay(fb_user, access_token)
+    # Celery Task to create
+    if created_fb_user.__dict__.get('last_celery_task_id'):
+        prev_task = AsyncResult(created_fb_user.last_celery_task_id)
+
+    if prev_task and prev_task.state != STARTED:
+        print "task already running, skipping this time."
+    else:
+        celery_task = create_fb_users_from_friends.delay(created_fb_user, access_token)
+
+        print "===================="
+        print celery_task
+        print "===================="
+        #
+        #created_fb_user.update(set__latest_celery_task_id=str(celery_task), upsert=True)
+        #created_fb_user.save()
