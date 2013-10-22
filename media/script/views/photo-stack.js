@@ -18,8 +18,7 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
         events: {
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
-            // 'click #btn-add': 'addPhotoToStack',
-            'click .photo': 'showProfileDetails'
+            'tap .photo': 'showProfileDetails'
         },
 
         initialize: function() {
@@ -32,7 +31,7 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
             this.createCollection();
         },
 
-        render: function() {2
+        render: function() {
             console.log("RNDR:  PhotoStackView");
             var self = this;
 
@@ -47,31 +46,8 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
             return this;
         },
 
-
-
-//        addPhotoToStack: function(){
-//
-//          var self = this;
-//
-//
-//          var photoView = new PhotoView({
-//              collection: self.recommendationsCollection,
-//              height: self.photoHeight
-//          });
-//
-//         var photo = photoView.render();
-//         // debugger;
-//
-//         this.$el.find('.photo-stack').append(photo);
-//
-//
-//        },
-
-
         like: function(e) {
             var self = this;
-
-           // debugger;
 
             var $currentPhoto = self.$el.find('.photo').last();
 
@@ -163,8 +139,6 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
                 // This is too late to check for transtion distance
                 // checkPositionAndMove( $(e.currentTarget), threshold);
               });
-
-//            });
 
 
 

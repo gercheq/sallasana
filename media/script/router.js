@@ -20,8 +20,6 @@ define([
 
             this.$container = $('#page-app').find('.ui-content');
 
-
-
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
 
