@@ -15,8 +15,8 @@ def get_fb_user_view(request, query=None):
     if not query:
         fb_users = get_fb_user()
         if fb_users:
-            fb_user_clean = {}
             for fb_user in fb_users:
+                fb_user_clean = {}
                 for field in fb_user._fields_ordered:
                     fb_user_clean[field] = fb_user[field]
 
@@ -32,4 +32,4 @@ def get_fb_user_view(request, query=None):
 
             response.append(fb_user_clean)
 
-    return HttpResponse(json.dumps(response, default=json_util.default))
+    return HttpResponse(json.dumps(response[:5], default=json_util.default))
