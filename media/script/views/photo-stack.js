@@ -2,11 +2,15 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/user", "collections/recommendations", "views/photo" ], function( $, Backbone, UserModel, RecommendationsCollection, PhotoView ) {
+define([
+    "jquery",
+    "backbone",
+    "models/user",
+    "collections/recommendations",
+    "views/photo" ],
+    function($, Backbone, UserModel, RecommendationsCollection, PhotoView) {
 
-    //
-    //
-    //
+
     var PhotoStackView = Backbone.View.extend( {
 
         className: 'photo-stack-view',
@@ -18,7 +22,7 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
         events: {
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
-            'tap .photo': 'showProfileDetails'
+//            'tap .photo': 'showProfileDetails'
         },
 
         initialize: function() {
@@ -28,17 +32,40 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
             // this.photoFront;
             // this.photoBack;
 
-            this.createCollection();
+            debugger;
+
+//            self.recommendationsCollection = new RecommendationsCollection();
+//            self.recommendationsCollection
+//                .fetch({reset: true})
+//                .success(function(resp){ debugger; alert('success') })
+//                .error(function(){ alert('error') })
+//                .fail(function(){ alert('fail') });
+
+            self.recommendationsCollection = self.options.recommendationsCollection;
+
+            self.recommendationsCollection.on('change reset add remove', function(models, options){
+                console.log("Collection Reset");
+                console.log(models);
+                console.log(options);
+                debugger;
+                self.render();
+            });
+
+
+            // this.createCollection();
         },
 
         render: function() {
             console.log("RNDR:  PhotoStackView");
             var self = this;
 
-            var options = {
-                'recommendations': self.tempCollection.toJSON()
+            debugger;
+
+            var templateContext = {
+                'recommendations': self.recommendationsCollection.toJSON()
             };
-            self.$el.html( self.template(options) );
+            self.$el.html( self.template(templateContext) );
+
 
             // Initialize touch and drag
             self.$el.find('.photo').pep();
@@ -156,38 +183,6 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
 
             }
         },
-
-        createCollection: function(){
-
-            var user1 = new UserModel({
-                first_name: "Gercek",
-                age: '29',
-                shared_interests: '32',
-                shared_friends: '11',
-                photo: "http://m.c.lnkd.licdn.com/media/p/2/000/0b7/233/26a567e.jpg"
-            });
-
-            var user2 = new UserModel({
-                first_name: "Melis",
-                age: '26',
-                shared_interests: '2',
-                shared_friends: '5',
-                photo: 'https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash3/1015588_10100688244085212_1430391934_o.jpg'
-            });
-
-            var user3 = new UserModel({
-                first_name: "Renan",
-                age: '28',
-                shared_interests: '21',
-                shared_friends: '84',
-                photo: 'https://scontent-a-sjc.xx.fbcdn.net/hphotos-prn2/1231161_10151620122421867_1432863768_n.jpg'
-            });
-
-
-
-            this.tempCollection = new RecommendationsCollection([user3, user2, user1]);
-        },
-
 
         showProfileDetails: function(e) {
 

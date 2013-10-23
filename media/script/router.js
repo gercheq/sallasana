@@ -18,10 +18,18 @@ define([
         initialize: function() {
             console.log("INIT:  ApplicationRouter...");
 
-            this.$container = $('#page-app').find('.ui-content');
+            var self = this;
+
+            // Setup Variables
+            self.$container = $('#page-app').find('.ui-content');
+
+            // Setup Collections
+            self.recommendationsCollection = new RecommendationsCollection();
+            self.recommendationsCollection.fetch({ reset: true });
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
+
 
         },
 
@@ -42,9 +50,12 @@ define([
         // launch method
         launch: function() {
             console.log("Routing to Launch");
+            var self = this;
 
             // Launch Photo Stack Automatically
-            this.photoStackView = new PhotoStackView();
+            this.photoStackView = new PhotoStackView({
+                recommendationsCollection: self.recommendationsCollection
+            });
             this.$container.html( this.photoStackView.render().el );
 
 

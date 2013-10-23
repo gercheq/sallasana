@@ -7,21 +7,30 @@ define([ "jquery","backbone","models/user" ], function( $, Backbone, UserModel )
     // Extends Backbone.Router
     var RecommendationsCollection = Backbone.Collection.extend( {
 
-        // The Collection constructor
+        model: UserModel,
+
+        // For now assume that the friends are recommendations
+        url: '/api/fb/user/',
+
         initialize: function( models, options ) {
-            console.log()
-            // Sets the type instance property (ie. animals)
-            // this.type = options.type;
 
         },
 
-        // Sets the Collection model property to be a Category Model
-        model: UserModel,
+        parse: function(response){
 
-        url: 'api/recommendations/'
+            // data coming from backend is not structured
+            // so update values for template rendering
+            // at collection parse time.
+            _.each(response, function(recommendation) {
+                recommendation.photo = recommendation.picture.picture.data.url;
+                // TODO(Gercek): Calculate age from recommendation.birthday
+                recommendation.age = 21;
+            });
 
+            return response;
+        }
 
-    } );
+    });
 
     // Returns the Model class
     return RecommendationsCollection;

@@ -2,12 +2,15 @@
 <html>
 <head>
 	<title>Sallasana!!!</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+{#	<meta name="viewport" content="width=device-width, initial-scale=1">#}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
 
 	<link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" />
   <link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jqm-icon-pack-fa.css" />
   <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css" />
   <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
+
+
 </head>
 
 <body>
@@ -33,10 +36,8 @@
       {% include 'includes/panel-navigation.html' %}
     </div><!-- /panel -->
 
-    <div data-role="panel" data-position="right" id="matches">
-        <!-- panel content goes here -->
+    <div data-role="panel" data-position="right" id="matches" data-theme="c">
         {% include 'includes/panel-matches.html' %}
-
     </div><!-- /panel -->
 
 
@@ -45,11 +46,9 @@
 
 
     <section class="templates">
-
       <script type="text/template" id="tmpl-photo-stack">
-        {% include 'includes/photos.html' %}
+        {% include 'includes/photo-stack.html' %}
       </script>
-
 
       <script type="text/template" id="tmpl-photo">
         {% include 'includes/photo.html' %}
