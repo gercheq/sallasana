@@ -49,7 +49,7 @@ require([ "jquery", "backbone", "router"  ], function( $, Backbone, ApplicationR
         console.log("Initialize jQM");
 
 		// Instantiates a new Backbone.js Mobile Router
-		this.router = new ApplicationRouter();
+		window.router = new ApplicationRouter();
 
 
 	});
