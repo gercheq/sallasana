@@ -22,6 +22,7 @@ define([
         events: {
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
+            'click #btn-info': 'showProfileDetails'
 //            'tap .photo': 'showProfileDetails'
         },
 
@@ -73,22 +74,27 @@ define([
             return this;
         },
 
-        like: function(e) {
-            var self = this;
+        like: function() {
+            this._sendPhotoOut('bounceOutRight');
 
-            var $currentPhoto = self.$el.find('.photo').last();
 
-            $currentPhoto.addClass('animated bounceOutLeft').removeClass('front');
+        },
+
+        dislike: function() {
+            this._sendPhotoOut('bounceOutLeft');
+        },
+
+
+        _sendPhotoOut: function(animationClass) {
+            var $currentPhoto = this.$el.find('.photo').last();
+
+            $currentPhoto.addClass('animated ').addClass(animationClass);
             $currentPhoto.prev().addClass('front');
             _.delay(function(){
-                $currentPhoto.remove();
-            }, 300);
-
+                $currentPhoto.removeClass('front').remove();
+            }, 1000);
         },
 
-        dislike: function(e) {
-            alert('DISLIKED');
-        },
 
 
 
