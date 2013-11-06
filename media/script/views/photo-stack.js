@@ -64,7 +64,7 @@ define([
 
 
             // Initialize touch and drag
-            // self.$el.find('.photo').pep();
+//            self.$el.find('.photo-card').pep();
 
             return this;
         },
