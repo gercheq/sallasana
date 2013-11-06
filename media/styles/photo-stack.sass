@@ -13,9 +13,12 @@ $controlsZ: 11
 $cardZ:12
 $cardFrontZ: 13
 
+$gap: 1em
 
-$photoHeight: 200px
-$photoWidth: 400px
+$photoWidth: 260px // at the same time equal to photoHeight
+$statsHeight: 50px
+
+$borderRadius: 3px
 
 
 //.photos-container
@@ -26,35 +29,43 @@ $photoWidth: 400px
 //  z-index: $containerZ
 //  text-align: center
 
+.photo-stack-view
+  padding: $gap 0 0
+
 .photo-stack
   display: block
   position: relative
-  height: $photoWidth + 80px
-  width: $photoWidth
+  width: 100%
+  min-height: $photoWidth + $statsHeight
 
-.photo
-  border: 1px solid $light_gray
+.photo-card
   background: #FFF
   width: $photoWidth
   height: auto
   vertical-align: bottom
-  border: .5em solid #fff
-  border-radius: 3px
-
-  // @include box-sizing(border-box)
-  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4))
+  @include border-radius($borderRadius)
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.5))
   @include box-sizing(border-box)
   z-index: $cardZ
+  overflow: hidden
+  position: absolute
+  top: 0
+  left: 50%
+  margin-left: -$photoWidth/2
 
 
   .metadata
     position: relative
     display: block
     width: 100%
-    height: 400px
+    height: $photoWidth // makes images square
     background: #FFF no-repeat center center
     background-size: cover
+    border: 1px solid $black
+    @include border-radius-top($borderRadius)
+    @include box-sizing(border-box)
     .name-age
+      border-top: 1px solid $black
       position: absolute
       bottom: 0
       left: 0
@@ -63,10 +74,19 @@ $photoWidth: 400px
       background: rgba(0,0,0,.50)
       text-shadow: none
       color: #FFF
-      font-weight: 300
       @include box-sizing(border-box)
       padding: .5em 1em
+      strong
+        font-weight: 500
+      .age
+        font-weight: 100
 
+  .stats
+    .ui-bar
+      border: none
+    .ui-block-a
+      .ui-bar-a
+        border-right: 1px solid $light_gray
 
   &.front,
   &.middle
@@ -130,7 +150,7 @@ $photoWidth: 400px
   font-weight: 300
   color: $dark_gray
   vertical-align: middle
-  font-size: .8em
+  font-size: .8em !important
   margin-top: .2em
 
 .shared-count
@@ -168,8 +188,8 @@ $photoWidth: 400px
 
 .photo-controls
   text-align: center
-  margin: 2em 0 0
   z-index: $controlsZ
+  padding: $gap 0
   .ui-btn
     @include border-radius(20px)
     font-weight: 300

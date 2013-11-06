@@ -30,11 +30,6 @@ define([
             var self = this;
             console.log("INIT:  PhotoStackView");
 
-            // this.photoFront;
-            // this.photoBack;
-
-            debugger;
-
 //            self.recommendationsCollection = new RecommendationsCollection();
 //            self.recommendationsCollection
 //                .fetch({reset: true})
@@ -48,8 +43,8 @@ define([
                 console.log("Collection Reset");
                 console.log(models);
                 console.log(options);
-                debugger;
                 self.render();
+                // alert('Collection Changed!')
             });
 
 
@@ -60,7 +55,7 @@ define([
             console.log("RNDR:  PhotoStackView");
             var self = this;
 
-            debugger;
+//            debugger;
 
             var templateContext = {
                 'recommendations': self.recommendationsCollection.toJSON()
@@ -69,24 +64,26 @@ define([
 
 
             // Initialize touch and drag
-            self.$el.find('.photo').pep();
+            // self.$el.find('.photo').pep();
 
             return this;
         },
 
-        like: function() {
+        like: function(e) {
+            e.preventDefault();
             this._sendPhotoOut('bounceOutRight');
 
 
         },
 
-        dislike: function() {
+        dislike: function(e) {
+            e.preventDefault();
             this._sendPhotoOut('bounceOutLeft');
         },
 
 
         _sendPhotoOut: function(animationClass) {
-            var $currentPhoto = this.$el.find('.photo').last();
+            var $currentPhoto = this.$el.find('.photo-card').last();
 
             $currentPhoto.addClass('animated ').addClass(animationClass);
             $currentPhoto.prev().addClass('front');
