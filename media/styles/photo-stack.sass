@@ -259,14 +259,13 @@ body
 
 
 @-webkit-keyframes bounceOutLeft
+  // let's try from and to separately
   from
     -webkit-transform: translateX(0) rotate(0)
     opacity: 1
   to
     opacity: 0
-    -webkit-transform: translateX(-2000px) translateY(100px) rotate(-70deg)
-
-
+    -webkit-transform: translateX(-1000px) translateY(-100px) rotate(-70deg)
   //0%
   //  -webkit-transform: translateX(0) rotate(0)
   //20%
@@ -320,7 +319,7 @@ body
     -webkit-transform: translateX(-20px) translateY(20px) rotate(10deg)
   100%
     opacity: 0
-    -webkit-transform: translateX(2000px) translateY(100px) rotate(70deg)
+    -webkit-transform: translateX(2000px) translateY(-100px) rotate(70deg)
 
 @-moz-keyframes bounceOutRight
   0%
