@@ -9,13 +9,15 @@
   <link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jqm-icon-pack-fa.css" />
   <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css" />
   <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
-
+  <script type="text/javascript">
+    {# Define global variables coming from Django here and pass them to client side at boot time #}
+    SA = {};
+    SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};
+  </script>
 
 </head>
 
 <body>
-
-
   <div data-role="page" id="page-app">
 
     <div class="ui-panel-wrapper">
