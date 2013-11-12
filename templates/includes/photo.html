@@ -1,11 +1,11 @@
-
-<div class="photo-card">
+{# Container class .photo-card is added automatically by the view #}
+{# <div class="photo-card"> #}
 
   <div class="metadata"
-      style='background-image: url("<%= recommendation.photo %>")'>
-
+      style='background-image: url("<%= picture.picture.data.url %>")'>
+{#    <img src="<%= picture.picture.data.url %>" />#}
     <div class="name-age">
-      <span class="name"><strong><%= recommendation.first_name %></strong></span>, <span class="age"><%= recommendation.age %></span>
+      <span class="name"><strong><%= first_name %></strong></span>, <span class="age"><%= birthday %></span>
     </div>
   </div>
 
@@ -14,16 +14,16 @@
       <div class="ui-block-a">
         <div class="ui-bar ui-bar-a">
           <h3 class="shared">Shared<br/>Friends</h3>
-          <div class="shared-count">11</div>
+          <div class="shared-count"><%= shared_friends %></div>
         </div>
       </div>
       <div class="ui-block-b">
         <div class="ui-bar ui-bar-a">
           <h3 class="shared">Shared<br/>Interests</h3>
-          <div class="shared-count">3</div>
+          <div class="shared-count"><%= shared_interests %></div>
         </div>
       </div>
     </div><!-- /grid-a -->
   </div>
 
-</div> <!-- .photo -->
+{# </div> <!-- .photo-card --> #}

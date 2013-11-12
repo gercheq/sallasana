@@ -24,8 +24,8 @@ define([
             self.$container = $('#page-app').find('.ui-content');
 
             // Setup Collections
-            self.recommendationsCollection = new RecommendationsCollection();
-            self.recommendationsCollection.fetch({ reset: true });
+            self.recommendationsCollection = new RecommendationsCollection(SA.recommendations);
+            // self.recommendationsCollection.fetch({ reset: true });
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
@@ -35,7 +35,7 @@ define([
 
         // Backbone.js Routes
         routes: {
-            // When there is no hash bang on the url, the home method is called
+            // When there is no hash bang on the url, launch method is called
             "": "launch",
             "login": "login",
             "logout": "logout",
@@ -50,15 +50,16 @@ define([
         // launch method
         launch: function() {
             console.log("Routing to Launch");
-            var self = this;
+            var self = this,
+                renderedTemplate = "";
 
             // Launch Photo Stack Automatically
             this.photoStackView = new PhotoStackView({
                 recommendationsCollection: self.recommendationsCollection
             });
-            this.$container.html( this.photoStackView.render().el );
-
-
+            // Render Photo Stack
+            renderedTemplate = this.photoStackView.render().el;
+            this.$container.html(renderedTemplate);
         },
 
         settings: function() {
