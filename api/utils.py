@@ -19,6 +19,10 @@ def get_recommendations(user=None):
             fb_user_clean = {}
             for field in fb_user._fields_ordered:
                 fb_user_clean[field] = fb_user[field]
+
+            #fb_user_clean["photo"] = "https://graph.facebook.com/" + fb_user.username + "/picture?width=200&height=200"
+
             recommendations.append(fb_user_clean)
 
-    return json.dumps(recommendations, default=json_util.default)
+    # Limit the total number of recommendations to 20 to decrease used memory
+    return json.dumps(recommendations[:20], default=json_util.default)

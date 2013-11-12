@@ -597,6 +597,9 @@ body {
   -webkit-backface-visibility: hidden; }
 
 .animated {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
   -webkit-animation-duration: 1s;
   -moz-animation-duration: 1s;
   -o-animation-duration: 1s;

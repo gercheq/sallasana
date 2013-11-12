@@ -11,7 +11,7 @@ define([ "jquery", "backbone" ], function($, Backbone) {
             last_name: "",
             age: '',
             shared_interests: '0',
-            shared_friends: '0',
+            shared_friends: '0'
         },
         url: function(){
             return 'api/user/';
