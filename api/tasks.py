@@ -18,7 +18,7 @@ def create_fb_users_from_friends(created_fb_user, access_token):
     created_fb_user.save()
 
     # Saving user picture
-    user_picture = graph_api.get_object('me', fields='picture.height(1200).width(1200)')
+    user_picture = graph_api.get_object('me', fields='picture.height(260).width(260)')
     created_fb_user.picture = user_picture
     created_fb_user.save(safe=True)
 
@@ -32,7 +32,7 @@ def create_fb_users_from_friends(created_fb_user, access_token):
                 continue
         except DoesNotExist:
             friend = graph_api.get_object(friend_summary['id'])
-            friend_picture = graph_api.get_object(friend_summary['id'], fields='picture.height(1200).width(1200)')
+            friend_picture = graph_api.get_object(friend_summary['id'], fields='picture.height(260).width(260)')
 
             friend['picture'] = friend_picture
 
