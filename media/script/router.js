@@ -20,8 +20,16 @@ define([
 
             var self = this;
 
+            //
             // Setup Variables
+            //
+
+            // Main container to render pages
             self.$container = $('#page-app').find('.ui-content');
+
+            // Current view in context
+            self.currentView = null;
+
 
             // Setup Collections
             self.recommendationsCollection = new RecommendationsCollection(SA.recommendations);
@@ -29,8 +37,6 @@ define([
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
-
-
         },
 
         // Backbone.js Routes
@@ -43,23 +49,29 @@ define([
         },
 
 
-        render: function() {
-            // this.activeView.render();
+        render: function(view) {
+            // Destroy previous view that has been rendered
+            // to release it from the memory
+            if(this.currentView){
+                this.currentView.destroy();
+                // TODO(Gercek): Investigate if teardown method is needed
+                // https://paydirtapp.com/blog/backbone-in-practice-memory-management-and-event-bindings/
+            }
+
+            // Setup the currentview to the new one and render it
+            this.currentView = view;
+            this.$container.html(this.currentView.render().el);
         },
+
 
         // launch method
         launch: function() {
             console.log("Routing to Launch");
             var self = this,
-                renderedTemplate = "";
-
-            // Launch Photo Stack Automatically
-            this.photoStackView = new PhotoStackView({
-                recommendationsCollection: self.recommendationsCollection
-            });
-            // Render Photo Stack
-            renderedTemplate = this.photoStackView.render().el;
-            this.$container.html(renderedTemplate);
+                view = new PhotoStackView({
+                    recommendationsCollection: self.recommendationsCollection
+                });
+            self.render(view);
         },
 
         settings: function() {
