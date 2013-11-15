@@ -22,8 +22,8 @@ define([
         events: {
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
-            'click #btn-info': 'showProfileDetails'
-//            'tap .photo': 'showProfileDetails'
+            'click #btn-info': 'showProfileDetails',
+            'click .photo-stack': 'showProfileDetails'
         },
 
         initialize: function() {
@@ -41,18 +41,24 @@ define([
 
             // initialize with the first two recommendations
             self._addPhoto();
-            self._addPhoto();
+            self._addPhoto(1);
 
             return this;
         },
 
-        _addPhoto: function(){
-            console.log('Adding a new photo...')
+        _addPhoto: function(index){
+            // if not defined add the first element directly
+
+            index = index || 0;
+
             var self = this;
 
             // take the first recommendation and
             // add it to the .photo-stack
-            var currentModel = self.recommendationsCollection.shift();
+            var currentModel = self.recommendationsCollection.at(index);
+
+            console.log('Adding a new photo... Username: %s', currentModel.get('username'));
+
             var photoView = new PhotoView({
                 model: currentModel
             });
@@ -83,6 +89,11 @@ define([
                 $currentPhoto.remove();
             }, 1000);
 
+
+            // remove the element from the collection
+            self.recommendationsCollection.shift();
+
+
             // Then add another one to the stack
             self._addPhoto();
         },
@@ -94,16 +105,15 @@ define([
 
             var self = this;
 
-            // Setup current photo
-            self.$currentPhoto = $(e.currentTarget);
-
-            // Disable touch and drag
-            $.pep.unbind(self.$currentPhoto);
-
+            // First hide unnecessary elements
+            self.$el.find('.photo-controls').hide()
 
             // Setup fullscreen styles w/ an extra class
-            self.$currentPhoto.addClass('photo-active');
-            self.$currentPhoto.parents('.photo-stack').css('position','static');
+
+
+            // Zoom into the current card
+
+            // Slide Up Header
 
             self._hideComponents();
 
@@ -112,14 +122,16 @@ define([
 
 
         _hideComponents: function(){
+            this.$currentPhoto = this.$el.find('.photo-card').last();
+
+            // hide other photos so that they're not visible during transition
             this.$currentPhoto.siblings().hide();
 
+            this.$currentPhoto.addClass('photo-card-active');
 
+            // hide header and controls
             $('.ui-header').addClass('animated fadeOutUp');
             $('.photo-controls').addClass('animated fadeOut');
-
-
-            this.$currentPhoto.find('.name-age, .stats').hide();
 
         },
 

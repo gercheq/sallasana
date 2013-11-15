@@ -1,5 +1,5 @@
 //
-// PhotoView renders each card, tapping on the photo opens the PhotoDetailsView
+// ProfileDetailsView renders each card, tapping on the photo opens the ProfileDetailsView
 //
 //
 // ============================================================================
@@ -10,13 +10,13 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
     //
     //
     //
-    var PhotoView = Backbone.View.extend( {
+    var ProfileDetailsView = Backbone.View.extend( {
 
         tag: "div",
 
-        className: "photo-card",
+        className: "profile-details",
 
-        template: _.template($('#tmpl-photo').html()),
+        template: _.template($('#tmpl-profile-details').html()),
 
         events: {
             'click #btn-like': 'like',
@@ -24,7 +24,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
         },
 
         initialize: function() {
-            console.log("INIT:  PhotoView");
+            console.log("INIT:  ProfileDetailsView");
 
             // this.photoFront;
             // this.photoBack;
@@ -32,7 +32,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
         },
 
         render: function() {
-            console.log("RNDR:  PhotoView");
+            console.log("RNDR:  ProfileDetailsView");
 
 
             var tmpl = this.template(this.model.toJSON());
@@ -58,7 +58,7 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
 
     } );
 
-    return PhotoView;
+    return ProfileDetailsView;
 
 });
 

@@ -1,9 +1,10 @@
 {# Container class .photo-card is added automatically by the view #}
 {# <div class="photo-card"> #}
-{##}
-{#  <div class="metadata"#}
-{#      style='background-image: url("<%= picture.picture.data.url %>")'>#}
-  <div class="metadata">
+
+
+{#  <div class="metadata" style="background-image: url('/media/img/user-photo.jpg')">#}
+  <div class="metadata" style='background-image: url("<%= picture.picture.data.url %>")'>
+{#  <div class="metadata">#}
 {#    <img src="<%= picture.picture.data.url %>" />#}
     <div class="name-age">
       <span class="name"><strong><%= first_name %></strong></span>, <span class="age"><%= birthday %></span>
