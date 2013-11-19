@@ -131,8 +131,8 @@ define([
 
             // hide header and controls
             $('.ui-header').addClass('animated fadeOutUp');
-            $('.photo-controls').addClass('animated fadeOut');
 
+            this.$el.find('.photo-controls').addClass('animated fadeOut');
         },
 
         _showComponents: function() {
@@ -141,9 +141,7 @@ define([
 
         _displayDetailsPane: function() {
             var self = this;
-            $('#pane-photo-details').addClass('animated bounceInUp')
-
-
+            $('#pane-profile-details').addClass('animated bounceInUp');
         }
 
 
