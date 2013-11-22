@@ -144,8 +144,6 @@ define([
             $('#pane-profile-details').addClass('animated bounceInUp');
         }
 
-
-
     } );
 
     // Returns the View class

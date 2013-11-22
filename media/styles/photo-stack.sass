@@ -211,36 +211,39 @@ $borderRadius: 3px
 
 
 
-
 //
-// PROFILE DETAILS
+// Profile Details Pane
 //
-.photo-active
-  border: none
-  @include box-shadow(0 0 0 #FFF)
-  width: 100%
-
-
+// Gets activated when user taps on a photo-card
+//
 
 $thumbnailWidth: 40px
 $smallFont: 11px
+
+// Common pane styles
+.pane
+  .pane-inner
+    padding: 0.5em 0.5em 0.25em
+    h3
+      margin-top: 0
+
 
 #pane-profile-details
   background: #EEE
   position: fixed
   bottom: 0
-  min-height: 300px
+  min-height: 290px
   width: 100%
   z-index: 12
   -webkit-transform: translateY(2000px)
   @include box-shadow(0 0px 10px rgba(0,0,0,.75))
 
   h3
-    margin-bottom: 0
+    margin-bottom: .5em
     font-size: 1.5em
     color: $black
     span
-      float: right
+      font-weight: normal
   h6
     border-bottom: 1px solid #CCC
     margin: 0 0 .5em
@@ -251,6 +254,8 @@ $smallFont: 11px
   .profile-meta
     margin-bottom: 1em
     color: $darker_gray
+    float: right
+    text-align: right
     small
       clear: both
       display: block
@@ -285,13 +290,3 @@ $smallFont: 11px
           text-overflow: ellipsis
     &:last-child
       margin: 0
-
-
-
-
-
-.pane
-  .pane-inner
-    padding: .25em .5em
-    h3
-      margin-top: 0

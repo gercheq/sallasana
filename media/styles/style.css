@@ -939,18 +939,16 @@ body {
     font-weight: 300;
     font-size: 1em; }
 
-.photo-active {
-  border: none;
-  -webkit-box-shadow: 0 0 0 white;
-  -moz-box-shadow: 0 0 0 white;
-  box-shadow: 0 0 0 white;
-  width: 100%; }
+.pane .pane-inner {
+  padding: 0.5em 0.5em 0.25em; }
+  .pane .pane-inner h3 {
+    margin-top: 0; }
 
 #pane-profile-details {
   background: #eeeeee;
   position: fixed;
   bottom: 0;
-  min-height: 300px;
+  min-height: 290px;
   width: 100%;
   z-index: 12;
   -webkit-transform: translateY(2000px);
@@ -958,11 +956,11 @@ body {
   -moz-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.75); }
   #pane-profile-details h3 {
-    margin-bottom: 0;
+    margin-bottom: 0.5em;
     font-size: 1.5em;
     color: #444444; }
     #pane-profile-details h3 span {
-      float: right; }
+      font-weight: normal; }
   #pane-profile-details h6 {
     border-bottom: 1px solid #cccccc;
     margin: 0 0 0.5em;
@@ -971,7 +969,9 @@ body {
     font-size: 11px; }
   #pane-profile-details .profile-meta {
     margin-bottom: 1em;
-    color: #aaaaaa; }
+    color: #aaaaaa;
+    float: right;
+    text-align: right; }
     #pane-profile-details .profile-meta small {
       clear: both;
       display: block;
@@ -1010,8 +1010,3 @@ body {
           text-overflow: ellipsis; }
     #pane-profile-details .section-shared:last-child {
       margin: 0; }
-
-.pane .pane-inner {
-  padding: 0.25em 0.5em; }
-  .pane .pane-inner h3 {
-    margin-top: 0; }
