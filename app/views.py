@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 
-from sallasana.api.utils import get_recommendations
 
 def login(request):
     return render_to_response('login.html', {'user': request.user}, RequestContext(request))
@@ -18,7 +17,7 @@ def logout(request):
 
 @login_required()
 def index(request):
-    return render_to_response('index.html', RequestContext(request))
+    return render_to_response('landing.html', RequestContext(request))
 
 
 @login_required()
