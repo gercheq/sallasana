@@ -18,18 +18,30 @@ define([
         initialize: function() {
             console.log("INIT:  ApplicationRouter...");
 
-            this.$container = $('#page-app').find('.ui-content');
+            var self = this;
+
+            //
+            // Setup Variables
+            //
+
+            // Main container to render pages
+            self.$container = $('#page-app').find('.ui-content');
+
+            // Current view in context
+            self.currentView = null;
 
 
+            // Setup Collections
+            self.recommendationsCollection = new RecommendationsCollection(SA.recommendations);
+            // self.recommendationsCollection.fetch({ reset: true });
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
-
         },
 
         // Backbone.js Routes
         routes: {
-            // When there is no hash bang on the url, the home method is called
+            // When there is no hash bang on the url, launch method is called
             "": "launch",
             "login": "login",
             "logout": "logout",
@@ -37,19 +49,29 @@ define([
         },
 
 
-        render: function() {
-            // this.activeView.render();
+        render: function(view) {
+            // Destroy previous view that has been rendered
+            // to release it from the memory
+            if(this.currentView){
+                this.currentView.destroy();
+                // TODO(Gercek): Investigate if teardown method is needed
+                // https://paydirtapp.com/blog/backbone-in-practice-memory-management-and-event-bindings/
+            }
+
+            // Setup the currentview to the new one and render it
+            this.currentView = view;
+            this.$container.html(this.currentView.render().el);
         },
+
 
         // launch method
         launch: function() {
             console.log("Routing to Launch");
-
-            // Launch Photo Stack Automatically
-            this.photoStackView = new PhotoStackView();
-            this.$container.html( this.photoStackView.render().el );
-
-
+            var self = this,
+                view = new PhotoStackView({
+                    recommendationsCollection: self.recommendationsCollection
+                });
+            self.render(view);
         },
 
         settings: function() {

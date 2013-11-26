@@ -2,11 +2,15 @@
 // =============
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/user", "collections/recommendations", "views/photo" ], function( $, Backbone, UserModel, RecommendationsCollection, PhotoView ) {
+define([
+    "jquery",
+    "backbone",
+    "models/user",
+    "collections/recommendations",
+    "views/photo" ],
+    function($, Backbone, UserModel, RecommendationsCollection, PhotoView) {
 
-    //
-    //
-    //
+
     var PhotoStackView = Backbone.View.extend( {
 
         className: 'photo-stack-view',
@@ -18,200 +22,80 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
         events: {
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
-            // 'click #btn-add': 'addPhotoToStack',
-            'click .photo': 'showProfileDetails'
+            'click #btn-info': 'showProfileDetails',
+            'click .photo-stack': 'showProfileDetails'
         },
 
         initialize: function() {
             var self = this;
             console.log("INIT:  PhotoStackView");
-
-            // this.photoFront;
-            // this.photoBack;
-
-            this.createCollection();
+            self.recommendationsCollection = self.options.recommendationsCollection;
         },
 
-        render: function() {2
+        render: function() {
             console.log("RNDR:  PhotoStackView");
             var self = this;
 
-            var options = {
-                'recommendations': self.tempCollection.toJSON()
-            };
-            self.$el.html( self.template(options) );
+            // render this view's template and append it to $el
+            self.$el.html(self.template());
 
-            // Initialize touch and drag
-            self.$el.find('.photo').pep();
+            // initialize with the first two recommendations
+            self._addPhoto();
+            self._addPhoto(1);
 
             return this;
         },
 
+        _addPhoto: function(index){
+            // if not defined add the first element directly
 
+            index = index || 0;
 
-//        addPhotoToStack: function(){
-//
-//          var self = this;
-//
-//
-//          var photoView = new PhotoView({
-//              collection: self.recommendationsCollection,
-//              height: self.photoHeight
-//          });
-//
-//         var photo = photoView.render();
-//         // debugger;
-//
-//         this.$el.find('.photo-stack').append(photo);
-//
-//
-//        },
-
-
-        like: function(e) {
             var self = this;
 
-           // debugger;
+            // take the first recommendation and
+            // add it to the .photo-stack
+            var currentModel = self.recommendationsCollection.at(index);
 
-            var $currentPhoto = self.$el.find('.photo').last();
+            console.log('Adding a new photo... Username: %s', currentModel.get('username'));
 
-            $currentPhoto.addClass('animated bounceOutLeft').removeClass('front');
-            $currentPhoto.prev().addClass('front');
-            _.delay(function(){
-                $currentPhoto.remove();
-            }, 300);
+            var photoView = new PhotoView({
+                model: currentModel
+            });
+            var renderedTemplate = photoView.render().$el;
 
+            self.$el.find('.photo-stack').prepend(renderedTemplate);
+        },
+
+        like: function(e) {
+            e.preventDefault();
+            this._sendPhotoOut('bounceOutRight');
         },
 
         dislike: function(e) {
-            alert('DISLIKED');
+            e.preventDefault();
+            this._sendPhotoOut('bounceOutLeft');
         },
 
 
+        _sendPhotoOut: function(animationClass) {
+            var self = this;
 
-        temporary: function(){
+            // Animate the current photo and remove it from the dom as well
+            var $currentPhoto = this.$el.find('.photo-card').last();
 
-
-            //
-            // http://stackoverflow.com/questions/5023514/how-do-i-normalize-css3-transition-functions-across-browsers
-            //
-            function whichTransitionEvent(){
-                var t;
-                var el = document.createElement('fakeelement');
-                var transitions = {
-                  'transition':'transitionend',
-                  'OTransition':'oTransitionEnd',
-                  'MozTransition':'transitionend',
-                  'WebkitTransition':'webkitTransitionEnd'
-                }
-
-                for(t in transitions){
-                    if( el.style[t] !== undefined ){
-                        return transitions[t];
-                    }
-                }
-            }
+            $currentPhoto.addClass('animated ').addClass(animationClass);
+            _.delay(function(){
+                $currentPhoto.remove();
+            }, 1000);
 
 
-//            $( document ).delegate("#page-recommendations", "pagebeforecreate", function() {
-
-              var windowWidth = $(window).width(),
-                  recommendationWidth = $('.recommendation.front').width(),
-                  threshold = recommendationWidth,
-                  currentPosition;
+            // remove the element from the collection
+            self.recommendationsCollection.shift();
 
 
-              $('.recommendation.front').pep({
-
-                velocityMultiplier: 1.9,
-
-                debug: false,
-
-                initiate: function(e) {
-                  // [≘ touchstart/mousedown] called when first touch / click event is triggered on the object
-                  console.log("INITIATE");
-                },
-
-                start: function(e){
-                  // called when dragging starts; when dx or dy are greater than startThreshold[0] or startThreshold[1]
-                  console.log("START");
-                },
-
-                drag: function(e, obj) {
-                  // [≘ touchmove/mousemove] called continuously while the object is dragging
-                  console.log("DRAG");
-                  console.log(obj.$el.position().left);
-                },
-
-                stop: function(e, obj) {
-                  // [≘ touchend/mouseup] called when dragging stops
-                  console.log("STOP");
-
-                  // This is too early to check for transtion distance
-                  // checkPositionAndMove(obj.$el, threshold);
-
-                }
-
-              });
-
-
-              var transitionEnd = 'transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd';
-              $(".recommendation.front").on(transitionEnd, function(e, obj) {
-                //do something
-                console.log("TRANSITION ENDED");
-
-                // This is too late to check for transtion distance
-                // checkPositionAndMove( $(e.currentTarget), threshold);
-              });
-
-//            });
-
-
-
-            function checkPositionAndMove($el, threshold) {
-              var position = $el.position();
-
-
-              if(position.left > threshold) {
-                $.pep.unbind($el);
-                $el.addClass('liked animated fadeOutRightBig').removeClass('disliked');
-              } else if (position.left < -threshold){
-                $.pep.unbind($el);
-                $el.addClass('disliked animated fadeOutLeftBig').removeClass('liked');
-              }
-
-            }
-        },
-
-        createCollection: function(){
-
-            var user1 = new UserModel({
-                first_name: "Gercek",
-                age: '29',
-                shared_interests: '32',
-                shared_friends: '11',
-                photo: "http://m.c.lnkd.licdn.com/media/p/2/000/0b7/233/26a567e.jpg"
-            });
-
-            var user2 = new UserModel({
-                first_name: "Melis",
-                age: '26',
-                shared_interests: '2',
-                shared_friends: '5',
-                photo: 'https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash3/1015588_10100688244085212_1430391934_o.jpg'
-            });
-
-            var user3 = new UserModel({
-                first_name: "Renan",
-                age: '28',
-                shared_interests: '21',
-                shared_friends: '84',
-                photo: 'https://scontent-a-sjc.xx.fbcdn.net/hphotos-prn2/1231161_10151620122421867_1432863768_n.jpg'
-            });
-
-
-
-            this.tempCollection = new RecommendationsCollection([user3, user2, user1]);
+            // Then add another one to the stack
+            self._addPhoto();
         },
 
 
@@ -221,39 +105,34 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
 
             var self = this;
 
-            // Setup current photo
-            self.$currentPhoto = $(e.currentTarget);
-
-            // Disable touch and drag
-            $.pep.unbind(self.$currentPhoto);
-
+            // First hide unnecessary elements
+            self.$el.find('.photo-controls').hide()
 
             // Setup fullscreen styles w/ an extra class
-            self.$currentPhoto.addClass('photo-active');
-
-            self.$currentPhoto.parents('.photo-stack').css('position','static');
 
 
+            // Zoom into the current card
+
+            // Slide Up Header
 
             self._hideComponents();
 
             self._displayDetailsPane();
-
-
-
         },
 
 
         _hideComponents: function(){
+            this.$currentPhoto = this.$el.find('.photo-card').last();
+
+            // hide other photos so that they're not visible during transition
             this.$currentPhoto.siblings().hide();
 
+            this.$currentPhoto.addClass('photo-card-active');
 
+            // hide header and controls
             $('.ui-header').addClass('animated fadeOutUp');
-            $('.photo-controls').addClass('animated fadeOut');
 
-
-            this.$currentPhoto.find('.name-age, .stats').hide();
-
+            this.$el.find('.photo-controls').addClass('animated fadeOut');
         },
 
         _showComponents: function() {
@@ -262,12 +141,8 @@ define([ "jquery", "backbone","models/user", "collections/recommendations", "vie
 
         _displayDetailsPane: function() {
             var self = this;
-            $('#pane-photo-details').addClass('animated bounceInUp')
-
-
+            $('#pane-profile-details').addClass('animated bounceInUp');
         }
-
-
 
     } );
 
