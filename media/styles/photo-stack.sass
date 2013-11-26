@@ -20,6 +20,7 @@ $statsHeight: 50px
 
 $borderRadius: 3px
 
+$headerHeight: 44px
 
 //.photos-container
 //  width: 100%
@@ -29,14 +30,14 @@ $borderRadius: 3px
 //  z-index: $containerZ
 //  text-align: center
 
-.photo-stack-view
-  padding: $gap 0 0
+// .photo-stack-view
 
 .photo-stack
   display: block
   position: relative
   width: 100%
-  min-height: $photoWidth + $statsHeight
+  // min-height: $photoWidth + $statsHeight + 30px
+  min-height: 340px
 
 .photo-card
   background: #FFF
@@ -52,7 +53,7 @@ $borderRadius: 3px
   top: 0
   left: 50%
   margin-left: -$photoWidth/2
-
+  margin-top: $gap
 
   .metadata
     position: relative
@@ -103,6 +104,7 @@ $borderRadius: 3px
   -o-transition: all 300ms
   transition: all 300ms
   .metadata
+    height: 320px
     .name-age
       display: none
   .stats
@@ -203,12 +205,47 @@ $borderRadius: 3px
 .photo-controls
   text-align: center
   z-index: $controlsZ
-  padding: $gap 0
-  .ui-btn
-    @include border-radius(20px)
-    font-weight: 300
-    font-size: 1em
+  @extend .clearfix
+  width: 300px
+  margin: 0 auto
+  -webkit-transform: scale(.8)
 
+  // button
+  a
+    font-size: 3em
+    background: #FFF
+    color: #AAA
+    border: 1px solid #cccccc
+    border-radius: 100%
+    padding: 0.4em
+    font-weight: 300
+    width: 45px
+    display: block
+    height: 45px
+    line-height: 0em
+    vertical-align: top
+    float: left
+    margin: .25em
+    i
+      -webkit-transform: scale(1)
+
+    &:active
+      @include box-shadow(0 0 30px #AAA inset)
+
+      // icon
+      i
+        -webkit-transform: scale(.8)
+
+
+    &:focus
+      background: green
+
+
+  #btn-info
+    font-size: 2em
+    height: 32px
+    width: 32px
+    margin-top: 26px
 
 
 //
@@ -224,6 +261,8 @@ $smallFont: 11px
 .pane
   .pane-inner
     padding: 0.5em 0.5em 0.25em
+    width: 100%
+    box-sizing: border-box
     h3
       margin-top: 0
 
@@ -252,7 +291,8 @@ $smallFont: 11px
     font-size: $smallFont
 
   .profile-meta
-    margin-bottom: 1em
+    margin-bottom: 0
+    margin-top: .25em
     color: $darker_gray
     float: right
     text-align: right
@@ -290,3 +330,21 @@ $smallFont: 11px
           text-overflow: ellipsis
     &:last-child
       margin: 0
+
+
+#header-profile-details
+  background: rgba(0,0,0,.7)
+  width: 100%
+  height: $headerHeight
+  position: fixed
+  top: 0
+  z-index: 999999
+  width: 100%
+  opacity: 0
+
+  a,
+  .fa
+    color: #ffffff
+    text-decoration: none
+    text-shadow: none
+    font-weight: 300

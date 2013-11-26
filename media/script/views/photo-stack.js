@@ -23,7 +23,8 @@ define([
             'click #btn-like': 'like',
             'click #btn-dislike': 'dislike',
             'click #btn-info': 'showProfileDetails',
-            'click .photo-stack': 'showProfileDetails'
+            'click .photo-stack': 'showProfileDetails',
+            'click #close-details': 'hideProfileDetails'
         },
 
         initialize: function() {
@@ -44,6 +45,14 @@ define([
             self._addPhoto(1);
 
             return this;
+        },
+
+        hideProfileDetails: function() {
+          var self = this;
+
+          self._hideProfileDetailsComponents();
+
+          self._showRecommendationComponents();
         },
 
         _addPhoto: function(index){
@@ -89,10 +98,8 @@ define([
                 $currentPhoto.remove();
             }, 1000);
 
-
             // remove the element from the collection
             self.recommendationsCollection.shift();
-
 
             // Then add another one to the stack
             self._addPhoto();
@@ -100,28 +107,17 @@ define([
 
 
         showProfileDetails: function(e) {
-
             e.preventDefault();
 
             var self = this;
 
-            // First hide unnecessary elements
-            self.$el.find('.photo-controls').hide()
+            self._hideRecommendationComponents();
 
-            // Setup fullscreen styles w/ an extra class
-
-
-            // Zoom into the current card
-
-            // Slide Up Header
-
-            self._hideComponents();
-
-            self._displayDetailsPane();
+            self._showProfileDetailsComponents();
         },
 
 
-        _hideComponents: function(){
+        _hideRecommendationComponents: function(){
             this.$currentPhoto = this.$el.find('.photo-card').last();
 
             // hide other photos so that they're not visible during transition
@@ -135,13 +131,38 @@ define([
             this.$el.find('.photo-controls').addClass('animated fadeOut');
         },
 
-        _showComponents: function() {
-            $('.ui-header').removeClass('fadeOutUp').addClass('fadeInTop');
+        _showRecommendationComponents: function() {
+
+            // make other photos in stack visible again
+            this.$currentPhoto.siblings().show();
+
+            // zoom out current photo
+            this.$el.find('.photo-card-active').removeClass('photo-card-active');
+
+            // show header
+            $('.ui-header').removeClass('fadeOutUp').addClass('animated fadeInDown');
+
+            // show photo controls
+            this.$el.find('.photo-controls').addClass('fadeIn').removeClass('fadeOut');
+
         },
 
-        _displayDetailsPane: function() {
+
+        _showProfileDetailsComponents: function(){
             var self = this;
-            $('#pane-profile-details').addClass('animated bounceInUp');
+            self.$el.find('#pane-profile-details').addClass('animated bounceInUp').removeClass('bounceOutDown');
+            self.$el.find('#header-profile-details').addClass('animated slideInDown').removeClass('slideOutUp');
+
+        },
+
+        _hideProfileDetailsComponents: function(){
+            var self = this;
+
+            // hide details pane
+            self.$el.find('#pane-profile-details').addClass('bounceOutDown').removeClass('bounceInUp');
+
+            // hide details header
+            self.$el.find('#header-profile-details').addClass('slideOutUp').removeClass('slideInDown');
         }
 
     } );
