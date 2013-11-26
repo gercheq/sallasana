@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Lily+Script+One);
+@import url(../third_party/font-awesome-4.0.3/css/font-awesome.min.css);
 /* normalize.css v2.1.0 | MIT License | git.io/normalize */
 /* ==========================================================================
  * HTML5 display definitions
@@ -371,26 +372,26 @@ textarea[contenteditable] {
 /*
  * Clearfix helper
  * Used to contain floats: h5bp.com/q */
-.clearfix, #pane-profile-details .section-shared {
+.clearfix, .photo-controls, #pane-profile-details .section-shared {
   *zoom: 1; }
-  .clearfix:before, #pane-profile-details .section-shared:before {
+  .clearfix:before, .photo-controls:before, #pane-profile-details .section-shared:before {
     content: "";
     display: table; }
-  .clearfix:after, #pane-profile-details .section-shared:after {
+  .clearfix:after, .photo-controls:after, #pane-profile-details .section-shared:after {
     content: "";
     display: table;
     clear: both; }
 
 /* For IE 6/7 only
  * Include this rule to trigger hasLayout and contain floats. */
-.clearfix, #pane-profile-details .section-shared {
+.clearfix, .photo-controls, #pane-profile-details .section-shared {
   zoom: 1; }
-  .clearfix:before, #pane-profile-details .section-shared:before, .clearfix:after, #pane-profile-details .section-shared:after {
+  .clearfix:before, .photo-controls:before, #pane-profile-details .section-shared:before, .clearfix:after, .photo-controls:after, #pane-profile-details .section-shared:after {
     content: "\0020";
     display: block;
     height: 0;
     overflow: hidden; }
-  .clearfix:after, #pane-profile-details .section-shared:after {
+  .clearfix:after, .photo-controls:after, #pane-profile-details .section-shared:after {
     clear: both; }
 
 /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
@@ -514,6 +515,40 @@ body {
   -moz-animation-name: bounceOutRight;
   -o-animation-name: bounceOutRight;
   animation-name: bounceOutRight; }
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+
+  100% {
+    opacity: 0; } }
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+
+  100% {
+    opacity: 0; } }
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1; }
+
+  100% {
+    opacity: 0; } }
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1; }
+
+  100% {
+    opacity: 0; } }
+
+.animated.fadeOut {
+  -webkit-animation-name: fadeOut;
+  -moz-animation-name: fadeOut;
+  -o-animation-name: fadeOut;
+  animation-name: fadeOut; }
 
 @-webkit-keyframes fadeOutUp {
   0% {
@@ -731,6 +766,276 @@ body {
   -o-animation-name: bounceInDown;
   animation-name: bounceInDown; }
 
+@-webkit-keyframes bounceOutDown {
+  0% {
+    -webkit-transform: translateY(0); }
+
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(-20px); }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(2000px); } }
+
+@-moz-keyframes bounceOutDown {
+  0% {
+    -moz-transform: translateY(0); }
+
+  20% {
+    opacity: 1;
+    -moz-transform: translateY(-20px); }
+
+  100% {
+    opacity: 0;
+    -moz-transform: translateY(2000px); } }
+
+@-o-keyframes bounceOutDown {
+  0% {
+    -o-transform: translateY(0); }
+
+  20% {
+    opacity: 1;
+    -o-transform: translateY(-20px); }
+
+  100% {
+    opacity: 0;
+    -o-transform: translateY(2000px); } }
+
+@keyframes bounceOutDown {
+  0% {
+    transform: translateY(0); }
+
+  20% {
+    opacity: 1;
+    transform: translateY(-20px); }
+
+  100% {
+    opacity: 0;
+    transform: translateY(2000px); } }
+
+.animated.bounceOutDown {
+  -webkit-animation-name: bounceOutDown;
+  -moz-animation-name: bounceOutDown;
+  -o-animation-name: bounceOutDown;
+  animation-name: bounceOutDown; }
+
+@-webkit-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.05); }
+
+  70% {
+    -webkit-transform: scale(0.9); }
+
+  100% {
+    -webkit-transform: scale(1); } }
+
+@-moz-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    -moz-transform: scale(1.05); }
+
+  70% {
+    -moz-transform: scale(0.9); }
+
+  100% {
+    -moz-transform: scale(1); } }
+
+@-o-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -o-transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    -o-transform: scale(1.05); }
+
+  70% {
+    -o-transform: scale(0.9); }
+
+  100% {
+    -o-transform: scale(1); } }
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05); }
+
+  70% {
+    transform: scale(0.9); }
+
+  100% {
+    transform: scale(1); } }
+
+.animated.bounceIn {
+  -webkit-animation-name: bounceIn;
+  -moz-animation-name: bounceIn;
+  -o-animation-name: bounceIn;
+  animation-name: bounceIn; }
+
+@-webkit-keyframes bounceOut {
+  0% {
+    -webkit-transform: scale(1); }
+
+  25% {
+    -webkit-transform: scale(0.95); }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.1); }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.3); } }
+
+@-moz-keyframes bounceOut {
+  0% {
+    -moz-transform: scale(1); }
+
+  25% {
+    -moz-transform: scale(0.95); }
+
+  50% {
+    opacity: 1;
+    -moz-transform: scale(1.1); }
+
+  100% {
+    opacity: 0;
+    -moz-transform: scale(0.3); } }
+
+@-o-keyframes bounceOut {
+  0% {
+    -o-transform: scale(1); }
+
+  25% {
+    -o-transform: scale(0.95); }
+
+  50% {
+    opacity: 1;
+    -o-transform: scale(1.1); }
+
+  100% {
+    opacity: 0;
+    -o-transform: scale(0.3); } }
+
+@keyframes bounceOut {
+  0% {
+    transform: scale(1); }
+
+  25% {
+    transform: scale(0.95); }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1); }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.3); } }
+
+.animated.bounceOut {
+  -webkit-animation-name: bounceOut;
+  -moz-animation-name: bounceOut;
+  -o-animation-name: bounceOut;
+  animation-name: bounceOut; }
+
+@-webkit-keyframes slideInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0); } }
+
+@-moz-keyframes slideInDown {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(-2000px); }
+
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0); } }
+
+@-o-keyframes slideInDown {
+  0% {
+    opacity: 0;
+    -o-transform: translateY(-2000px); }
+
+  100% {
+    opacity: 1;
+    -o-transform: translateY(0); } }
+
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px); }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  -moz-animation-name: slideInDown;
+  -o-animation-name: slideInDown;
+  animation-name: slideInDown; }
+
+@-webkit-keyframes slideOutUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0); }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-2000px); } }
+
+@-moz-keyframes slideOutUp {
+  0% {
+    opacity: 1;
+    -moz-transform: translateY(0); }
+
+  100% {
+    opacity: 0;
+    -moz-transform: translateY(-2000px); } }
+
+@-o-keyframes slideOutUp {
+  0% {
+    opacity: 1;
+    -o-transform: translateY(0); }
+
+  100% {
+    opacity: 0;
+    -o-transform: translateY(-2000px); } }
+
+@keyframes slideOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0); }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-2000px); } }
+
+.slideOutUp {
+  -webkit-animation-name: slideOutUp;
+  -moz-animation-name: slideOutUp;
+  -o-animation-name: slideOutUp;
+  animation-name: slideOutUp; }
+
 body {
   background: #eeeeee; }
 
@@ -785,14 +1090,11 @@ body {
   padding: 0;
   margin: 0; }
 
-.photo-stack-view {
-  padding: 1em 0 0; }
-
 .photo-stack {
   display: block;
   position: relative;
   width: 100%;
-  min-height: 310px; }
+  min-height: 340px; }
 
 .photo-card {
   background: white;
@@ -813,7 +1115,8 @@ body {
   position: absolute;
   top: 0;
   left: 50%;
-  margin-left: -130px; }
+  margin-left: -130px;
+  margin-top: 1em; }
   .photo-card .metadata {
     position: relative;
     display: block;
@@ -872,8 +1175,10 @@ body {
   -ms-transition: all 300ms;
   -o-transition: all 300ms;
   transition: all 300ms; }
-  .photo-card-active .metadata .name-age {
-    display: none; }
+  .photo-card-active .metadata {
+    height: 320px; }
+    .photo-card-active .metadata .name-age {
+      display: none; }
   .photo-card-active .stats {
     display: none; }
 
@@ -931,16 +1236,44 @@ body {
 .photo-controls {
   text-align: center;
   z-index: 11;
-  padding: 1em 0; }
-  .photo-controls .ui-btn {
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
+  width: 300px;
+  margin: 0 auto;
+  -webkit-transform: scale(0.8); }
+  .photo-controls a {
+    font-size: 3em;
+    background: white;
+    color: #aaaaaa;
+    border: 1px solid #cccccc;
+    border-radius: 100%;
+    padding: 0.4em;
     font-weight: 300;
-    font-size: 1em; }
+    width: 45px;
+    display: block;
+    height: 45px;
+    line-height: 0em;
+    vertical-align: top;
+    float: left;
+    margin: 0.25em; }
+    .photo-controls a i {
+      -webkit-transform: scale(1); }
+    .photo-controls a:active {
+      -webkit-box-shadow: 0 0 30px #aaaaaa inset;
+      -moz-box-shadow: 0 0 30px #aaaaaa inset;
+      box-shadow: 0 0 30px #aaaaaa inset; }
+      .photo-controls a:active i {
+        -webkit-transform: scale(0.8); }
+    .photo-controls a:focus {
+      background: green; }
+  .photo-controls #btn-info {
+    font-size: 2em;
+    height: 32px;
+    width: 32px;
+    margin-top: 26px; }
 
 .pane .pane-inner {
-  padding: 0.5em 0.5em 0.25em; }
+  padding: 0.5em 0.5em 0.25em;
+  width: 100%;
+  box-sizing: border-box; }
   .pane .pane-inner h3 {
     margin-top: 0; }
 
@@ -968,7 +1301,8 @@ body {
     color: #aaaaaa;
     font-size: 11px; }
   #pane-profile-details .profile-meta {
-    margin-bottom: 1em;
+    margin-bottom: 0;
+    margin-top: 0.25em;
     color: #aaaaaa;
     float: right;
     text-align: right; }
@@ -1010,3 +1344,19 @@ body {
           text-overflow: ellipsis; }
     #pane-profile-details .section-shared:last-child {
       margin: 0; }
+
+#header-profile-details {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 44px;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+  width: 100%;
+  opacity: 0; }
+  #header-profile-details a,
+  #header-profile-details .fa {
+    color: white;
+    text-decoration: none;
+    text-shadow: none;
+    font-weight: 300; }
