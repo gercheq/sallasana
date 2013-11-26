@@ -14,7 +14,7 @@ var spermatozoa = d3.range(n).map(function() {
   };
 });
 
-var svg = d3.select("body").append("svg:svg")
+var svg = d3.select("div").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
 

@@ -10,7 +10,7 @@ from api.tasks import create_fb_users_from_friends
 
 
 @partial
-def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
+def create_or_update_fb_user(response, *args, **kwargs):
     fb_data = response
 
     # Id coming from the response interferes with the object id
@@ -21,27 +21,10 @@ def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
     # Adding the last update time
     fb_data['time_updated'] = datetime.datetime.now()
 
-    # Creating the fb user
+    # Creating the fb user from this guy
     created_fb_user = FBUser(**fb_data)
 
-    # Save the access token in the session
     access_token = response['access_token']
-    strategy.session['access_token'] = access_token
 
-    prev_task = None
-
-    # Celery Task to create
-    if created_fb_user.__dict__.get('last_celery_task_id'):
-        prev_task = AsyncResult(created_fb_user.last_celery_task_id)
-
-    if prev_task and prev_task.state != STARTED:
-        print "task already running, skipping this time."
-    else:
-        celery_task = create_fb_users_from_friends.delay(created_fb_user, access_token)
-
-        print "===================="
-        print celery_task
-        print "===================="
-        #
-        #created_fb_user.update(set__latest_celery_task_id=str(celery_task), upsert=True)
-        #created_fb_user.save()
+    # Creating FBUser's from this guys friends
+    create_fb_users_from_friends.delay(created_fb_user, access_token)

@@ -7,6 +7,8 @@ from bson import json_util
 from django.http import HttpResponse
 
 
+
+
 def get_fb_user_view(request, query=None):
 
     response = []
