@@ -2,31 +2,34 @@ import datetime
 
 from celery.result import AsyncResult
 from celery.states import STARTED
-
+from mongoengine.errors import NotUniqueError
 from social.pipeline.partial import partial
 
 from app.models import FBProfile
-from api.tasks import create_fb_users_from_friend
+from api.tasks import update_fb_profile
 
 
 @partial
 def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
-    fb_data = response
+    fb_response = response
 
     # Id coming from the response interferes with the object id
     # so we'll change it's name to fb_id
-    fb_data['fb_id'] = fb_data['id']
-    del fb_data['id']
+    fb_response['fb_id'] = fb_response['id']
+    del fb_response['id']
 
     # Adding the last update time
-    fb_data['time_updated'] = datetime.datetime.now()
+    fb_response['time_updated'] = datetime.datetime.now()
 
-    # Creating the fb user
-    created_fb_profile = FBProfile(**fb_data)
+    # Saving the users FB information on MongoDB
+    try:
+        created_fb_profile = FBProfile(**fb_response)
+        created_fb_profile.save()
+        fb_profile = created_fb_profile
+    except NotUniqueError:
+        fb_profile = FBProfile.objects.get(fb_id=fb_response['fb_id'])
 
-    # Save the access token in the session
-    access_token = response['access_token']
-    strategy.session['access_token'] = access_token
+    access_token = fb_response['access_token']
 
     prev_task = None
 
@@ -37,7 +40,7 @@ def create_update_fb_user(strategy, response, user=None, *args, **kwargs):
     #if prev_task and prev_task.state != STARTED:
     #    print "task already running, skipping this time."
     #else:
-    celery_task = create_fb_users_from_friend.delay(created_fb_profile, access_token)
+    celery_task = update_fb_profile.delay(fb_profile, access_token)
 
     print "===================="
     print celery_task

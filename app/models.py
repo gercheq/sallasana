@@ -14,8 +14,9 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class FBProfile(DynamicDocument):
-    fb_id = StringField(required=True, primary_key=True, unique=True)
+    fb_id = StringField(required=True, unique=True)
     username = StringField()
+    access_token = StringField()
 
     friends = DynamicField()
 
@@ -28,6 +29,10 @@ class FBProfile(DynamicDocument):
     meta = {
         'indexes': ['email', 'fb_id', 'username']
     }
+
+    @property
+    def avatar(self):
+        return self.picture['picture']['data']
 
 
 class SallasanaUserManager(BaseUserManager):
@@ -68,8 +73,8 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), max_length=255, unique=True)
 
-    fb_id = models.CharField(_('facebook id'), max_length=255, blank=True)
-    fb_username = models.CharField(_('facebook user name'), max_length=255, blank=True)
+    #fb_id = models.CharField(_('facebook id'), max_length=255, blank=True)
+    #fb_username = models.CharField(_('facebook user name'), max_length=255, blank=True)
 
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
@@ -103,7 +108,9 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
         return full_name.strip()
 
     def get_short_name(self):
-        "Returns the short name for the user."
+        """
+        Returns the short name for the user.
+        """
         return self.first_name
 
     def email_user(self, subject, message, from_email=None):
@@ -113,8 +120,27 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email])
 
     @property
+    def access_token(self):
+        """
+        Returns the current access token
+        """
+        social_auth = self.social_auth.get()
+        return social_auth.tokens
+
+    @property
+    def fb_id(self):
+        """
+        Returns the persons Facebook User ID
+        """
+        social_auth = self.social_auth.get()
+        return social_auth.uid
+
+    @property
     def fb_profile(self):
-        return FBProfile.objects.get(self.fb_id)
+        """
+        Returns the Facebook profile stored in MongoDB
+        """
+        return FBProfile.objects.get(fb_id=self.fb_id)
 
 
 #class Like(models.Model):
