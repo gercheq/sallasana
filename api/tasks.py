@@ -1,7 +1,8 @@
-
-from celery import task
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
 
 import facebook
+
+from celery import task
 from mongoengine import DoesNotExist
 
 from app.models import FBProfile

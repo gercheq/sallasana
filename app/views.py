@@ -1,3 +1,5 @@
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
+
 from django.http import Http404
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render_to_response

@@ -1,3 +1,5 @@
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
+
 from mongoengine import DoesNotExist
 from app.models import FBProfile
 
@@ -15,6 +17,7 @@ def is_match(user, liked_user):
 
 def dislike(user, like):
     pass
+
 
 def recommendations(user):
     pass

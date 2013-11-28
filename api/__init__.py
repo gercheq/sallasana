@@ -1,1 +1,0 @@
-__author__ = 'Renan Cakirerk <renan@redbeacon.com>'

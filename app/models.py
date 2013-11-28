@@ -1,3 +1,5 @@
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
+
 from django.core.mail import send_mail
 from django.db import models
 from django.contrib.auth.models import User

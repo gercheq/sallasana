@@ -1,3 +1,5 @@
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
+
 from django.conf.urls import patterns
 from django.conf.urls import url
 
