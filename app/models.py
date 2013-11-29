@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'Renan Cakirerk <renan@cakirerk.org>'
 
 from django.core.mail import send_mail
@@ -13,6 +14,46 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
 from django.contrib.auth.models import BaseUserManager
+
+
+class Location(DynamicDocument):
+    """
+    Example queries:
+        db.location.find({position: { $near : { $geometry :  { type : "Point" , coordinates : [-122.255833, 37.79885] },  $maxDistance : 14800 } } } )
+        Location.objects(position__near=[-122.255833, 37.79885], position__max_distance=14700)
+
+    Example addresses:
+        Degrees Converted to Decimal via http://boulter.com/gps/#37%B0%2047.117%27%2C%20-122%B0%2025.368%27
+
+        150 Franklin St.
+        37° 46.553', -122° 25.256'
+        Decimal -> Lat 37.775883, Long -122.420933
+
+        0.7 Miles or 1.1265408 kilometers or 1126.54 meters to:
+
+        1188 Franklin St.
+        37° 47.117', -122° 25.368'
+        Decimal -> Lat 37.785283, Long -122.4228
+
+        14.2 Miles or 22.8527 kilometers or 22852.68 meters to:
+
+        1444 1st Ave Pl Oakland, CA 94606
+        37° 47.931', -122° 15.350'
+        Decimal -> Lat 37.79885, Long -122.255833
+    """
+
+    uid = LongField(required=True)
+    time_created = DateTimeField(default=datetime.now())
+    position = PointField(required=True)  # [long, lat] -> google gives [Lat, Long]
+
+    def near(self, meters):
+        """
+        Returns the closest points in <meters> radius
+        """
+        lng = self.position['coordinates'][0]
+        lat = self.position['coordinates'][1]
+
+        return Location.objects(position__near=[lng, lat], position__max_distance=meters)
 
 
 class FBProfile(DynamicDocument):
@@ -75,9 +116,6 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), max_length=255, unique=True)
 
-    #fb_id = models.CharField(_('facebook id'), max_length=255, blank=True)
-    #fb_username = models.CharField(_('facebook user name'), max_length=255, blank=True)
-
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
 
@@ -87,6 +125,9 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
+
+    # This is for simulating Foreign Key with a MongoDB object
+    most_recent_location_id = models.CharField(_('most recent position'), max_length=64, blank=True)
 
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
@@ -143,6 +184,42 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
         Returns the Facebook profile stored in MongoDB
         """
         return FBProfile.objects.get(fb_id=self.fb_id)
+
+    def set_most_recent_coordinates(self, lon, lat):
+        """
+        Sets the latest known coordinates of the user
+        """
+        location = Location(uid=self.id, position=[lon, lat])
+        location.save()
+
+        self.most_recent_location_id = str(location.id)
+        self.save()
+
+    @property
+    def most_recent_coordinates(self):
+        """
+        Returns the latest known coordinates of the user
+        """
+        location = Location.objects.get(id=self.most_recent_location_id)
+
+        return location.position['coordinates']
+
+    def users_nearby(self, meters):
+        """
+        Returns the user objects that are in <meters> radius
+        """
+        location = Location.objects.get(id=self.most_recent_location_id)
+        lng = location.position['coordinates'][0]
+        lat = location.position['coordinates'][1]
+
+        nearby_locations = Location.objects(position__near=[lng, lat], position__max_distance=meters)
+
+        nearby_user_ids = []
+
+        for loc in nearby_locations:
+            nearby_user_ids.append(loc.uid)
+
+        return SallasanaUser.objects.filter(id__in=nearby_user_ids)
 
 
 #class Like(models.Model):
