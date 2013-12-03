@@ -40,3 +40,6 @@ def ping(request):
 def recommendations(request):
     response = {}
     return render_json(response)
+
+
+# SETTINGS

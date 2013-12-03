@@ -56,12 +56,27 @@ class Location(DynamicDocument):
         return Location.objects(position__near=[lng, lat], position__max_distance=meters)
 
 
+class Like(DynamicDocument):
+    """
+    Stores Like Objects
+    """
+
+    l_id = LongField()
+
+    time_created = DateTimeField(default=datetime.now())
+    time_updated = DateTimeField(default=datetime.now())
+
+    meta = {
+        'indexes': ['l_id']
+    }
+
+
 class FBProfile(DynamicDocument):
     fb_id = StringField(required=True, unique=True)
     username = StringField()
-    access_token = StringField()
 
     friends = DynamicField()
+    likes = DynamicField()
 
     is_generated_user = BooleanField(default=False)
 
@@ -75,6 +90,7 @@ class FBProfile(DynamicDocument):
 
     @property
     def avatar(self):
+        # TODO: (renan) Avatar size
         return self.picture['picture']['data']
 
 
@@ -222,6 +238,7 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
         return SallasanaUser.objects.filter(id__in=nearby_user_ids)
 
 
+
 #class Like(models.Model):
 #    user = ForeignKey(User)
 #    #liked_fb_profile = ForeignKey(FBProfile)
@@ -230,22 +247,5 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
 #class Dislike(models.Model):
 #    user = ForeignKey(User)
     #disliked_fb_profile = ForeignKey(FBProfile)
-
-#class User(Document):
-#    email = EmailField(required=True)
-#    fb_uid = StringField(required=True)
-#
-#    first_name = StringField()
-#    last_name = StringField()
-#
-#    fb_friends = ListField(field=FBProfile)
-#
-#    time_created = DateTimeField(default=datetime.datetime.now)
-#    time_updated = DateTimeField(default=datetime.datetime.now)
-#    time_deleted = DateTimeField(default=None)
-#
-#    meta = {
-#        'indexes': ['email', 'fb_uid']
-#    }
 
 
