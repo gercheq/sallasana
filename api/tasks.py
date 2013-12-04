@@ -6,7 +6,7 @@ from celery import task
 from mongoengine import DoesNotExist
 
 from app.models import FBProfile
-from app.models import Like
+from app.models import FBLike
 
 
 @task()
@@ -43,7 +43,7 @@ def update_fb_profile(fb_profile, access_token):
         for like in likes:
             try:
                 # is like in the db?
-                fb_like = Like.objects.get(l_id=like['id'])
+                fb_like = FBLike.objects.get(l_id=like['id'])
 
                 print "Like %s already in db, skipping" % like['id']
 
@@ -57,7 +57,7 @@ def update_fb_profile(fb_profile, access_token):
                 like_context['l_id'] = like['id']
                 del like_context['id']
 
-                new_like = Like(**like_context)
+                new_like = FBLike(**like_context)
                 new_like.save()
 
     """

@@ -1,19 +1,24 @@
 # -*- coding: utf-8 -*-
+
 __author__ = 'Renan Cakirerk <renan@cakirerk.org>'
+
+
+from mongoengine import *
+from datetime import datetime
 
 from django.core.mail import send_mail
 from django.db import models
-from django.contrib.auth.models import User
-
-from datetime import datetime
 from django.db.models import ForeignKey
 from django.utils import timezone
-from mongoengine import *
-
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.utils.http import urlquote
 from django.contrib.auth.models import BaseUserManager
+
+
+"""
+MONGODB MODELS
+"""
 
 
 class Location(DynamicDocument):
@@ -42,7 +47,7 @@ class Location(DynamicDocument):
         Decimal -> Lat 37.79885, Long -122.255833
     """
 
-    uid = LongField(required=True)
+    user_id = LongField(required=True)
     time_created = DateTimeField(default=datetime.now())
     position = PointField(required=True)  # [long, lat] -> google gives [Lat, Long]
 
@@ -56,9 +61,20 @@ class Location(DynamicDocument):
         return Location.objects(position__near=[lng, lat], position__max_distance=meters)
 
 
-class Like(DynamicDocument):
+#class UserLike(DynamicDocument):
+#    user_id = LongField(required=True)
+#    likes
+#    #liked_fb_profile = ForeignKey(FBProfile)
+#
+#
+#class UserDislike(DynamicDocument):
+#    user = ForeignKey(User)
+#    disliked_fb_profile = ForeignKey(FBProfile)
+
+
+class FBLike(DynamicDocument):
     """
-    Stores Like Objects
+    Stores Facebook Like Objects
     """
 
     l_id = LongField()
@@ -93,6 +109,35 @@ class FBProfile(DynamicDocument):
         # TODO: (renan) Avatar size
         return self.picture['picture']['data']
 
+    def common_likes(self, user):
+        """
+        Returns the common likes with another users Facebook Profile
+        """
+
+        self_like_ids = set(self.likes.keys()) if self.likes else set()
+        other_like_ids = set(user.fb_profile.likes.keys()) if user.fb_profile.likes else set()
+
+        common_like_ids = self_like_ids.intersection(other_like_ids)
+
+        return common_like_ids
+
+    def common_friends(self, user):
+        """
+        Returns the common friends with another users Facebook Profile
+        """
+
+        self_friend_ids = set(self.friends.keys()) if self.friends else set()
+        other_friend_ids = set(user.fb_profile.friends.keys()) if user.fb_profile.friends else set()
+
+        common_friend_ids = self_friend_ids.intersection(other_friend_ids)
+
+        return common_friend_ids
+
+
+"""
+POSTGRESQL MODELS
+"""
+
 
 class SallasanaUserManager(BaseUserManager):
 
@@ -104,13 +149,16 @@ class SallasanaUserManager(BaseUserManager):
         now = timezone.now()
         if not email:
             raise ValueError('The given email must be set')
+
         email = self.normalize_email(email)
         user = self.model(email=email,
                           is_staff=is_staff, is_active=True,
                           is_superuser=is_superuser, last_login=now,
                           date_joined=now, **extra_fields)
+
         user.set_password(password)
         user.save(using=self._db)
+
         return user
 
     def create_user(self, email, password=None, **extra_fields):
@@ -136,14 +184,19 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
 
     is_staff = models.BooleanField(_('staff status'), default=False,
-        help_text=_('Designates whether the user can log into this admin '
-                    'site.'))
+        help_text=_('Designates whether the user can log into this admin site.'))
+
     is_active = models.BooleanField(_('active'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
 
     # This is for simulating Foreign Key with a MongoDB object
     most_recent_location_id = models.CharField(_('most recent position'), max_length=64, blank=True)
+
+    interest_radius = models.IntegerField(default=100, blank=True)
+    interest_gender = models.IntegerField(default=0, blank=True)
+    interest_age_min = models.IntegerField(default=18, blank=True)
+    interest_age_max = models.IntegerField(default=24, blank=True)
 
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
@@ -236,16 +289,3 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
             nearby_user_ids.append(loc.uid)
 
         return SallasanaUser.objects.filter(id__in=nearby_user_ids)
-
-
-
-#class Like(models.Model):
-#    user = ForeignKey(User)
-#    #liked_fb_profile = ForeignKey(FBProfile)
-#
-#
-#class Dislike(models.Model):
-#    user = ForeignKey(User)
-    #disliked_fb_profile = ForeignKey(FBProfile)
-
-
