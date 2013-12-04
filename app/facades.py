@@ -1,4 +1,4 @@
-__author__ = 'Renan Cakirerk <renan@redbeacon.com>'
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
 
 
 class LikeView(object):
