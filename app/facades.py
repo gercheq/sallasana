@@ -77,7 +77,7 @@ class UserView(object):
             'id': self.user.id,
             'first_name': self.user.first_name,
             'last_name': self.user.last_name,
-            'avatar': self.user.fb_profile.avatar,
+            'avatar': self.user.fb_profile.avatar.get('url'),
             'photos': [
                 'http://www.readyforce.com/static/images/reboot/generic_user_image.png',
                 'http://www.readyforce.com/static/images/reboot/generic_user_image.png',

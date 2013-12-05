@@ -119,7 +119,7 @@ def recommendations(request):
         if start < 0:
             start = 0
 
-        stop = start_temp
+        stop = start + SEARCH_WINDOW
 
     else:
         # If there are still recommendations in my bucket, return them
