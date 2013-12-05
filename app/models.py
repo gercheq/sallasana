@@ -61,15 +61,35 @@ class Location(DynamicDocument):
         return Location.objects(position__near=[lng, lat], position__max_distance=meters)
 
 
-#class UserLike(DynamicDocument):
-#    user_id = LongField(required=True)
-#    likes
-#    #liked_fb_profile = ForeignKey(FBProfile)
-#
-#
-#class UserDislike(DynamicDocument):
-#    user = ForeignKey(User)
-#    disliked_fb_profile = ForeignKey(FBProfile)
+class Recommendations(DynamicDocument):
+    """
+    Stores the temporary recommendations and views for caching purposes
+    """
+    user_id = LongField(required=True, unique=True)
+    recommendation_views = DynamicField(default=[])
+    recommendations = DynamicField(default=[])
+
+
+class Taste(DynamicDocument):
+    """
+    Stores who a user liked or disliked
+    """
+    user_id = LongField(required=True, unique=True)
+
+    # These will carry data as:
+    # likes[user_id] = counter
+    # we might show the same user
+    # occasionally so we would like to track it
+    likes = DynamicField(default={})
+    dislikes = DynamicField(default={})
+
+
+class Matches(DynamicDocument):
+    """
+    Stores a users matches
+    """
+    user_id = LongField(required=True, unique=True)
+    matches = DynamicField(default={})
 
 
 class FBLike(DynamicDocument):
@@ -90,6 +110,11 @@ class FBLike(DynamicDocument):
 class FBProfile(DynamicDocument):
     fb_id = StringField(required=True, unique=True)
     username = StringField()
+
+    first_name = StringField(default=None)
+    last_name = StringField(default=None)
+    gender = StringField(default=None)
+    birthday = StringField(default=None)
 
     friends = DynamicField()
     likes = DynamicField()
@@ -180,8 +205,8 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), max_length=255, unique=True)
 
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first name'), max_length=255, blank=True)
+    last_name = models.CharField(_('last name'), max_length=255, blank=True)
 
     is_staff = models.BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin site.'))
@@ -197,6 +222,9 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
     interest_gender = models.IntegerField(default=0, blank=True)
     interest_age_min = models.IntegerField(default=18, blank=True)
     interest_age_max = models.IntegerField(default=24, blank=True)
+
+    # This gives a point to let the recommendation engine know where to start in the user db
+    last_seeked_user_index = models.BigIntegerField(default=0, blank=True)
 
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
@@ -244,7 +272,7 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
         """
         Returns the persons Facebook User ID
         """
-        social_auth = self.social_auth.get()
+        social_auth = self.social_auth.latest('id')
         return social_auth.uid
 
     @property
@@ -289,3 +317,32 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
             nearby_user_ids.append(loc.uid)
 
         return SallasanaUser.objects.filter(id__in=nearby_user_ids)
+
+    def get_recommendations(self):
+        """
+        Returns the recommendations for the user
+        """
+
+        try:
+            recommendations = Recommendations.objects.get(user_id=self.id)
+        except DoesNotExist:
+            print "No recommendation object found. Creating one now."
+            recommendations = Recommendations(user_id=self.id)
+            recommendations.save()
+
+        return recommendations
+
+
+    def get_taste(self):
+        """
+        Returns the taste of the user
+        """
+
+        try:
+            taste = Taste.objects.get(user_id=self.id)
+        except DoesNotExist:
+            print "No taste object found. Creating one now."
+            taste = Taste(user_id=self.id)
+            taste.save()
+
+        return taste
