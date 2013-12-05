@@ -31,11 +31,11 @@ def home_jqm(request, template_name='index-jqm.html'):
     """
     Initializes application with the data baked already.
     """
-    user = None
-    # user = request.user
+    me = request.user
+    my_recs = me.get_recommendations()
 
     data = {
-        'recommendations': get_recommendations(user)
+        'recommendations': my_recs
     }
 
     return render(request, template_name, data)
