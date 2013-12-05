@@ -5,6 +5,8 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
+__author__ = 'Renan Cakirerk <renan@cakirerk.org>'
+
 from django.test import TestCase
 
 
