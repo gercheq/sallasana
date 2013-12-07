@@ -12,7 +12,7 @@ from django.template import RequestContext
 
 
 def login(request):
-    return render_to_response('login.html', {'user': request.user}, RequestContext(request))
+    return render_to_response('welcome.html', {'user': request.user}, RequestContext(request))
 
 def logout(request):
     auth_logout(request)
@@ -40,17 +40,6 @@ def home_jqm(request, template_name='index-jqm.html'):
 
     data = {
         'recommendations': recommendations
-    }
-
-    return render(request, template_name, data)
-
-
-
-
-def welcome(request, template_name='welcome.html'):
-
-    data = {
-        'is_anonymous': request.user.is_authenticated()
     }
 
     return render(request, template_name, data)

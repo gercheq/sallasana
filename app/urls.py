@@ -6,7 +6,6 @@ from django.conf.urls import url
 urlpatterns = patterns(
     '',
     url(r'^jqm/$', 'app.views.home_jqm', name='home_jqm'),
-    url(r'^welcome/$', 'app.views.welcome', name='welcome'),
     url(r'^home/$', 'app.views.home', name='home'),
     url(r'^login/$', 'app.views.login', name='login'),
     url(r'^logout/$', 'app.views.logout', name='logout'),
