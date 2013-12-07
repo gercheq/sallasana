@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sallasana!!!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+
+
+  <link rel="stylesheet" href="{{ MEDIA_URL }}styles/jqm-theme/sallasana.min.css" />
+	<link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" />
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.0-rc.1/jquery.mobile-1.4.0-rc.1.min.js"></script>
+
+  <link rel="stylesheet" href="{{ MEDIA_URL }}styles/welcome.css" />
+
+
+</head>
+
+<body>
+
+  <div data-role="page" id="page-welcome">
+
+
+    <section id="carousel">
+      <ul>
+        <li><img src="{{ MEDIA_URL }}img/welcome1.png" /></li>
+        <li><img src="{{ MEDIA_URL }}img/welcome2.png" /></li>
+        <li><img src="{{ MEDIA_URL }}img/welcome3.png" /></li>
+      </ul>
+    </section>
+
+    <section id="actions">
+      <div class="actions-inner">
+        <div class="paginator"></div>
+        <div class="login">
+          <a href="/login/facebook" data-ajax="false" data-role="button" class="btn-facebook">Login with Facebook</a>
+        </div>
+        <p><small>Facebook'ta senden izinsiz hiçbir şey paylaşılmayacak.</small></p>
+      </div>
+    </section>
+
+  </div><!-- /page -->
+
+</body>
+</html>

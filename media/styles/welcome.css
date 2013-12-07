@@ -1,0 +1,39 @@
+/*
+Syntax error: The line was indented 2 levels deeper than the previous line.
+        on line 94 of welcome.sass
+
+89: 
+90: 
+91: 
+92: 
+93: html, body, #carousel, #carousel ul, #carousel li
+94:     min-height: 100%
+95:     height: 100%
+96:     padding: 0
+97:     margin: 0
+98:     position: relative
+99: 
+
+Backtrace:
+welcome.sass:94
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:458:in `tree'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:345:in `_to_tree'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:315:in `_render'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:262:in `render'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:201:in `each'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:432:in `watch_or_update'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:315:in `process_result'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:41:in `parse'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:21:in `parse!'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/bin/sass:9:in `<top (required)>'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/bin/sass:19:in `load'
+/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/bin/sass:19:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: The line was indented 2 levels deeper than the previous line.\A         on line 94 of welcome.sass\A \A 89: \A 90: \A 91: \A 92: \A 93: html, body, #carousel, #carousel ul, #carousel li\A 94:     min-height: 100%\A 95:     height: 100%\A 96:     padding: 0\A 97:     margin: 0\A 98:     position: relative\A 99: "; }

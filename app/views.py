@@ -4,6 +4,7 @@ from django.http import Http404
 from django.contrib.auth import logout as auth_logout
 from django.shortcuts import render_to_response
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
@@ -31,11 +32,25 @@ def home_jqm(request, template_name='index-jqm.html'):
     """
     Initializes application with the data baked already.
     """
-    me = request.user
-    my_recs = me.get_recommendations()
+
+    if request.user.is_anonymous():
+        return redirect('welcome')
+
+    recommendations = request.user.get_recommendations()
 
     data = {
-        'recommendations': my_recs
+        'recommendations': recommendations
+    }
+
+    return render(request, template_name, data)
+
+
+
+
+def welcome(request, template_name='welcome.html'):
+
+    data = {
+        'is_anonymous': request.user.is_authenticated()
     }
 
     return render(request, template_name, data)
