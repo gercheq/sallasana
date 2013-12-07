@@ -1,39 +1,120 @@
-/*
-Syntax error: The line was indented 2 levels deeper than the previous line.
-        on line 94 of welcome.sass
+.clearfix {
+  zoom: 1; }
+  .clearfix:before, .clearfix:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden; }
+  .clearfix:after {
+    clear: both; }
 
-89: 
-90: 
-91: 
-92: 
-93: html, body, #carousel, #carousel ul, #carousel li
-94:     min-height: 100%
-95:     height: 100%
-96:     padding: 0
-97:     margin: 0
-98:     position: relative
-99: 
+body {
+  margin: 0;
+  font-family: Avenir, "Helvetica Neue", Helvetica, sans-serif; }
 
-Backtrace:
-welcome.sass:94
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:458:in `tree'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:345:in `_to_tree'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:315:in `_render'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/engine.rb:262:in `render'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:341:in `update_stylesheet'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:201:in `each'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/plugin.rb:81:in `update_stylesheets'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:432:in `watch_or_update'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:315:in `process_result'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:41:in `parse'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/lib/sass/exec.rb:21:in `parse!'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/gems/sass-3.2.8/bin/sass:9:in `<top (required)>'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/bin/sass:19:in `load'
-/Users/Gercek/.rvm/gems/ruby-1.9.2-p0/bin/sass:19:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: The line was indented 2 levels deeper than the previous line.\A         on line 94 of welcome.sass\A \A 89: \A 90: \A 91: \A 92: \A 93: html, body, #carousel, #carousel ul, #carousel li\A 94:     min-height: 100%\A 95:     height: 100%\A 96:     padding: 0\A 97:     margin: 0\A 98:     position: relative\A 99: "; }
+#actions {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  bottom: 0;
+  background: white;
+  -webkit-box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px -5px 30px 0px rgba(0, 0, 0, 0.5);
+  text-align: center; }
+  #actions .actions-inner {
+    padding: 0.5em 1em; }
+  #actions p {
+    margin: 0;
+    line-height: 1; }
+  #actions small {
+    color: #aaaaaa;
+    font-size: 0.85em; }
+  #actions .btn-facebook {
+    background-color: #4063b3;
+    background-image: -webkit-linear-gradient(#4063b3, #3c599d);
+    background-image: linear-gradient(#4063b3, #3c599d);
+    border: 1px solid #224084;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.18), inset 0 0 1px 1px rgba(255, 255, 255, 0.09);
+    -webkit-border-radius: 0.25em;
+    -moz-border-radius: 0.25em;
+    border-radius: 0.25em;
+    padding: 0.5em;
+    text-decoration: none;
+    margin-bottom: 0.25em;
+    display: block;
+    margin: 0.5em 0;
+    font-size: 1.25em; }
+  #actions .btn-facebook:hover,
+  #actions .btn-facebook:focus {
+    background-color: #4368be;
+    background-image: -webkit-linear-gradient(#4368be, #405fa7);
+    background-image: linear-gradient(#4368be, #405fa7); }
+  #actions .btn-facebook.active,
+  #actions .btn-facebook:active {
+    background-color: #3c599c;
+    background-image: -webkit-linear-gradient(#3c599c, #4265b8);
+    background-image: linear-gradient(#3c599c, #4265b8); }
+  #actions .btn-facebook.disabled,
+  #actions .btn-facebook[disabled],
+  #actions fieldset[disabled] .btn-facebook {
+    background: #3e5ea8; }
+  #actions .btn-facebook:hover,
+  #actions .btn-facebook:focus {
+    border-color: #224084; }
+  #actions .btn-facebook.active,
+  #actions .btn-facebook:active {
+    border-color: #224084;
+    border-bottom-color: #264894; }
+  #actions .btn-facebook:hover,
+  #actions .btn-facebook:focus {
+    color: white; }
+  #actions .btn-facebook.active,
+  #actions .btn-facebook:active {
+    box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, 0.06), inset 0 1px 1px 0 rgba(0, 0, 0, 0.12); }
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative; }
+
+.swipe-wrap {
+  position: relative; }
+
+.swipe-wrap > div {
+  float: left;
+  width: 100%;
+  position: relative; }
+
+nav {
+  position: relative;
+  max-width: 680px;
+  margin: -0.25em auto 0; }
+  nav ul {
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+    padding: 0; }
+  nav #position {
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    nav #position li {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      background: #cccccc;
+      margin: 0 2px;
+      cursor: pointer; }
+      nav #position li.on {
+        background-color: #1293dc;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6586d1), color-stop(100%, 3c 599d));
+        background-image: -webkit-linear-gradient(top, #6586d1, #3c599d);
+        background-image: -moz-linear-gradient(top, #6586d1, #3c599d);
+        background-image: -ms-linear-gradient(top, #6586d1, #3c599d);
+        background-image: -o-linear-gradient(top, #6586d1, #3c599d);
+        background-image: linear-gradient(top, #6586d1, #3c599d); }
