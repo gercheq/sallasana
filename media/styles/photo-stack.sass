@@ -1,3 +1,5 @@
+@import 'utils'
+
 .ui-content
   overflow: visible
   padding: 0
@@ -104,7 +106,7 @@ $headerHeight: 44px
   -o-transition: all 300ms
   transition: all 300ms
   .metadata
-    height: 320px
+    height: 400px
     .name-age
       display: none
   .stats
@@ -212,22 +214,22 @@ $headerHeight: 44px
 
   // button
   a
-    font-size: 3em
-    background: #FFF
-    color: #AAA
+    font-size: 2.5em
+    background: white
+    color: #aaaaaa
     border: 1px solid #cccccc
     border-radius: 100%
     padding: 0.4em
     font-weight: 300
-    width: 45px
-    display: block
-    height: 45px
-    line-height: 0em
+    width: 1em
+    display: inline-block
+    height: 1em
+    line-height: 1
     vertical-align: top
-    float: left
-    margin: .25em
+    margin: 0
     i
       -webkit-transform: scale(1)
+      color: #CCC
 
     &:active
       @include box-shadow(0 0 30px #AAA inset)
@@ -242,10 +244,11 @@ $headerHeight: 44px
 
 
   #btn-info
-    font-size: 2em
-    height: 32px
-    width: 32px
-    margin-top: 26px
+    font-size: 1.25em
+    height: 1em
+    width: 1em
+    margin: 1em 1em 0
+    vertical-align: top
 
 
 //
@@ -268,11 +271,12 @@ $smallFont: 11px
 
 
 #pane-profile-details
-  background: #EEE
+  background: #FFF
+  text-shadow: none
   position: fixed
-  bottom: -40px
+  top: 380px
   padding-bottom: 40px
-  min-height: 290px
+  min-height: 250px
   width: 100%
   z-index: 12
   -webkit-transform: translateY(2000px)
@@ -337,15 +341,30 @@ $smallFont: 11px
   background: rgba(0,0,0,.7)
   width: 100%
   height: $headerHeight
+  padding: 6px
   position: fixed
   top: 0
   z-index: 999999
   width: 100%
   opacity: 0
+  @include box-sizing(border-box)
 
-  a,
-  .fa
+  a
+    font-size: 13px
     color: #ffffff
     text-decoration: none
     text-shadow: none
     font-weight: 300
+    padding: 5px 10px
+    border: 1px solid #ffffff
+    @include border-radius(3px)
+    display: block
+    float: left
+
+  #btn-like-details
+    float: right
+    @include border-radius(100%)
+  #btn-dislike-details
+    float: right
+    @include border-radius(100%)
+    margin-right: 6px

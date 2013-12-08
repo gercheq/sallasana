@@ -1085,6 +1085,16 @@ body {
     color: #eeeeee !important;
     text-shadow: 0 1px 0 black !important; }
 
+.clearfix, .photo-controls, #pane-profile-details .section-shared {
+  zoom: 1; }
+  .clearfix:before, .photo-controls:before, #pane-profile-details .section-shared:before, .clearfix:after, .photo-controls:after, #pane-profile-details .section-shared:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden; }
+  .clearfix:after, .photo-controls:after, #pane-profile-details .section-shared:after {
+    clear: both; }
+
 .ui-content {
   overflow: visible;
   padding: 0;
@@ -1176,7 +1186,7 @@ body {
   -o-transition: all 300ms;
   transition: all 300ms; }
   .photo-card-active .metadata {
-    height: 320px; }
+    height: 400px; }
     .photo-card-active .metadata .name-age {
       display: none; }
   .photo-card-active .stats {
@@ -1240,22 +1250,22 @@ body {
   margin: 0 auto;
   -webkit-transform: scale(0.8); }
   .photo-controls a {
-    font-size: 3em;
+    font-size: 2.5em;
     background: white;
     color: #aaaaaa;
     border: 1px solid #cccccc;
     border-radius: 100%;
     padding: 0.4em;
     font-weight: 300;
-    width: 45px;
-    display: block;
-    height: 45px;
-    line-height: 0em;
+    width: 1em;
+    display: inline-block;
+    height: 1em;
+    line-height: 1;
     vertical-align: top;
-    float: left;
-    margin: 0.25em; }
+    margin: 0; }
     .photo-controls a i {
-      -webkit-transform: scale(1); }
+      -webkit-transform: scale(1);
+      color: #cccccc; }
     .photo-controls a:active {
       -webkit-box-shadow: 0 0 30px #aaaaaa inset;
       -moz-box-shadow: 0 0 30px #aaaaaa inset;
@@ -1265,10 +1275,11 @@ body {
     .photo-controls a:focus {
       background: green; }
   .photo-controls #btn-info {
-    font-size: 2em;
-    height: 32px;
-    width: 32px;
-    margin-top: 26px; }
+    font-size: 1.25em;
+    height: 1em;
+    width: 1em;
+    margin: 1em 1em 0;
+    vertical-align: top; }
 
 .pane .pane-inner {
   padding: 0.5em 0.5em 0.25em;
@@ -1278,11 +1289,12 @@ body {
     margin-top: 0; }
 
 #pane-profile-details {
-  background: #eeeeee;
+  background: white;
+  text-shadow: none;
   position: fixed;
-  bottom: -40px;
-  padding-bottom: 30px;
-  min-height: 290px;
+  top: 380px;
+  padding-bottom: 40px;
+  min-height: 250px;
   width: 100%;
   z-index: 12;
   -webkit-transform: translateY(2000px);
@@ -1350,14 +1362,36 @@ body {
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 44px;
+  padding: 6px;
   position: fixed;
   top: 0;
   z-index: 999999;
   width: 100%;
-  opacity: 0; }
-  #header-profile-details a,
-  #header-profile-details .fa {
+  opacity: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  #header-profile-details a {
+    font-size: 13px;
     color: white;
     text-decoration: none;
     text-shadow: none;
-    font-weight: 300; }
+    font-weight: 300;
+    padding: 5px 10px;
+    border: 1px solid white;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: block;
+    float: left; }
+  #header-profile-details #btn-like-details {
+    float: right;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%; }
+  #header-profile-details #btn-dislike-details {
+    float: right;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    margin-right: 6px; }
