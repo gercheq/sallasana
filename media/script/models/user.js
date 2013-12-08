@@ -7,15 +7,25 @@ define([ "jquery", "backbone" ], function($, Backbone) {
     // The Model constructor
     var UserModel = Backbone.Model.extend({
         defaults: {
+            avatar: "",
+            birthday: null,
+            common_friends: [],
+            common_likes: [],
+            dislike_link: "",
             first_name: "",
+            gender: "female",
+            id: 0,
             last_name: "",
-            age: '',
-            shared_interests: '0',
-            shared_friends: '0'
-        },
-        url: function(){
-            return 'api/user/';
+            like_link: "",
+            photo: "https://graph.facebook.com/xxx/picture?width=220&height=220",
+            photos: [],
+            username: ""
+
         }
+//        ,
+//        url: function(){
+//            return '/api/user/';
+//        }
     });
 
     // Returns the Model class

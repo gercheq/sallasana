@@ -10,24 +10,35 @@ define([ "jquery","backbone","models/user" ], function( $, Backbone, UserModel )
         model: UserModel,
 
         // For now assume that the friends are recommendations
-        url: '/api/fb/user/',
+        url: '/api/recs',
 
         initialize: function( models, options ) {
 
         },
 
         parse: function(response){
-
             // data coming from backend is not structured
             // so update values for template rendering
             // at collection parse time.
-            _.each(response, function(recommendation) {
-                recommendation.photo = recommendation.picture.picture.data.url;
-                // TODO(Gercek): Calculate age from recommendation.birthday
+            _.each(response.recs, function(recommendation) {
+                recommendation.photo = "https://graph.facebook.com/" + recommendation.username + "/picture?width=220&height=220"
+                 // TODO(Gercek): Calculate age from recommendation.birthday
                 recommendation.age = 21;
             });
 
-            return response;
+            return response.recs;
+        },
+
+        parseInline: function(recommendations){
+            var photoURL = "";
+            _.each(recommendations.models, function(recommendation) {
+
+                photoURL =  "https://graph.facebook.com/" + recommendation.get('username') + "/picture?width=220&height=220"
+                recommendation.set({ 'photo': photoURL});
+                 // TODO(Gercek): Calculate age from recommendation.birthday
+                recommendation.set({ 'age' : '21'});
+            });
+
         }
 
     });

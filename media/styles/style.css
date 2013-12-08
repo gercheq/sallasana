@@ -1280,7 +1280,8 @@ body {
 #pane-profile-details {
   background: #eeeeee;
   position: fixed;
-  bottom: 0;
+  bottom: -40px;
+  padding-bottom: 30px;
   min-height: 290px;
   width: 100%;
   z-index: 12;

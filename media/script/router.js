@@ -33,15 +33,18 @@ define([
 
             // Setup Collections
             self.recommendationsCollection = new RecommendationsCollection(SA.recommendations);
+            RecommendationsCollection.prototype.parseInline(self.recommendationsCollection);
             // self.recommendationsCollection.fetch({ reset: true });
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
         },
 
-        // Backbone.js Routes
+        //
+        // Routes
+        // Each route specifies the current view and then calls render method on router
+        //
         routes: {
-            // When there is no hash bang on the url, launch method is called
             "": "launch",
             "login": "login",
             "logout": "logout",
@@ -64,7 +67,9 @@ define([
         },
 
 
-        // launch method
+        //
+        // Routing Events
+        //
         launch: function() {
             console.log("Routing to Launch");
             var self = this,

@@ -30,19 +30,28 @@ define([
         initialize: function() {
             var self = this;
             console.log("INIT:  PhotoStackView");
+
             self.recommendationsCollection = self.options.recommendationsCollection;
+
+//
+//            SA.recommendationsCollection = new RecommendationsCollection();
+//            SA.recommendationsCollection.fetch({ reset: true });
+//
+//            SA.recommendationsCollection.on('add remove reset', self.render, this);
         },
 
         render: function() {
             console.log("RNDR:  PhotoStackView");
             var self = this;
 
+//            if(!SA.recommendationsCollection.length)
+//                return
+
             // render this view's template and append it to $el
             self.$el.html(self.template());
 
             // initialize with the first two recommendations
             self._addPhoto();
-            self._addPhoto(1);
 
             return this;
         },

@@ -3,7 +3,7 @@
 
 
 {#  <div class="metadata" style="background-image: url('/media/img/user-photo.jpg')">#}
-  <div class="metadata" style='background-image: url("<%= picture.picture.data.url %>")'>
+  <div class="metadata" style='background-image: url("<%= photo %>")'>
 {#  <div class="metadata">#}
 {#    <img src="<%= picture.picture.data.url %>" />#}
     <div class="name-age">
@@ -16,13 +16,13 @@
       <div class="ui-block-a">
         <div class="ui-bar ui-bar-a">
           <h3 class="shared">Shared<br/>Friends</h3>
-          <div class="shared-count"><%= shared_friends %></div>
+          <div class="shared-count"><%= common_friends.length %></div>
         </div>
       </div>
       <div class="ui-block-b">
         <div class="ui-bar ui-bar-a">
           <h3 class="shared">Shared<br/>Interests</h3>
-          <div class="shared-count"><%= shared_interests %></div>
+          <div class="shared-count"><%= common_likes.length %></div>
         </div>
       </div>
     </div><!-- /grid-a -->

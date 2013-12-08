@@ -25,24 +25,12 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
 
         initialize: function() {
             console.log("INIT:  PhotoView");
-
-            // this.photoFront;
-            // this.photoBack;
-
         },
 
         render: function() {
             console.log("RNDR:  PhotoView");
-
-
             var tmpl = this.template(this.model.toJSON());
-
-            var el = this.$el.html(tmpl);
-
-            // WHY DOESN'T IT WORK HERE?
-            // this.$el.find('.photo').pep();
-
-
+            this.$el.html(tmpl);
             return this;
         },
 
