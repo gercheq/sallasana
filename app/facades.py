@@ -1,5 +1,7 @@
 __author__ = 'Renan Cakirerk <renan@cakirerk.org>'
 
+import json
+
 from app.models import FBLike
 from app.models import FBProfile
 
@@ -91,5 +93,15 @@ class UserView(object):
             'like_link': 'http://debug.sallasana.net/api/like/%s' % self.user.id,
             'dislike_link': 'http://debug.sallasana.net/api/dislike/%s' % self.user.id
         }
+
+        return obj
+
+
+class RecommendationsView(object):
+    def __init__(self, recommendations):
+        self.recommendation_views = recommendations.recommendation_views
+
+    def to_dict(self):
+        obj = json.dumps(self.recommendation_views)
 
         return obj
