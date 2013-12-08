@@ -71,15 +71,18 @@ class UserView(object):
         # Some profiles might not have a gender
         # defaulting to female for populating more
         # women in the database
-        gender = self.user.fb_profile.gender
+        fb_profile = self.user.fb_profile
+
+        gender = fb_profile.gender
         if not gender:
             gender = 'female'
 
         obj = {
             'id': self.user.id,
+            'username': fb_profile.username,
             'first_name': self.user.first_name,
             'last_name': self.user.last_name,
-            'avatar': self.user.fb_profile.avatar.get('url'),
+            'avatar': fb_profile.avatar.get('url'),
             'photos': [
                 'http://www.readyforce.com/static/images/reboot/generic_user_image.png',
                 'http://www.readyforce.com/static/images/reboot/generic_user_image.png',
@@ -88,8 +91,8 @@ class UserView(object):
             ],
             'common_friends': self.get_common_friends_view(other_user=self.other_user),
             'common_likes': self.get_common_likes_view(other_user=self.other_user),
-            'birthday': self.user.fb_profile.birthday,
-            'gender': self.user.fb_profile.gender,
+            'birthday': fb_profile.birthday,
+            'gender': fb_profile.gender,
             'like_link': 'http://debug.sallasana.net/api/like/%s' % self.user.id,
             'dislike_link': 'http://debug.sallasana.net/api/dislike/%s' % self.user.id
         }
