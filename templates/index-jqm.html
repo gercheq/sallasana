@@ -13,7 +13,7 @@
   <script type="text/javascript">
     {# Define global variables coming from Django here and pass them to client side at boot time #}
     SA = {};
-{#    SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};#}
+    SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};
   </script>
   <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
 

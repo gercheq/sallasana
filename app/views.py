@@ -2,13 +2,14 @@ __author__ = 'Renan Cakirerk <renan@cakirerk.org>'
 
 from django.http import Http404
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
-
-from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+
+from sallasana.app.facades import RecommendationsView
 
 
 def login(request):
@@ -28,6 +29,7 @@ def home(request):
     return render_to_response('home.html', {'user': request.user}, RequestContext(request))
 
 
+@login_required()
 def home_jqm(request, template_name='index-jqm.html'):
     """
     Initializes application with the data baked already.
@@ -36,7 +38,8 @@ def home_jqm(request, template_name='index-jqm.html'):
     if request.user.is_anonymous():
         return redirect('welcome')
 
-    recommendations = request.user.get_recommendations()
+    user = request.user
+    recommendations = RecommendationsView(user.get_recommendations()).to_dict()
 
     data = {
         'recommendations': recommendations
