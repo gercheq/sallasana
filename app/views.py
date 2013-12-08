@@ -20,7 +20,7 @@ def logout(request):
 
 @login_required()
 def index(request):
-    return render_to_response('landing.html', RequestContext(request))
+    return render_to_response('welcome.html', RequestContext(request))
 
 
 @login_required()
