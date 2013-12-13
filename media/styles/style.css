@@ -1037,7 +1037,8 @@ body {
   animation-name: slideOutUp; }
 
 body {
-  background: #eeeeee; }
+  background: #eeeeee;
+  font-family: Avenir, "Helvetica Neue", Helvetica, sans-serif; }
 
 .ui-content {
   overflow: visible; }
@@ -1186,7 +1187,7 @@ body {
   -o-transition: all 300ms;
   transition: all 300ms; }
   .photo-card-active .metadata {
-    height: 400px; }
+    height: 300px; }
     .photo-card-active .metadata .name-age {
       display: none; }
   .photo-card-active .stats {
@@ -1291,8 +1292,8 @@ body {
 #pane-profile-details {
   background: white;
   text-shadow: none;
-  position: fixed;
-  top: 380px;
+  position: absolute;
+  top: 280px;
   padding-bottom: 40px;
   min-height: 250px;
   width: 100%;
