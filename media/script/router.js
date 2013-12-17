@@ -71,12 +71,12 @@ define([
         // Routing Events
         //
         launch: function() {
-            console.log("Routing to Launch");
-            var self = this,
-                view = new PhotoStackView({
-                    recommendationsCollection: self.recommendationsCollection
-                });
-            self.render(view);
+//            console.log("Routing to Launch");
+//            var self = this,
+//                view = new PhotoStackView({
+//                    recommendationsCollection: self.recommendationsCollection
+//                });
+//            self.render(view);
         },
 
         settings: function() {

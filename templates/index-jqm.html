@@ -3,7 +3,7 @@
 <head>
 	<title>Sallasana!!!</title>
   {#	<meta name="viewport" content="width=device-width, initial-scale=1">#}
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0, minimal-ui" />
 
 	<link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jquery.mobile-1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css" />
   <link rel="stylesheet" href="{{ MEDIA_URL }}third_party/jqm-icon-pack-fa.css" />
@@ -21,45 +21,35 @@
 </head>
 
 <body>
+
   <div data-role="page" id="page-app">
 
     <div class="ui-panel-wrapper">
-      <div id="header" data-role="header">
-          <a href="#navigation" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
-          <h1>sallasana</h1>
-          <a href="#matches" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
-      </div><!-- /header -->
+      {# This section is reserved for the current page in context #}
+      {# When the app is first launched as a logged in user, searching would appear here #}
+      {# Once recommendations are captured from the server, they'll also be be rendered here #}
+      {# Whenever user changes the view from the navigation panel, new page will be rendered here as well #}
+      {# You got it. #}
 
       <div data-role="content">
-        <section class="photos-container"></section>
-      </div><!-- /content -->
+        {% include 'searching.html' %}
+      </div>
 
     </div>
-
 
     <div data-role="panel" id="navigation" data-theme="c">
       {% include 'includes/panel-navigation.html' %}
     </div><!-- /panel -->
 
     <div data-role="panel" data-position="right" id="matches" data-theme="c">
-        {% include 'includes/panel-matches.html' %}
+      {% include 'includes/panel-matches.html' %}
     </div><!-- /panel -->
 
-
     <section class="templates">
-      <script type="text/template" id="tmpl-photo-stack">
-        {% include 'includes/photo-stack.html' %}
-      </script>
-
-      <script type="text/template" id="tmpl-photo">
-        {% include 'includes/photo.html' %}
-      </script>
-
+      {% include 'includes/templates-list.html' %}
     </section>
 
-  </div><!-- /page -->
-
-
+  </div><!-- #page-app -->
 
 </body>
 </html>

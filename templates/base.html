@@ -1,43 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css">
-  <script src="{{ MEDIA_URL }}third_party/modernizr-2.6.2.min.js"></script>
-  <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
-  <script src="{{ MEDIA_URL }}third_party/sperm.js"></script>
-</head>
-<body style="background: #CAFBFF;">
-<div class="camera">
-  <h1>sallasana</h1>
+<div data-role="header"
+     id="{% block header_id %}header{% endblock %}"
+     class="ui-header ui-bar-inherit">
+  {% block header %}
+    <a href="#navigation"
+       class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">
+      Menu
+    </a>
 
-  <div class="fond0"></div>
-  <section class="appareil">
-    <div class="fond"></div>
-    <div class="fond2"></div>
-    <div class="fond3"></div>
-    <div class="fond4"></div>
+    <h1 class="ui-title">sallasana</h1>
 
-    <div class="object">
-      <div class="lens0"></div>
-      <div class="lens"></div>
-      <div class="lens2"></div>
-      <div class="lens3"></div>
-      <div class="lens4"></div>
-      <div class="lens5"></div>
-      <div class="lens6"></div>
-    </div>
+    <a href="#matches"
+       class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">
+      Eşleşenler
+    </a>
+  {% endblock %}
+</div><!-- /header -->
 
-    <div class="flash">
-      <div class="red">
-        <div class="red2">
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <section>
-    {% block content %}{% endblock %}
-    </section>
-</body>
-</html>
+<div data-role="content"
+     id="{% block content_id %}content{% endblock %}">
+  {% block content %}
+  {% endblock %}
+</div><!-- /content -->
