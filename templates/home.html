@@ -17,42 +17,23 @@
 <body>
 
   <div class="snap-drawers">
-      <div class="snap-drawer snap-drawer-left">
-          <div>
-              <ul>
-                <li>
-                  <a href="" data-rel="close" >
-                    Öneriler
-                  </a>
-                </li>
-                <li>
-                  <a href="" data-rel="close" >
-                    Profilim
-                  </a>
-                </li>
-                <li>
-                  <a href="" data-rel="close" >
-                    Ayarlar
-                  </a>
-                </li>
-                <li>
-                  <a href="{% url 'logout' %}" data-rel="close" data-ajax="false">
-                    Çıkış
-                  </a>
-                </li>
-              </ul>
-          </div>
-      </div>
-      <div class="snap-drawer snap-drawer-right"></div>
+    <div class="snap-drawer snap-drawer-left">
+      {% include 'includes/panel-navigation.html' %}
+    </div>
+    <div class="snap-drawer snap-drawer-right">
+      {% include 'includes/panel-matches.html' %}
+    </div>
   </div>
 
   <div id="content" class="snap-content">
       <div id="toolbar">
           <a href="#" id="open-left"></a>
-          <h1>Default</h1>
+          <h1>sallasana</h1>
       </div>
   </div>
 
+</body>
+</html>
 
 
 
@@ -107,5 +88,3 @@
 {##}
 {#  </div><!-- #app -->#}
 
-</body>
-</html>
