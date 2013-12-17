@@ -1,52 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sallasana!!!</title>
-  {#	<meta name="viewport" content="width=device-width, initial-scale=1">#}
+	<title>sallasana</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0, minimal-ui" />
   <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css" />
 
-
   <script type="text/javascript">
-    {# Define global variables coming from Django here and pass them to client side at boot time #}
+    // Define global variables coming from Django here
+    // and pass them to client side at boot time
     SA = {};
     SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};
   </script>
   <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
-
-
 </head>
 
 <body>
 
-  <div data-role="page" id="page-app">
+  <div class="snap-drawers">
+      <div class="snap-drawer snap-drawer-left">
+          <div>
+              <ul>
+                <li>
+                  <a href="" data-rel="close" >
+                    Öneriler
+                  </a>
+                </li>
+                <li>
+                  <a href="" data-rel="close" >
+                    Profilim
+                  </a>
+                </li>
+                <li>
+                  <a href="" data-rel="close" >
+                    Ayarlar
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}" data-rel="close" data-ajax="false">
+                    Çıkış
+                  </a>
+                </li>
+              </ul>
+          </div>
+      </div>
+      <div class="snap-drawer snap-drawer-right"></div>
+  </div>
 
-    <div class="ui-panel-wrapper">
+  <div id="content" class="snap-content">
+      <div id="toolbar">
+          <a href="#" id="open-left"></a>
+          <h1>Default</h1>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{##}
+{#  <div id="app">#}
+{##}
+{##}
+{##}
+{##}
+{#    <div class="ui-panel-wrapper">#}
       {# This section is reserved for the current page in context #}
       {# When the app is first launched as a logged in user, searching would appear here #}
       {# Once recommendations are captured from the server, they'll also be be rendered here #}
       {# Whenever user changes the view from the navigation panel, new page will be rendered here as well #}
       {# You got it. #}
-
-      <div data-role="content">
-        {% include 'searching.html' %}
-      </div>
-
-    </div>
-
-    <div data-role="panel" id="navigation" data-theme="c">
-      {% include 'includes/panel-navigation.html' %}
-    </div><!-- /panel -->
-
-    <div data-role="panel" data-position="right" id="matches" data-theme="c">
-      {% include 'includes/panel-matches.html' %}
-    </div><!-- /panel -->
-
-    <section class="templates">
-      {% include 'includes/templates-list.html' %}
-    </section>
-
-  </div><!-- #page-app -->
+{#      <div data-role="content">#}
+{#        {% include 'searching.html' %}#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{##}
+{#    <div data-role="panel" id="navigation" data-theme="c">#}
+{#      {% include 'includes/panel-navigation.html' %}#}
+{#    </div><!-- /panel -->#}
+{##}
+{#    <div data-role="panel" data-position="right" id="matches" data-theme="c">#}
+{#      {% include 'includes/panel-matches.html' %}#}
+{#    </div><!-- /panel -->#}
+{##}
+{#    <section class="templates">#}
+{#      {% include 'includes/templates-list.html' %}#}
+{#    </section>#}
+{##}
+{#  </div><!-- #app -->#}
 
 </body>
 </html>

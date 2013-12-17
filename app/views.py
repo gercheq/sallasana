@@ -25,8 +25,23 @@ def index(request):
 
 
 @login_required()
-def home(request):
-    return render_to_response('home.html', {'user': request.user}, RequestContext(request))
+def home(request, template_name="home.html"):
+
+
+    if request.user.is_anonymous():
+        return redirect('welcome')
+
+    user = request.user
+    recommendations = RecommendationsView(user.get_recommendations()).to_dict()
+
+    data = {
+        'user': request.user,
+        'recommendations': recommendations
+    }
+
+    return render(request, template_name, data)
+
+
 
 
 @login_required()
