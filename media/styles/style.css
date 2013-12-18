@@ -11,14 +11,6 @@
   .clearfix:after, .photo-controls:after, #pane-profile-details .section-shared:after {
     clear: both; }
 
-html, body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; }
-
 .snap-content {
   position: absolute;
   top: 0;
@@ -139,6 +131,19 @@ html, body {
       margin: 0;
       font-size: 18px;
       text-decoration: none; }
+  .snap-drawer h2 {
+    color: white;
+    margin: 0;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 100;
+    padding: 0;
+    height: 44px;
+    line-height: 44px;
+    text-indent: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.1em; }
 
 .clearfix, .photo-controls, #pane-profile-details .section-shared {
   zoom: 1; }
@@ -791,6 +796,13 @@ body {
   -moz-animation-name: slideOutUp;
   -o-animation-name: slideOutUp;
   animation-name: slideOutUp; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
 
 body {
   background: #eeeeee;

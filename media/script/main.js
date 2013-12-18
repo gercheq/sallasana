@@ -33,7 +33,7 @@ require([ "jquery", "backbone", "router", "snap", "jquery.bootstrap"  ], functio
 
     // This doesn't belong here
     // Initialize in the router
-    var snapper = new Snap({
+    window.snapper = new Snap({
         element: document.getElementById('content')
     });
 
