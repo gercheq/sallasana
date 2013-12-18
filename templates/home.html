@@ -10,6 +10,8 @@
     // and pass them to client side at boot time
     SA = {};
     SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};
+    SA.user = {% autoescape off %}{{ user }}{% endautoescape %};
+
   </script>
   <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
 </head>
@@ -18,41 +20,41 @@
 
   <div class="snap-drawers">
     <div class="snap-drawer snap-drawer-left">
-      {% include 'includes/panel-navigation.html' %}
+      {% include 'includes/drawer-navigation.html' %}
     </div>
     <div class="snap-drawer snap-drawer-right">
-      {% include 'includes/panel-matches.html' %}
+      {% include 'includes/drawer-matches.html' %}
     </div>
   </div>
 
   <div id="content" class="snap-content">
-      <div id="toolbar">
-          <a href="#" id="open-left"></a>
+
+      <header id="global-header">
+          <a href="#"
+             class="left"
+             id="open-left-drawer">
+            <i class="fa fa-bars"></i>
+          </a>
+
           <h1>sallasana</h1>
-      </div>
+
+          <a href="#"
+             class="right"
+             id="open-right-drawer">
+            <i class="fa fa-comments-o"></i>
+          </a>
+      </header>
+
+      <section id="content">
+
+      </section>
+      <footer>
+
+      </footer>
   </div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

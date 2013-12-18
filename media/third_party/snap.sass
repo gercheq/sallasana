@@ -1,3 +1,5 @@
+@import 'utils'
+
 html, body
   font-family: sans-serif
   margin: 0
@@ -80,68 +82,9 @@ html, body
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* Show "Left" drawer for the "Right" drawer in the demo */
-.snapjs-right .snap-drawer-left
-  display: block
-  right: 0
-  left: auto
-
-
-/* Hide the actual "Right" drawer in the demo */
-.snapjs-right .snap-drawer-right
-  display: none
-
-
-/* Show the "Drag" background in the demo */
-#content
+.snap-content
   background: #f9f9f9
-
-
-/* Demo toolbar styles */
-#toolbar
-  background: #FFF
-  border-bottom: 1px solid #CCC
-  position: absolute
-  top: 0
-  right: 0
-  left: 0
-  width: auto
-  height: 44px
-
-
-#toolbar h1
-  font-size: 16px
-  line-height: 22px
-  text-align: center
-  position: absolute
-  top: 0
-  right: 44px
-  left: 44px
-  width: auto
-  height: 44px
-
-
-#open-left
-  background: #AAA
-  display: block
-  width: 44px
-  height: 44px
-
-
-
-
+  @include box-shadow(0 0 10px #000)
 
 .snapjs-expand-left .drawer-inner,
 .snapjs-expand-right .drawer-inner
@@ -149,30 +92,66 @@ html, body
 
 
 
-/* Default demo styles */
-.snap-content
-  background: #BFC7D8
-
-
 .snap-drawers
-  background: #444
+  background: #272c30
 
 
 .snap-drawer
-  background: #323949
+  background: #272c30
   color: #eee
+
+
+  //
+  // List of menu items
+  //
   ul
     padding: 0
     margin: 0
     list-style-type: none
-
-    li > a
+    a
       display: block
+      background: #212529
       border-bottom: 1px solid rgba(0,0,0, 0.1)
       border-top: 1px solid rgba(255, 255, 255, 0.1)
-      padding: 15px
-      font-weight: bold
+      padding: 10px
+      font-weight: 300
       text-shadow: 0 1px 0 #000
       text-decoration: none
+      color: #a4aab3
+      &:active,
+      &:focus
+        background: #16181b
+        text-decoration: none
+      span
+        height: 36px
+        line-height: 36px
+        display: inline-block
+        vertical-align: middle
+      .fa-stack
+        font-size: 18px
+        margin-right: 10px
+      .fa
+        color: #e4e9f2
+        text-shadow: none
+      .fa-circle
+        color: #383b3f
+        text-shadow: 0 -1px 0 #181b1c
+      .fa-sign-out
+        margin-left: 2px
+      .fa-users
+        margin-top: 1px
+
+  //
+  //
+  //
+  .my-profile-summary
+    text-align: center
+    margin: 30px
+    img
+      width: 120px
+      margin-bottom: 10px
+    p
       color: #FFF
-      text-indent: 20px
+      margin: 0
+      font-size: 18px
+      text-decoration: none

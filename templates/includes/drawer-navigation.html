@@ -1,0 +1,38 @@
+
+<div class="my-profile-summary">
+  <a href="#">
+    <img class="img-circle" src="{{ MEDIA_URL }}img/user-photo.jpg"/>
+    <p>Gerçek Karakuş</p>
+  </a>
+</div>
+
+<ul>
+  <li>
+    <a href="#">
+
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-users fa-stack-1x"></i>
+      </span>
+      <span>Öneriler</span>
+    </a>
+  </li>
+  <li>
+    <a href="#">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-cog fa-stack-1x"></i>
+      </span>
+      <span>Ayarlar</span>
+    </a>
+  </li>
+  <li>
+    <a href="{% url 'logout' %}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-sign-out fa-stack-1x"></i>
+      </span>
+      <span>Çıkış</span>
+    </a>
+  </li>
+</ul>

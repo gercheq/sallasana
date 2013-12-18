@@ -1,18 +1,47 @@
-body
-  margin: 0
-  padding: 0
+$headerHeight: 44px
 
-.ui-bar-a, .ui-page-theme-a .ui-bar-inherit
-  background: #FFF
-
-//
-// Photo Stack Header
-//
-#header
+header
   border-bottom: 1px solid $gray
+  background: #FFF
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
+  width: auto
+  height: $headerHeight
   h1
     letter-spacing: 0.05em
     font-weight: 300
     font-family: 'Lily Script One', cursive
     color: $red
+    font-size: 16px
+    line-height: 44px
+    text-align: center
+    position: absolute
+    top: 0
+    right: $headerHeight
+    left: $headerHeight
+    width: auto
+    height: $headerHeight
+    margin: 0
 
+  a
+    width: $headerHeight
+    height: $headerHeight
+    line-height: $headerHeight
+    background: transparent
+    text-align: center
+    font-size: 1.5em
+    color: $darker_gray
+    display: block
+
+    &.left
+      float: left
+
+    &.right
+      float: right
+
+
+#global-header
+  a.left
+    font-size: 1.25em // bars are too big, make them a bit smaller

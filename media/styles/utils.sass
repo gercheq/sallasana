@@ -26,6 +26,12 @@
 @mixin opacity($value)
   opacity: $value/100
 
+@mixin transform($value)
+  -moz-transform: $value
+  -webkit-transform: $value
+  -o-transform: $value
+  -ms-transform: $value
+  transform: $value
 
 
 .clearfix

@@ -8,6 +8,7 @@ require.config( {
             "snap": "../third_party/snap",
             "underscore": "../third_party/lodash",
             "backbone": "../third_party/backbone",
+            "jquery.bootstrap": "../third_party/bootstrap-3.0.3/js/bootstrap.min",
             "router": "router"
       },
 
@@ -16,13 +17,17 @@ require.config( {
             "backbone": {
                   "deps": [ "underscore", "jquery" ],
                   "exports": "Backbone"  //attaches "Backbone" to the window object
+            },
+
+            "jquery.bootstrap": {
+                deps: ["jquery"]
             }
       }
 
 });
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "router", "snap"  ], function( $, Backbone, ApplicationRouter, Snap) {
+require([ "jquery", "backbone", "router", "snap", "jquery.bootstrap"  ], function( $, Backbone, ApplicationRouter, Snap) {
 
     console.log("INIT REQUIRE & BACKBONE");
 
@@ -32,6 +37,13 @@ require([ "jquery", "backbone", "router", "snap"  ], function( $, Backbone, Appl
         element: document.getElementById('content')
     });
 
+    $('#open-left-drawer').on('click', function(){
+        snapper.open('left');
+    });
+
+    $('#open-right-drawer').on('click', function(){
+        snapper.open('right');
+    });
 
     // Instantiates a new Backbone.js Mobile Router
     SA = window.SA || {};
