@@ -35,7 +35,7 @@ def home(request, template_name="home.html"):
     recommendations = RecommendationsView(user.get_recommendations()).to_dict()
 
     data = {
-        'user': request.user,
+        'user': request.user.to_dict(),
         'recommendations': recommendations
     }
 

@@ -2,6 +2,7 @@
 
 __author__ = 'Renan Cakirerk <renan@cakirerk.org>'
 
+import json
 
 from mongoengine import *
 from datetime import datetime
@@ -346,3 +347,19 @@ class SallasanaUser(AbstractBaseUser, PermissionsMixin):
             taste.save()
 
         return taste
+
+
+    def to_dict(self):
+
+        data = {
+            'id': self.id,
+            'username': self.fb_profile.username,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'full_name': self.get_full_name(),
+            'avatar': self.fb_profile.avatar.get('url'),
+            'gender': self.fb_profile.gender,
+            'birthday': self.fb_profile.birthday
+        }
+
+        return json.dumps(data)
