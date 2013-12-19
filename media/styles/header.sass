@@ -1,28 +1,49 @@
-body
-  margin: 0
-  padding: 0
+@import 'variables'
 
-.ui-bar-a, .ui-page-theme-a .ui-bar-inherit
-  background: #FFF
-
-//
-// Photo Stack Header
-//
-#header
+header
+  z-index: 1 // necessary for keeping pulse under it
   border-bottom: 1px solid $gray
-  .ui-btn
-    border: none
-    background: transparent
-    //@include opacity(50)
-  .ui-btn-icon-notext.ui-btn-left
-    top: .5em
-    left: .5em
-  .ui-btn-icon-notext.ui-btn-right
-    top: .5em
-    right: .5em
-  .ui-title
+  background: #FFF
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
+  width: auto
+  height: $headerHeight
+  h1
     letter-spacing: 0.05em
     font-weight: 300
-    font-family: 'Lily Script One', cursive
+    font-size: 16px
+    line-height: 44px
+    text-align: center
+    position: absolute
+    top: 0
+    right: $headerHeight
+    left: $headerHeight
+    width: auto
+    height: $headerHeight
+    margin: 0
     color: $red
+    &.logo
+      font-family: 'Lily Script One', cursive
 
+  a
+    width: $headerHeight
+    height: $headerHeight
+    line-height: $headerHeight
+    background: transparent
+    text-align: center
+    font-size: 1.5em
+    color: $darker_gray
+    display: block
+
+    &.left
+      float: left
+
+    &.right
+      float: right
+
+
+#global-header
+  a.left
+    font-size: 1.25em // bars are too big, make them a bit smaller

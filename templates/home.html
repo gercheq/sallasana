@@ -1,6 +1,36 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sallasana</title>
+  {# Todo(Gercek): implement "minimal-ui" for Safari iOS7 #}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+  <link rel="stylesheet" href="{{ MEDIA_URL }}styles/style.css" />
+</head>
 
-{% block content %}
-  <p style="color:#000;">Welcome {{ user }}!</p>
-  <a href="/logout">Logout</a>
-{% endblock %}
+<body class="animated slow fadeIn">
+
+  <section id="application-wrapper">
+    {% comment %}
+      All the main views of the app are going to be rendered here
+      This will be the container for both drawers and the pane that
+      holds the header, content and footer
+    {% endcomment %}
+    <div class="loading">yükleniyor...</div>
+  </section>
+
+  <section id="templates">
+    {% include 'includes/templates-list.html' %}
+  </section>
+
+
+  <script type="text/javascript">
+    // Define global variables coming from Django here
+    // and pass them to client side at boot time
+    SA = {};
+    SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};
+    SA.user = {% autoescape off %}{{ user }}{% endautoescape %};
+  </script>
+  <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
+
+</body>
+</html>

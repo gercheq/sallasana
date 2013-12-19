@@ -1,0 +1,169 @@
+@import 'utils'
+
+
+.snap-content
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  width: auto
+  height: auto
+  z-index: 2
+  overflow: auto
+  -webkit-overflow-scrolling: touch
+  -webkit-transform: translate3d(0, 0, 0)
+  -moz-transform: translate3d(0, 0, 0)
+  -ms-transform: translate3d(0, 0, 0)
+  -o-transform: translate3d(0, 0, 0)
+  transform: translate3d(0, 0, 0)
+
+
+.snap-drawers
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  width: auto
+  height: auto
+
+
+.snap-drawer
+  position: absolute
+  top: 0
+  right: auto
+  bottom: 0
+  left: auto
+  width: 265px
+  height: auto
+  overflow: auto
+  -webkit-overflow-scrolling: touch
+  -webkit-transition: width 0.3s ease
+  -moz-transition: width 0.3s ease
+  -ms-transition: width 0.3s ease
+  -o-transition: width 0.3s ease
+  transition: width 0.3s ease
+
+
+.snap-drawer-left
+  left: 0
+  z-index: 1
+
+
+.snap-drawer-right
+  right: 0
+  z-index: 1
+
+
+.snapjs-left .snap-drawer-right,
+.snapjs-right .snap-drawer-left
+  display: none
+
+
+.snapjs-expand-left .snap-drawer-left,
+.snapjs-expand-right .snap-drawer-right
+  width: 100%
+
+
+
+
+
+
+
+
+
+
+
+.snap-content
+  background: #f9f9f9
+  @include box-shadow(0 0 10px #000)
+
+.snapjs-expand-left .drawer-inner,
+.snapjs-expand-right .drawer-inner
+  opacity: 0
+
+
+
+.snap-drawers
+  background: #272c30
+
+
+.snap-drawer
+  background: #272c30
+  color: #eee
+
+
+  //
+  // List of menu items
+  //
+  ul
+    padding: 0
+    margin: 0
+    list-style-type: none
+    a
+      display: block
+      background: #212529
+      border-bottom: 1px solid rgba(0,0,0, 0.1)
+      border-top: 1px solid rgba(255, 255, 255, 0.1)
+      padding: 10px
+      font-weight: 300
+      text-shadow: 0 1px 0 #000
+      text-decoration: none
+      color: #a4aab3
+      &:active,
+      &:focus
+        background: #16181b
+        text-decoration: none
+      span
+        height: 36px
+        line-height: 36px
+        display: inline-block
+        vertical-align: middle
+      .fa-stack
+        font-size: 18px
+        margin-right: 10px
+      .fa
+        color: #e4e9f2
+        text-shadow: none
+      .fa-circle
+        color: #383b3f
+        text-shadow: 0 -1px 0 #181b1c
+      .fa-sign-out
+        margin-left: 2px
+      .fa-users
+        margin-top: 1px
+
+  //
+  //
+  //
+  .my-profile-summary
+    text-align: center
+    margin: 30px
+    img
+      width: 120px
+      margin-bottom: 10px
+    p
+      color: #FFF
+      margin: 0
+      font-size: 18px
+      text-decoration: none
+
+
+  h2
+    color: #FFF
+    margin: 0
+    font-size: 14px
+    text-decoration: none
+    padding: 0
+    height: 44px
+    line-height: 44px
+    text-indent: 20px
+    text-align: left
+    border-bottom: 1px solid rgba(0,0,0, 0.1)
+    letter-spacing: .1em
+
+
+.snap-drawer-right
+  p
+    padding: 20px

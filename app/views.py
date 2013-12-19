@@ -25,15 +25,8 @@ def index(request):
 
 
 @login_required()
-def home(request):
-    return render_to_response('home.html', {'user': request.user}, RequestContext(request))
+def home(request, template_name="home.html"):
 
-
-@login_required()
-def home_jqm(request, template_name='index-jqm.html'):
-    """
-    Initializes application with the data baked already.
-    """
 
     if request.user.is_anonymous():
         return redirect('welcome')
@@ -42,6 +35,7 @@ def home_jqm(request, template_name='index-jqm.html'):
     recommendations = RecommendationsView(user.get_recommendations()).to_dict()
 
     data = {
+        'user': request.user.to_dict(),
         'recommendations': recommendations
     }
 

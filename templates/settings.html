@@ -1,0 +1,28 @@
+{% include 'includes/header.html' with title="Ayarlar" class="-" %}
+
+<div class="setting">
+  <h5>Cinsiyetim:</h5>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">Kadın</button>
+    <button type="button" class="btn btn-default">Erkek</button>
+  </div>
+</div>
+
+<div class="setting">
+  <h5>Arama Uzaklığı:</h5>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">Yakın</button>
+    <button type="button" class="btn btn-default">Uzak</button>
+  </div>
+</div>
+
+<div class="setting">
+  <h5>İlgilenilen Yaş:</h5>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">18</button>
+    <button type="button" class="btn btn-default">50+</button>
+  </div>
+</div>
+
+
+<a href="{% url 'logout' %}" class="btn btn-block btn-default">Çıkış</a>
