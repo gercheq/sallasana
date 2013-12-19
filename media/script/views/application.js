@@ -5,8 +5,9 @@
 define([
     "jquery",
     "backbone",
+    "views/recommendations",
     "views/settings" ],
-    function($, Backbone, SettingsView) {
+    function($, Backbone, RecommendationsView, SettingsView) {
 
     //
     // ApplicationView is the top-level view that controls the other subviews.
@@ -27,7 +28,9 @@ define([
         events: {
             'click #open-left-drawer': '_openLeftDrawer',
             'click #open-right-drawer': '_openRightDrawer',
-            'click #settings': 'settingsPane'
+            'click #recommendations': 'recommendationsPane',
+            'click #settings': 'settingsPane',
+            'click #messages': '_openRightDrawer'
         },
 
         initialize: function() {
@@ -77,14 +80,24 @@ define([
             var view = new SettingsView();
             this.$container.html(view.render().$el);
 
-
-            this.$container.show();
-
             // Finally bring pane back
             SA.snapper.close();
 
         },
 
+        recommendationsPane: function(e){
+            e.preventDefault();
+
+            // First hide the pane contents
+            SA.snapper.expand('left');
+
+            // Then render the settings view
+            var view = new RecommendationsView();
+            this.$container.html(view.render().$el);
+
+            // Finally bring pane back
+            SA.snapper.close();
+        },
 
         _openLeftDrawer: function(){
             this._openDrawer("left");
