@@ -15,12 +15,12 @@ require.config( {
       // Sets the configuration for your third party scripts that are not AMD compatible
       shim: {
             "backbone": {
-                  "deps": [ "underscore", "jquery" ],
-                  "exports": "Backbone"  //attaches "Backbone" to the window object
+                "deps": [ "underscore", "jquery" ],
+                "exports": "Backbone"  //attaches "Backbone" to the window object
             },
 
             "jquery.bootstrap": {
-                deps: ["jquery"]
+                "deps": ["jquery"]
             }
       }
 
@@ -31,22 +31,11 @@ require([ "jquery", "backbone", "router", "snap", "jquery.bootstrap"  ], functio
 
     console.log("INIT REQUIRE & BACKBONE");
 
-    // This doesn't belong here
-    // Initialize in the router
-    window.snapper = new Snap({
-        element: document.getElementById('content')
-    });
+    // TODO(gercek): This is wrong, just create another file for SA and inject it w/ requirejs
+    var SA = window.SA || {};
 
-    $('#open-left-drawer').on('click', function(){
-        snapper.open('left');
-    });
-
-    $('#open-right-drawer').on('click', function(){
-        snapper.open('right');
-    });
 
     // Instantiates a new Backbone.js Mobile Router
-    SA = window.SA || {};
     SA.router = new ApplicationRouter();
 
 });

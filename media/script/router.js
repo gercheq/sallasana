@@ -8,8 +8,8 @@ define([
     "models/user",
     "collections/matches",
     "collections/recommendations",
-    "views/photo-stack"
-], function( $, Backbone, UserModel, MatchesCollection, RecommendationsCollection, PhotoStackView) {
+    "views/application"
+], function( $, Backbone, UserModel, MatchesCollection, RecommendationsCollection, ApplicationView) {
 
     // Extends Backbone.Router
     var ApplicationRouter = Backbone.Router.extend( {
@@ -25,11 +25,10 @@ define([
             //
 
             // Main container to render pages
-            self.$container = $('#page-app').find('.ui-content');
+            self.$container = $('#application-wrapper');
 
             // Current view in context
             self.currentView = null;
-
 
             // Setup Collections
             self.recommendationsCollection = new RecommendationsCollection(SA.recommendations);
@@ -46,9 +45,11 @@ define([
         //
         routes: {
             "": "launch",
+            "nux": "nux",
             "login": "login",
             "logout": "logout",
-            "settings": "settings"
+            "settings": "settings",
+            "_=_": "launch"
         },
 
 
@@ -71,12 +72,17 @@ define([
         // Routing Events
         //
         launch: function() {
-//            console.log("Routing to Launch");
-//            var self = this,
-//                view = new PhotoStackView({
-//                    recommendationsCollection: self.recommendationsCollection
-//                });
-//            self.render(view);
+            console.log('Routing to App!');
+
+            var self = this,
+                view = new ApplicationView({
+                    'recommendationsCollection': self.recommendationsCollection
+                });
+            self.render(view);
+        },
+
+        nux: function(){
+          console.log("Routing to NUX!")
         },
 
         settings: function() {

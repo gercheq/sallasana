@@ -1,18 +1,12 @@
-{% extends "base.html" %}
+<div class="searching-container">
+  <div class="ring"></div>
+  <img src="{{ MEDIA_URL }}img/user-photo.jpg" />
+</div>
 
-{% block content %}
-  <div class="searching-container">
-    <div class="ring"></div>
-    <img src="{{ MEDIA_URL }}img/user-photo.jpg" />
-  </div>
-
-  <div class="invite-container">
-    <p>Ne yazık ki etrafında yeni kimse yok.</p>
-    <a class="invite-friends"
-       href="#invite"
-       data-role="button"
-       data-shadow="false">
-      Arkadaşlarını davet et!
-     </a>
-  </div>
-{% endblock %}
+<div class="invite-container">
+  <p>Ne yazık ki etrafında yeni kimse yok.</p>
+  <a class="invite-friends"
+     href="#invite">
+    Arkadaşlarını davet et!
+   </a>
+</div>

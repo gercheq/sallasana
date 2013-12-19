@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Lily+Script+One)
-
+// TODO(gercek): This font is only used in the logo and it will be deprecated soon.
 
 html, body
   margin: 0
@@ -7,20 +7,18 @@ html, body
   width: 100%
   height: 100%
   overflow: hidden
-
-
-body
   background: $lightest_gray
   font-family: Avenir, "Helvetica Neue", Helvetica, sans-serif
 
-//
-//.ui-panel-page-content-position-left
-//  -webkit-box-shadow: -5px 0 5px rgba(0,0,0,.10)
-//	-moz-box-shadow: -5px 0 5px rgba(0,0,0,.10)
-//	box-shadow: -5px 0 5px rgba(0,0,0,.10)
-//
+body
+  @include opacity(0) // fade-ins onload
+
+.loading
+  text-align: center
+  width: 100%
+  position: absolute
+  top: 48%
 
 
-
-.ui-content
-  overflow: visible
+.subview
+  padding: $headerHeight 20px 20px

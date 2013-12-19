@@ -1,0 +1,20 @@
+<header id="global-header"
+        class="{% if class %}{{ class}}{% else %}animated slideInDown{% endif %}">
+    <a href="#"
+       class="left"
+       id="open-left-drawer">
+      <i class="fa fa-bars"></i>
+    </a>
+
+    {% if title %}
+      <h1>{{ title }}</h1>
+    {% else %}
+      <h1 class="logo">sallasana</h1>
+    {% endif %}
+
+    <a href="#"
+       class="right"
+       id="open-right-drawer">
+      <i class="fa fa-comments-o"></i>
+    </a>
+</header>

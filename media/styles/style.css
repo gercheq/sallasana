@@ -134,16 +134,18 @@
   .snap-drawer h2 {
     color: white;
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
-    font-weight: 100;
     padding: 0;
     height: 44px;
     line-height: 44px;
     text-indent: 20px;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     letter-spacing: 0.1em; }
+
+.snap-drawer-right p {
+  padding: 20px; }
 
 .clearfix, .photo-controls, #pane-profile-details .section-shared {
   zoom: 1; }
@@ -171,6 +173,11 @@ body {
   -moz-animation-fill-mode: both;
   -o-animation-fill-mode: both;
   animation-fill-mode: both; }
+  .animated.slow {
+    -webkit-animation-duration: 3s;
+    -moz-animation-duration: 3s;
+    -o-animation-duration: 3s;
+    animation-duration: 3s; }
 
 @-webkit-keyframes bounceOutLeft {
   from {
@@ -276,6 +283,40 @@ body {
   -moz-animation-name: bounceOutRight;
   -o-animation-name: bounceOutRight;
   animation-name: bounceOutRight; }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+
+  100% {
+    opacity: 1; } }
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+
+  100% {
+    opacity: 1; } }
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+
+  100% {
+    opacity: 1; } }
+
+.animated.fadeIn {
+  -webkit-animation-name: fadeIn;
+  -moz-animation-name: fadeIn;
+  -o-animation-name: fadeIn;
+  animation-name: fadeIn; }
 
 @-webkit-keyframes fadeOut {
   0% {
@@ -797,19 +838,72 @@ body {
   -o-animation-name: slideOutUp;
   animation-name: slideOutUp; }
 
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1); }
+
+  50% {
+    -webkit-transform: scale(1.1); }
+
+  100% {
+    -webkit-transform: scale(1); } }
+
+@-moz-keyframes pulse {
+  0% {
+    -moz-transform: scale(1); }
+
+  50% {
+    -moz-transform: scale(1.1); }
+
+  100% {
+    -moz-transform: scale(1); } }
+
+@-o-keyframes pulse {
+  0% {
+    -o-transform: scale(1); }
+
+  50% {
+    -o-transform: scale(1.1); }
+
+  100% {
+    -o-transform: scale(1); } }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1); }
+
+  50% {
+    transform: scale(1.1); }
+
+  100% {
+    transform: scale(1); } }
+
+.animated.pulse {
+  -webkit-animation-name: pulse;
+  -moz-animation-name: pulse;
+  -o-animation-name: pulse;
+  animation-name: pulse; }
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; }
-
-body {
-  background: #eeeeee;
+  overflow: hidden;
+  background: #f9f9f9;
   font-family: Avenir, "Helvetica Neue", Helvetica, sans-serif; }
 
-.ui-content {
-  overflow: visible; }
+body {
+  opacity: 0; }
+
+.loading {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 48%; }
+
+.subview {
+  padding: 44px 20px 20px; }
 
 header {
   border-bottom: 1px solid #cccccc;
@@ -823,8 +917,6 @@ header {
   header h1 {
     letter-spacing: 0.05em;
     font-weight: 300;
-    font-family: "Lily Script One", cursive;
-    color: #e31212;
     font-size: 16px;
     line-height: 44px;
     text-align: center;
@@ -834,7 +926,10 @@ header {
     left: 44px;
     width: auto;
     height: 44px;
-    margin: 0; }
+    margin: 0;
+    color: #e31212; }
+    header h1.logo {
+      font-family: "Lily Script One", cursive; }
   header a {
     width: 44px;
     height: 44px;
@@ -852,24 +947,10 @@ header {
 #global-header a.left {
   font-size: 1.25em; }
 
-.ui-panel-wrapper {
-  -webkit-box-shadow: -5px 0 5px rgba(0, 0, 0, 0.3), 5px 0 5px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: -5px 0 5px rgba(0, 0, 0, 0.3), 5px 0 5px rgba(0, 0, 0, 0.3);
-  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.3), 5px 0 5px rgba(0, 0, 0, 0.3); }
-
-.ui-panel-display-reveal {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none; }
-
-.ui-panel {
-  background: #444444; }
-  .ui-panel ul li a {
-    font-weight: 100;
-    background: transparent !important;
-    border-color: #333333 !important;
-    color: #eeeeee !important;
-    text-shadow: 0 1px 0 black !important; }
+.setting {
+  margin-bottom: 20px; }
+  .setting h5 {
+    font-weight: 300; }
 
 .clearfix, .photo-controls, #pane-profile-details .section-shared {
   zoom: 1; }

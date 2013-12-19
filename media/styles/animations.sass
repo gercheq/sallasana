@@ -30,6 +30,14 @@ body
   -o-animation-fill-mode: both
   animation-fill-mode: both
 
+  &.slow
+    -webkit-animation-duration: 3s
+    -moz-animation-duration: 3s
+    -o-animation-duration: 3s
+    animation-duration: 3s
+
+
+
 
 
 
@@ -137,6 +145,41 @@ body
   animation-name: bounceOutRight
 
 
+
+
+@-webkit-keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+
+@-moz-keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+
+@-o-keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+
+.animated.fadeIn
+  -webkit-animation-name: fadeIn
+  -moz-animation-name: fadeIn
+  -o-animation-name: fadeIn
+  animation-name: fadeIn
 
 
 
@@ -371,7 +414,7 @@ body
   animation-name: bounceInDown
 
 
-  
+
 @-webkit-keyframes bounceOutDown
   0%
     -webkit-transform: translateY(0)
@@ -752,3 +795,50 @@ body
   -moz-animation-name: slideOutUp
   -o-animation-name: slideOutUp
   animation-name: slideOutUp
+
+
+
+
+
+
+
+
+@-webkit-keyframes pulse
+  0%
+    -webkit-transform: scale(1)
+  50%
+    -webkit-transform: scale(1.1)
+  100%
+    -webkit-transform: scale(1)
+
+@-moz-keyframes pulse
+  0%
+    -moz-transform: scale(1)
+  50%
+    -moz-transform: scale(1.1)
+  100%
+    -moz-transform: scale(1)
+
+@-o-keyframes pulse
+  0%
+    -o-transform: scale(1)
+  50%
+    -o-transform: scale(1.1)
+  100%
+    -o-transform: scale(1)
+
+@keyframes pulse
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.1)
+  100%
+    transform: scale(1)
+
+
+.animated.pulse
+  -webkit-animation-name: pulse
+  -moz-animation-name: pulse
+  -o-animation-name: pulse
+  animation-name: pulse
+
