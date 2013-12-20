@@ -69,13 +69,19 @@
 
 
             self.$el.find('#distance').noUiSlider({
-                 range: [0, 200],
+                 range: [1, 200],
                  start: 50,
                  handles: 1,
                  connect: "lower",
                  serialization: {
                     to: [ $distanceBoard, 'html' ],
                     resolution: 1
+                },
+                set: function(){
+                    // display 200+ on the upper bound
+                    if(this.val() == 200){
+                        $distanceBoard.html('200+');
+                    }
                 }
             });
 
