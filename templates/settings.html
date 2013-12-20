@@ -1,28 +1,35 @@
 {% include 'includes/header.html' with title="Ayarlar" class="-" %}
 
-<div class="setting">
-  <h5>Cinsiyetim:</h5>
+<div class="setting clearfix" id="setting-sex">
+  <h4>Cinsiyetim:</h4>
   <div class="btn-group">
     <button type="button" class="btn btn-default">Kadın</button>
     <button type="button" class="btn btn-default">Erkek</button>
   </div>
-</div>
+ </div>
 
 <div class="setting">
-  <h5>Arama Uzaklığı:</h5>
-  <div class="btn-group">
-    <button type="button" class="btn btn-default">Yakın</button>
-    <button type="button" class="btn btn-default">Uzak</button>
+  <h4>
+    Arama Uzaklığı:
+    <span class="pull-right">
+      <span id="distance-board">100</span> km
+    </span>
+  </h4>
+  <div class="setting-inner">
+    <div id="distance" class="noUISlider"></div>
   </div>
 </div>
 
 <div class="setting">
-  <h5>İlgilenilen Yaş:</h5>
-  <div class="btn-group">
-    <button type="button" class="btn btn-default">18</button>
-    <button type="button" class="btn btn-default">50+</button>
+  <h4>İlgilenilen Yaş:
+    <span class="pull-right">
+      <span id="age-low">18</span>-<span id="age-high">50+</span>
+    </span>
+  </h4>
+  <div class="setting-inner">
+    <div id="ages" class="noUISlider"></div>
   </div>
 </div>
 
 
-<a href="{% url 'logout' %}" class="btn btn-block btn-default">Çıkış</a>
+<a href="{% url 'logout' %}" class="btn btn-block btn-default btn-logout">Çıkış</a>

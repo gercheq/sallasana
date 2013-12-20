@@ -9,6 +9,7 @@ require.config( {
             "underscore": "../third_party/lodash",
             "backbone": "../third_party/backbone",
             "jquery.bootstrap": "../third_party/bootstrap-3.0.3/js/bootstrap.min",
+            "jquery.nouislider": "../third_party/jquery.nouislider/jquery.nouislider",
             "router": "router"
       },
 
