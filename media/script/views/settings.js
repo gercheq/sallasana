@@ -1,7 +1,8 @@
  define([
     "jquery",
     "backbone",
-    "jquery.nouislider" ],
+    "jquery.nouislider",
+    "bootstrap-switch"],
     function($, Backbone){
 
     var SettingsView = Backbone.View.extend( {
@@ -34,11 +35,25 @@
 
             self._initDistanceAndAgeSliders();
 
-
+            self._initSwitches();
 
             return this;
         },
 
+        _initSwitches: function(){
+            var self = this,
+                $male = self.$el.find('#male'),
+                $female = self.$el.find('#female');
+
+            $male.bootstrapSwitch();
+            $female.bootstrapSwitch();
+
+            $male.on('switch-change', function (e, data) {
+                var $el = $(data.el)
+                , value = data.value;
+                console.log(e, $el, value);
+            });
+        },
 
         _initDistanceAndAgeSliders: function(){
             var self = this,

@@ -1,3 +1,5 @@
+@import "variables"
+
 .setting
   margin-bottom: 0
 
@@ -17,6 +19,10 @@
 .btn-logout
   margin-top: 200px
 
+
+//
+// Setting My Sex
+//
 #setting-sex
   margin-bottom: 20px
   h4
@@ -26,10 +32,27 @@
 
   .btn
     width: 50%
-
-
-
+    font-size: 16px
 //
+// Setting Looking For
+//
+#setting-looking-for
+  .setting-inner
+    padding: 0 20px
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    li
+      margin: 0
+      height: auto
+      padding: 10px 0
+      font-size: 16px
+      line-height: 31px
+      &:first-child
+        border-bottom: 1px solid #DDD
+
+
 // SLIDER
 //
 .noUi-background,
@@ -39,7 +62,7 @@
   border: none
 
 .noUi-connect
-  background: #007bff
+  background: $blue
 
 
 .noUI-horizontal
@@ -60,3 +83,6 @@
 
 
 
+.has-switch span.switch-primary,
+.has-switch span.switch-left
+  background: $blue

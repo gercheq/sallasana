@@ -1,7 +1,10 @@
  define([
     "jquery",
-    "backbone" ],
-    function($, Backbone) {
+    "backbone",
+    "models/user",
+    "collections/recommendations",
+    "views/photo" ],
+    function($, Backbone, UserModel, RecommendationsCollection, PhotoView) {
 
     var RecommendationsView = Backbone.View.extend( {
 
@@ -20,6 +23,10 @@
             var self = this;
             console.log("INIT:  RecommendationsView");
 
+            self.recommendationsCollection = self.options.recommendationsCollection;
+
+
+
         },
 
         render: function() {
@@ -29,6 +36,9 @@
             // render this view's template and append it to $el
             self.$el.html(self.template());
 
+            debugger;
+            self._addPhoto();
+
             return this;
         },
 
@@ -37,7 +47,35 @@
         },
         dislike: function(){
             console.log('dislike');
+        },
+
+
+
+
+        _addPhoto: function(index){
+            // if not defined add the first element directly
+
+            index = index || 0;
+
+            var self = this;
+
+            // take the first recommendation and
+            // add it to the .photo-stack
+            var currentModel = self.recommendationsCollection.at(index);
+
+            console.log('Adding a new photo... Username: %s', currentModel.get('username'));
+
+            var photoView = new PhotoView({
+                model: currentModel
+            });
+            var renderedTemplate = photoView.render().$el;
+
+            self.$el.find('.photo-stack').prepend(renderedTemplate);
         }
+
+
+
+
 
 
     } );

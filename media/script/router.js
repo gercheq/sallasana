@@ -33,7 +33,6 @@ define([
             // Setup Collections
             self.recommendationsCollection = new RecommendationsCollection(SA.recommendations);
             RecommendationsCollection.prototype.parseInline(self.recommendationsCollection);
-            // self.recommendationsCollection.fetch({ reset: true });
 
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
@@ -68,9 +67,6 @@ define([
         },
 
 
-        //
-        // Routing Events
-        //
         launch: function() {
             console.log('Routing to App!');
 

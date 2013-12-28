@@ -68,8 +68,6 @@ define([
         },
 
 
-
-
         settingsPane: function(e){
             e.preventDefault();
 
@@ -88,12 +86,16 @@ define([
         recommendationsPane: function(e){
             e.preventDefault();
 
+            var self = this;
+
             // First hide the pane contents
             SA.snapper.expand('left');
 
-            // Then render the settings view
-            var view = new RecommendationsView();
-            this.$container.html(view.render().$el);
+            // Then render recommendations view
+            var view = new RecommendationsView({
+                'recommendationsCollection': self.recommendationsCollection
+            });
+            self.$container.html(view.render().$el);
 
             // Finally bring pane back
             SA.snapper.close();

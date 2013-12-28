@@ -84,13 +84,6 @@ $headerHeight: 44px
       .age
         font-weight: 100
 
-  .stats
-    .ui-bar
-      border: none
-    .ui-block-a
-      .ui-bar-a
-        border-right: 1px solid $light_gray
-
 .photo-card-active
   width: 100%
   margin: 0
@@ -163,21 +156,36 @@ $headerHeight: 44px
 
 
 
+.stats
+  .row
+    margin: 0
+  #name-age
+    font-size: 24px
+    font-weight: 300
+    margin-top: 15px
 
-.shared
-  font-weight: 300
-  color: $dark_gray
-  vertical-align: middle
-  font-size: .8em !important
-  margin-top: .2em
+  #nb-common-friends,
+  #nb-common-likes,
+  #nb-photos
+    font-size: 16px
+    padding: 0
+    text-align: center
 
-.shared-count
-  float: right
-  font-size: 2em
-  line-height: 1
-  color: #999
-  font-weight: 300
-  margin-top: 0.075em
+  .shared
+    color: $dark_gray
+    vertical-align: middle
+    margin: 10px 0 5px
+    font-size: 18px
+
+
+  .shared-count
+    font-size: 21px
+    line-height: 1
+    color: #999999
+    font-weight: 300
+    margin: 5px auto 10px
+    float: none
+
 
 
 

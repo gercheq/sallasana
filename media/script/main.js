@@ -10,6 +10,7 @@ require.config( {
             "backbone": "../third_party/backbone",
             "jquery.bootstrap": "../third_party/bootstrap-3.0.3/js/bootstrap.min",
             "jquery.nouislider": "../third_party/jquery.nouislider/jquery.nouislider",
+            "bootstrap-switch": "../third_party/bootstrap-switch/bootstrap-switch",
             "router": "router"
       },
 

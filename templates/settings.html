@@ -21,7 +21,7 @@
 </div>
 
 <div class="setting">
-  <h4>İlgilendiğim Yaş Aralığı:
+  <h4>Yaş Aralığı:
     <span class="pull-right" >
       <span id="age-low">18</span>-<span id="age-high">50+</span>
     </span>
@@ -30,6 +30,25 @@
     <div id="ages" class="noUISlider"></div>
   </div>
 </div>
+
+
+<div class="setting" id="setting-looking-for">
+  <h4>İlgilendiğim Cinsiyet:</h4>
+  <div class="setting-inner" data-snap-ignore="true">
+
+    <ul>
+      <li class="clearfix">
+        <span>Kadın</span>
+        <div class="make-switch pull-right"><input id="female" name="female" type="checkbox" checked></div>
+      </li>
+      <li class="clearfix">
+        <span>Erkek</span>
+        <div class="make-switch pull-right"><input id="male" name="male" type="checkbox" checked></div>
+      </li>
+    </ul>
+  </div>
+</div>
+
 
 
 <a href="{% url 'logout' %}" class="btn btn-block btn-default btn-logout">Çıkış</a>

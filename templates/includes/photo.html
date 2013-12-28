@@ -1,31 +1,28 @@
-{# Container class .photo-card is added automatically by the view #}
-{# <div class="photo-card"> #}
+<div class="metadata" style='background-image: url("<%= photo %>")'>
+</div>
 
 
-{#  <div class="metadata" style="background-image: url('/media/img/user-photo.jpg')">#}
-  <div class="metadata" style='background-image: url("<%= photo %>")'>
-{#  <div class="metadata">#}
-{#    <img src="<%= picture.picture.data.url %>" />#}
-    <div class="name-age">
-      <span class="name"><strong><%= first_name %></strong></span>, <span class="age"><%= birthday %></span>
+<div class="stats">
+
+  <div class="row">
+
+    <div class="col-xs-6" id="name-age">
+        <span class="name"><%= first_name %></span>, <span class="age"><%= birthday %></span>
     </div>
+
+    <div class="col-xs-2" id="nb-common-friends">
+        <h3 class="shared"><i class="fa fa-users"></i></h3>
+        <div class="shared-count"><%= common_friends.length %></div>
+    </div>
+    <div class="col-xs-2" id="nb-common-likes">
+        <h3 class="shared"><i class="fa fa-thumbs-o-up"></i></h3>
+        <div class="shared-count"><%= common_likes.length %></div>
+    </div>
+    <div class="col-xs-2" id="nb-photos">
+        <h3 class="shared"><i class="fa fa-camera-retro"></i></h3>
+        <div class="shared-count"><%= common_likes.length %></div>
+    </div>
+
   </div>
 
-  <div class="stats">
-    <div class="ui-grid-a">
-      <div class="ui-block-a">
-        <div class="ui-bar ui-bar-a">
-          <h3 class="shared">Shared<br/>Friends</h3>
-          <div class="shared-count"><%= common_friends.length %></div>
-        </div>
-      </div>
-      <div class="ui-block-b">
-        <div class="ui-bar ui-bar-a">
-          <h3 class="shared">Shared<br/>Interests</h3>
-          <div class="shared-count"><%= common_likes.length %></div>
-        </div>
-      </div>
-    </div><!-- /grid-a -->
-  </div>
-
-{# </div> <!-- .photo-card --> #}
+</div>

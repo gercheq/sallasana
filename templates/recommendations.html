@@ -1,5 +1,17 @@
 {% include 'includes/header.html' with class="-" %}
 
 <section class="photos-container">
-  {% include 'searching.html' %}
+  <div class="photo-stack" data-snap-ignore="true">
+  </div>
+
+  <div class="photo-controls" data-snap-ignore="true">
+    <a id="btn-dislike" href="#"><i class="fa fa-times"></i></a>
+    <a id="btn-info" href="#"><i class="fa fa-info"></i></a>
+    <a id="btn-like" href="#"><i class="fa fa-heart"></i></a>
+  </div>
 </section>
+
+
+{#<section class="no-recommendations">#}
+{#  {% include 'searching.html' %}#}
+{#</section>#}
