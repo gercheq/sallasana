@@ -1113,11 +1113,11 @@ header {
   display: block;
   position: relative;
   width: 100%;
-  min-height: 340px; }
+  min-height: 360px; }
 
 .photo-card {
   background: white;
-  width: 260px;
+  width: 280px;
   height: auto;
   vertical-align: bottom;
   -webkit-border-radius: 3px;
@@ -1134,16 +1134,15 @@ header {
   position: absolute;
   top: 0;
   left: 50%;
-  margin-left: -130px;
-  margin-top: 1em; }
+  margin-left: -140px;
+  margin-top: 1emw; }
   .photo-card .metadata {
     position: relative;
     display: block;
     width: 100%;
-    height: 260px;
+    height: 280px;
     background: white no-repeat center center;
     background-size: cover;
-    border: 1px solid #444444;
     -webkit-border-top-left-radius: 3px;
     -webkit-border-top-right-radius: 3px;
     -moz-border-radius-topleft: 3px;
@@ -1238,7 +1237,7 @@ header {
 .stats #name-age {
   font-size: 24px;
   font-weight: 300;
-  margin-top: 15px; }
+  margin-top: 10px; }
 .stats #nb-common-friends,
 .stats #nb-common-likes,
 .stats #nb-photos {
@@ -1246,7 +1245,7 @@ header {
   padding: 0;
   text-align: center; }
 .stats .shared {
-  color: #777777;
+  color: #aaaaaa;
   vertical-align: middle;
   margin: 10px 0 5px;
   font-size: 18px; }
@@ -1255,32 +1254,29 @@ header {
   line-height: 1;
   color: #999999;
   font-weight: 300;
-  margin: 5px auto 10px;
+  margin: 5px auto;
   float: none; }
 
 .photo-controls {
   text-align: center;
   z-index: 11;
-  width: 300px;
-  margin: 0 auto;
-  -webkit-transform: scale(0.8); }
+  width: 280px;
+  margin: 15px auto 0; }
   .photo-controls a {
-    font-size: 2.5em;
-    background: white;
-    color: #aaaaaa;
-    border: 1px solid #cccccc;
     border-radius: 100%;
-    padding: 0.4em;
-    font-weight: 300;
-    width: 1em;
-    display: inline-block;
-    height: 1em;
-    line-height: 1;
+    margin: 0;
+    font-size: 60px;
+    background: #dddddd;
+    border: 5px solid white;
     vertical-align: top;
-    margin: 0; }
+    display: inline-block;
+    margin: 0;
+    width: 75px;
+    height: 75px;
+    line-height: 60px; }
     .photo-controls a i {
       -webkit-transform: scale(1);
-      color: #cccccc; }
+      color: white; }
     .photo-controls a:active {
       -webkit-box-shadow: 0 0 30px #aaaaaa inset;
       -moz-box-shadow: 0 0 30px #aaaaaa inset;
@@ -1289,12 +1285,16 @@ header {
         -webkit-transform: scale(0.8); }
     .photo-controls a:focus {
       background: green; }
+  .photo-controls #btn-like {
+    font-size: 50px;
+    padding-top: 6px; }
   .photo-controls #btn-info {
-    font-size: 1.25em;
-    height: 1em;
-    width: 1em;
-    margin: 1em 1em 0;
-    vertical-align: top; }
+    font-size: 45px;
+    -moz-transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    -o-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6); }
 
 .pane .pane-inner {
   padding: 0.5em 0.5em 0.25em;

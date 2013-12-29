@@ -11,6 +11,9 @@ require.config( {
             "jquery.bootstrap": "../third_party/bootstrap-3.0.3/js/bootstrap.min",
             "jquery.nouislider": "../third_party/jquery.nouislider/jquery.nouislider",
             "bootstrap-switch": "../third_party/bootstrap-switch/bootstrap-switch",
+            "hammer": "../third_party/hammer",
+            "jquery.hammer": "../third_party/jquery.hammer",
+            "backbone.hammer": "../third_party/backbone.hammer",
             "router": "router"
       },
 
@@ -23,18 +26,29 @@ require.config( {
 
             "jquery.bootstrap": {
                 "deps": ["jquery"]
+            },
+
+            "jquery.hammer": {
+                "deps": ["jquery", "hammer"],
+                "exports": "Hammer"
+            },
+
+            "backbone.hammer": {
+                "deps": ["jquery", "backbone", "hammer"]
             }
       }
 
 });
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "router", "snap", "jquery.bootstrap"  ], function( $, Backbone, ApplicationRouter, Snap) {
+require([ "jquery", "backbone", "router", "snap", "hammer",  "jquery.bootstrap"  ], function( $, Backbone, ApplicationRouter, Snap, Hammer) {
 
     console.log("INIT REQUIRE & BACKBONE");
 
     // TODO(gercek): This is wrong, just create another file for SA and inject it w/ requirejs
     var SA = window.SA || {};
+
+    console.log(Hammer);
 
 
     // Instantiates a new Backbone.js Mobile Router

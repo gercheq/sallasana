@@ -15,10 +15,10 @@ $controlsZ: 11
 $cardZ:12
 $cardFrontZ: 13
 
-$gap: 1em
+$gap: 1emw
 
-$photoWidth: 260px // at the same time equal to photoHeight
-$statsHeight: 50px
+$photoWidth: 280px // at the same time equal to photoHeight
+$statsHeight: 50px // not the exact height, wild guess...
 
 $borderRadius: 3px
 
@@ -39,7 +39,7 @@ $headerHeight: 44px
   position: relative
   width: 100%
   // min-height: $photoWidth + $statsHeight + 30px
-  min-height: 340px
+  min-height: $photoWidth + $statsHeight + 30px
 
 .photo-card
   background: #FFF
@@ -64,7 +64,6 @@ $headerHeight: 44px
     height: $photoWidth // makes images square
     background: #FFF no-repeat center center
     background-size: cover
-    border: 1px solid $black
     @include border-radius-top($borderRadius)
     @include box-sizing(border-box)
     .name-age
@@ -162,7 +161,7 @@ $headerHeight: 44px
   #name-age
     font-size: 24px
     font-weight: 300
-    margin-top: 15px
+    margin-top: 10px
 
   #nb-common-friends,
   #nb-common-likes,
@@ -172,7 +171,7 @@ $headerHeight: 44px
     text-align: center
 
   .shared
-    color: $dark_gray
+    color: $darker_gray
     vertical-align: middle
     margin: 10px 0 5px
     font-size: 18px
@@ -183,7 +182,7 @@ $headerHeight: 44px
     line-height: 1
     color: #999999
     font-weight: 300
-    margin: 5px auto 10px
+    margin: 5px auto
     float: none
 
 
@@ -212,51 +211,47 @@ $headerHeight: 44px
 
 
 
+$pcFontSize: 60px
+$pcBorder: 5px
 .photo-controls
   text-align: center
   z-index: $controlsZ
   @extend .clearfix
-  width: 300px
-  margin: 0 auto
-  -webkit-transform: scale(.8)
+  width: $photoWidth
+  margin: 15px auto 0
 
-  // button
   a
-    font-size: 2.5em
-    background: white
-    color: #aaaaaa
-    border: 1px solid #cccccc
     border-radius: 100%
-    padding: 0.4em
-    font-weight: 300
-    width: 1em
-    display: inline-block
-    height: 1em
-    line-height: 1
-    vertical-align: top
     margin: 0
+    font-size: $pcFontSize
+    background: #DDD
+    border: $pcBorder solid #FFF
+    vertical-align: top
+    display: inline-block
+    margin: 0
+    width: $pcFontSize * 1.25
+    height: $pcFontSize * 1.25
+    line-height: $pcFontSize
     i
       -webkit-transform: scale(1)
-      color: #CCC
-
+      color: #FFF
     &:active
       @include box-shadow(0 0 30px #AAA inset)
-
-      // icon
       i
         -webkit-transform: scale(.8)
-
-
     &:focus
       background: green
 
+  #btn-like
+    font-size: $pcFontSize - 10px
+    padding-top: 6px
 
   #btn-info
-    font-size: 1.25em
-    height: 1em
-    width: 1em
-    margin: 1em 1em 0
-    vertical-align: top
+    font-size: 45px
+    @include transform(scale(.6))
+
+
+
 
 
 //

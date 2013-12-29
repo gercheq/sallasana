@@ -5,7 +5,7 @@
 // ============================================================================
 
 // Includes file dependencies
-define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel ) {
+define([ "jquery", "backbone", "jquery.hammer", "models/user" ], function( $, Backbone, Hammer, UserModel ) {
 
     //
     //
@@ -31,6 +31,10 @@ define([ "jquery", "backbone","models/user" ], function( $, Backbone, UserModel 
             console.log("RNDR:  PhotoView");
             var tmpl = this.template(this.model.toJSON());
             this.$el.html(tmpl);
+
+            // enable touch events
+            this.$el.hammer();
+
             return this;
         },
 
