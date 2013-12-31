@@ -24,7 +24,8 @@ define([
             'click #btn-dislike': 'dislike',
             'click #btn-info': 'showProfileDetails',
             'click .photo-stack': 'showProfileDetails',
-            'click #close-details': 'hideProfileDetails'
+            'click #close-details': 'hideProfileDetails',
+            'dragleft .photo-card': 'dragLeft'
         },
 
         initialize: function() {

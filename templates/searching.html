@@ -1,10 +1,12 @@
-<div class="searching-container">
+{% include 'includes/header.html' %}
+
+<div class="searching-container animated bounceIn">
   <div class="ring"></div>
   <img src="{{ MEDIA_URL }}img/user-photo.jpg" />
 </div>
 
-<div class="invite-container">
-  <p>Ne yazık ki etrafında yeni kimse yok.</p>
+<div class="invite-container animated fadeIn">
+  <p>Etrafındaki kişiler aranıyor...</p>
   <a class="invite-friends"
      href="#invite">
     Arkadaşlarını davet et!

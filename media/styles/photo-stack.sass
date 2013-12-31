@@ -18,7 +18,7 @@ $cardFrontZ: 13
 $gap: 1emw
 
 $photoWidth: 280px // at the same time equal to photoHeight
-$statsHeight: 50px // not the exact height, wild guess...
+$statsHeight: 60px // not the exact height, wild guess...
 
 $borderRadius: 3px
 
@@ -38,8 +38,8 @@ $headerHeight: 44px
   display: block
   position: relative
   width: 100%
-  // min-height: $photoWidth + $statsHeight + 30px
-  min-height: $photoWidth + $statsHeight + 30px
+  margin-top: 10px
+  min-height: $photoWidth + $statsHeight
 
 .photo-card
   background: #FFF
@@ -64,6 +64,7 @@ $headerHeight: 44px
     height: $photoWidth // makes images square
     background: #FFF no-repeat center center
     background-size: cover
+    background-color: rgba(52, 152, 219, 0.05)
     @include border-radius-top($borderRadius)
     @include box-sizing(border-box)
     .name-age
@@ -211,7 +212,7 @@ $headerHeight: 44px
 
 
 
-$pcFontSize: 60px
+$pcFontSize: 50px
 $pcBorder: 5px
 .photo-controls
   text-align: center
@@ -229,28 +230,28 @@ $pcBorder: 5px
     vertical-align: top
     display: inline-block
     margin: 0
-    width: $pcFontSize * 1.25
-    height: $pcFontSize * 1.25
-    line-height: $pcFontSize
+    width: $pcFontSize * 1.4
+    height: $pcFontSize * 1.4
+    line-height: $pcFontSize + 10px
     i
       -webkit-transform: scale(1)
       color: #FFF
+
+  #btn-dislike
     &:active
-      @include box-shadow(0 0 30px #AAA inset)
-      i
-        -webkit-transform: scale(.8)
-    &:focus
-      background: green
+      background: $red
 
   #btn-like
     font-size: $pcFontSize - 10px
-    padding-top: 6px
+    padding-top: 3px
+    &:active
+      background: $green
 
   #btn-info
     font-size: 45px
     @include transform(scale(.6))
-
-
+    &:active
+      background: $blue
 
 
 

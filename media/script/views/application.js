@@ -6,8 +6,9 @@ define([
     "jquery",
     "backbone",
     "views/recommendations",
-    "views/settings" ],
-    function($, Backbone, RecommendationsView, SettingsView) {
+    "views/settings",
+    "views/searching"],
+    function($, Backbone, RecommendationsView, SettingsView, SearchingView) {
 
     //
     // ApplicationView is the top-level view that controls the other subviews.
@@ -15,6 +16,7 @@ define([
     // Main responsibilities:
     //
     //  - holds the two panels and the content pane
+    //  - handles events with the event aggregator
     //  - loads other subviews
     //  - handles periodic tasks
     //  - measures viewport and responds to orientation changes
@@ -28,8 +30,8 @@ define([
         events: {
             'click #open-left-drawer': '_openLeftDrawer',
             'click #open-right-drawer': '_openRightDrawer',
-            'click #recommendations': 'recommendationsPane',
-            'click #settings': 'settingsPane',
+            'click #recommendations': 'renderRecommendations',
+            'click #settings': 'renderSettings',
             'click #messages': '_openRightDrawer'
         },
 
@@ -37,17 +39,35 @@ define([
             var self = this;
             console.log("INIT:  ApplicationView");
 
+
+            // Initialize collections
             self.recommendationsCollection = self.options.recommendationsCollection;
-            self.$container = undefined;
+
+            // Initialize variables
+            self.$container = undefined; // Panel that holds the views
+
+            // Initialize event aggregator
+            self.eventAggregator = _.extend({}, Backbone.Events);
 
             // TODO(gercek): Implement NUX
             // If this is the first time using the app then
+
+
+            self.eventAggregator.on('render:searching', function(){
+               self.renderSearching();
+            });
+
+
+
 
             if (!self.recommendationsCollection.length){
                 console.log('Render searching...');
             } else {
                 console.log('Render recommendations');
             }
+
+
+
         },
 
         render: function() {
@@ -64,15 +84,54 @@ define([
                 element: self.$el.find('.snap-content')[0]
             });
 
+
+            // Initialize with Searching
+            self.renderRecommendations();
+
             return this;
         },
 
 
-        settingsPane: function(e){
+        renderRecommendations: function(e){
+            if(e !== undefined){
+                e.preventDefault();
+            }
+            var self = this;
+
+            // Render searching if no more recommendations
+            if(self.recommendationsCollection.isEmpty()){
+                self.renderSearching();
+            }
+
+            // First hide the pane contents
+            // SA.snapper.expand('left');
+
+            // Then render recommendations view
+            var view = new RecommendationsView({
+                'recommendationsCollection': self.recommendationsCollection,
+                'eventAggregator': self.eventAggregator
+            });
+            self.$container.html(view.render().$el);
+
+            // Finally bring pane back
+            SA.snapper.close();
+        },
+
+
+        renderSearching: function(){
+            var view = new SearchingView();
+            this.$container.html(view.render().$el);
+
+            // Finally bring pane back
+            SA.snapper.close();
+        },
+
+
+        renderSettings: function(e){
             e.preventDefault();
 
             // First hide the pane contents
-            SA.snapper.expand('left');
+            // SA.snapper.expand('left');
 
             // Then render the settings view
             var view = new SettingsView();
@@ -83,24 +142,12 @@ define([
 
         },
 
-        recommendationsPane: function(e){
-            e.preventDefault();
 
-            var self = this;
 
-            // First hide the pane contents
-            SA.snapper.expand('left');
 
-            // Then render recommendations view
-            var view = new RecommendationsView({
-                'recommendationsCollection': self.recommendationsCollection
-            });
-            self.$container.html(view.render().$el);
-
-            // Finally bring pane back
-            SA.snapper.close();
-        },
-
+        //
+        // DRAWER INTERACTIONS
+        //
         _openLeftDrawer: function(){
             this._openDrawer("left");
         },

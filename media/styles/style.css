@@ -102,7 +102,7 @@
       text-shadow: 0 1px 0 black;
       text-decoration: none;
       color: #a4aab3; }
-      .snap-drawer ul a:active, .snap-drawer ul a:focus {
+      .snap-drawer ul a:active {
         background: #16181b;
         text-decoration: none; }
       .snap-drawer ul a span {
@@ -438,6 +438,72 @@ body {
   -moz-animation-name: fadeOutDown;
   -o-animation-name: fadeOutDown;
   animation-name: fadeOutDown; }
+
+@-webkit-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.05); }
+
+  70% {
+    -webkit-transform: scale(0.9); }
+
+  100% {
+    -webkit-transform: scale(1); } }
+
+@-moz-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -moz-transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    -moz-transform: scale(1.05); }
+
+  70% {
+    -moz-transform: scale(0.9); }
+
+  100% {
+    -moz-transform: scale(1); } }
+
+@-o-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    -o-transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    -o-transform: scale(1.05); }
+
+  70% {
+    -o-transform: scale(0.9); }
+
+  100% {
+    -o-transform: scale(1); } }
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3); }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05); }
+
+  70% {
+    transform: scale(0.9); }
+
+  100% {
+    transform: scale(1); } }
+
+.animated.bounceIn {
+  -webkit-animation-name: bounceIn;
+  -moz-animation-name: bounceIn;
+  -o-animation-name: bounceIn;
+  animation-name: bounceIn; }
 
 @-webkit-keyframes bounceInUp {
   0% {
@@ -1113,7 +1179,8 @@ header {
   display: block;
   position: relative;
   width: 100%;
-  min-height: 360px; }
+  margin-top: 10px;
+  min-height: 340px; }
 
 .photo-card {
   background: white;
@@ -1143,6 +1210,7 @@ header {
     height: 280px;
     background: white no-repeat center center;
     background-size: cover;
+    background-color: rgba(52, 152, 219, 0.05);
     -webkit-border-top-left-radius: 3px;
     -webkit-border-top-right-radius: 3px;
     -moz-border-radius-topleft: 3px;
@@ -1265,29 +1333,25 @@ header {
   .photo-controls a {
     border-radius: 100%;
     margin: 0;
-    font-size: 60px;
+    font-size: 50px;
     background: #dddddd;
     border: 5px solid white;
     vertical-align: top;
     display: inline-block;
     margin: 0;
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     line-height: 60px; }
     .photo-controls a i {
       -webkit-transform: scale(1);
       color: white; }
-    .photo-controls a:active {
-      -webkit-box-shadow: 0 0 30px #aaaaaa inset;
-      -moz-box-shadow: 0 0 30px #aaaaaa inset;
-      box-shadow: 0 0 30px #aaaaaa inset; }
-      .photo-controls a:active i {
-        -webkit-transform: scale(0.8); }
-    .photo-controls a:focus {
-      background: green; }
+  .photo-controls #btn-dislike:active {
+    background: #e31212; }
   .photo-controls #btn-like {
-    font-size: 50px;
-    padding-top: 6px; }
+    font-size: 40px;
+    padding-top: 3px; }
+    .photo-controls #btn-like:active {
+      background: #27ae60; }
   .photo-controls #btn-info {
     font-size: 45px;
     -moz-transform: scale(0.6);
@@ -1295,6 +1359,8 @@ header {
     -o-transform: scale(0.6);
     -ms-transform: scale(0.6);
     transform: scale(0.6); }
+    .photo-controls #btn-info:active {
+      background: #007bff; }
 
 .pane .pane-inner {
   padding: 0.5em 0.5em 0.25em;

@@ -34,14 +34,14 @@ require.config( {
             },
 
             "backbone.hammer": {
-                "deps": ["jquery", "backbone", "hammer"]
+                "deps": ["jquery", "backbone", "hammer", "jquery.hammer"]
             }
       }
 
 });
 
 // Includes File Dependencies
-require([ "jquery", "backbone", "router", "snap", "hammer",  "jquery.bootstrap"  ], function( $, Backbone, ApplicationRouter, Snap, Hammer) {
+require([ "jquery", "backbone", "router", "snap", "backbone.hammer",  "jquery.bootstrap"  ], function( $, Backbone, ApplicationRouter, Snap, Hammer) {
 
     console.log("INIT REQUIRE & BACKBONE");
 
