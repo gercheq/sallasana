@@ -35,6 +35,22 @@ define([
             'click #messages': '_openRightDrawer'
         },
 
+
+        _initEventListeners: function(){
+            //
+            // Initialize other events that are triggered from all the other views
+            //
+            var self = this;
+
+            self.eventAggregator.on('render:searching', function(){
+               self.renderSearching();
+            });
+
+        },
+
+
+
+
         initialize: function() {
             var self = this;
             console.log("INIT:  ApplicationView");
@@ -53,11 +69,7 @@ define([
             // If this is the first time using the app then
 
 
-            self.eventAggregator.on('render:searching', function(){
-               self.renderSearching();
-            });
-
-
+            self._initEventListeners();
 
 
             if (!self.recommendationsCollection.length){
@@ -66,11 +78,14 @@ define([
                 console.log('Render recommendations');
             }
 
-
-
         },
 
         render: function() {
+            //
+            // Render drawers and the main pane
+            // By default, it tries to render recommendations as well
+            //
+
             console.log("RNDR:  ApplicationView");
             var self = this;
 
@@ -83,7 +98,6 @@ define([
             SA.snapper = new Snap({
                 element: self.$el.find('.snap-content')[0]
             });
-
 
             // Initialize with Searching
             self.renderRecommendations();

@@ -4,6 +4,7 @@ require.config( {
       // 3rd party script alias names
       paths: {
             // Core Libraries
+            "modernizr": "../third_party/modernizr-2.7.1",
             "jquery": "../third_party/jquery-1.9.1.min",
             "snap": "../third_party/snap",
             "underscore": "../third_party/lodash",
@@ -19,6 +20,9 @@ require.config( {
 
       // Sets the configuration for your third party scripts that are not AMD compatible
       shim: {
+            "modernizr": {
+                "exports": "Modernizr"
+            },
             "backbone": {
                 "deps": [ "underscore", "jquery" ],
                 "exports": "Backbone"  //attaches "Backbone" to the window object
@@ -42,16 +46,14 @@ require.config( {
 
 // Includes File Dependencies
 require([ "jquery", "backbone", "router", "snap", "backbone.hammer",  "jquery.bootstrap"  ], function( $, Backbone, ApplicationRouter, Snap, Hammer) {
-
     console.log("INIT REQUIRE & BACKBONE");
 
-    // TODO(gercek): This is wrong, just create another file for SA and inject it w/ requirejs
-    var SA = window.SA || {};
 
-    console.log(Hammer);
-
+    SA.viewport = {
+        'width': $(window).width(),
+        'height': $(window).height()
+    }
 
     // Instantiates a new Backbone.js Mobile Router
     SA.router = new ApplicationRouter();
-
 });

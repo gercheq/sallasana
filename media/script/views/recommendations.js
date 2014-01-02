@@ -1,10 +1,11 @@
  define([
+    "modernizr",
     "jquery",
     "backbone",
     "models/user",
     "collections/recommendations",
     "views/photo" ],
-    function($, Backbone, UserModel, RecommendationsCollection, PhotoView) {
+    function(Modernizr, $, Backbone, UserModel, RecommendationsCollection, PhotoView) {
 
     var RecommendationsView = Backbone.View.extend( {
 
@@ -19,8 +20,7 @@
             'click #btn-dislike': 'dislike',
             'swipeleft .photo-card': '_swipeLeft',
             'swiperight .photo-card': '_swipeRight',
-            'dragleft .photo-card': '_stickToFinger',
-            'dragright .photo-card': '_stickToFinger',
+            'drag .photo-card': '_stickToFinger',
             'release .photo-card': '_release'
         },
 
@@ -128,56 +128,66 @@
         _swipeLeft: function(ev){
             console.log('Swiped Left');
             var self = this;
-            self.dislike();
             ev.gesture.stopDetect();
             ev.gesture.preventDefault(); // disable browser scrolling
+
+            self.dislike();
         },
 
         _swipeRight: function(ev) {
             console.log('Swiped Right');
             var self = this;
-            self.like();
             ev.gesture.stopDetect();
             ev.gesture.preventDefault(); // disable browser scrolling
 
+            self.like();
         },
 
         _stickToFinger: function(ev){
             console.log('Sticking to finger');
             ev.gesture.preventDefault(); // disable browser scrolling
-//
-//
-//            // stick to the finger
-//            var pane_offset = -(100/pane_count)*current_pane;
-//            var drag_offset = ((100/pane_width)*ev.gesture.deltaX) / pane_count;
-//
-//            // slow down at the first and last pane
-//            if ((current_pane == 0 && ev.gesture.direction == Hammer.DIRECTION_RIGHT) ||
-//               (current_pane == pane_count-1 && ev.gesture.direction == Hammer.DIRECTION_LEFT)) {
-//                drag_offset *= .4;
-//            }
-//
-//            setContainerOffset(drag_offset + pane_offset);
+
+            var self = this,
+                offsetX = ev.gesture.deltaX,
+                offsetY = ev.gesture.deltaY,
+                $photoCard = this.$el.find('.photo-card').last();
+
+            self._setPosition($photoCard, offsetX, offsetY);
         },
 
         _release: function(ev) {
             console.log('Card released');
-            var self = this;
+            var self = this,
+                $photoCard = this.$el.find('.photo-card').last();
             ev.gesture.preventDefault(); // disable browser scrolling
 
-//            // more then 50% moved, navigate
-//            if(Math.abs(ev.gesture.deltaX) > pane_width/2) {
-//                if(ev.gesture.direction == 'right') {
-//                    self.prev();
-//                } else {
-//                    self.next();
-//                }
-//            }
-//            else {
-//                self.showPane(current_pane, true);
-//            }
-        }
+            // more then 50% moved, navigate
+            if(Math.abs(ev.gesture.deltaX) > SA.viewport.width/2) {
+                if(ev.gesture.direction == 'right') {
+                    self.like();
+                } else {
+                    self.dislike();
+                }
+            }
+            else {
+                self._setPosition($photoCard, 0, 0);
+            }
+        },
 
+        _setPosition: function($el, x, y){
+            if(Modernizr.csstransforms3d) {
+                $el.css("transform", "translate3d("+ x +"px,"+ y +"px,0) scale3d(1,1,1)");
+            }
+            else if(Modernizr.csstransforms) {
+                $el.css("transform", "translate("+ x +"px,"+ y + ")");
+            }
+            else {
+                $el.css({
+                    "left": x +"px",
+                    "top": y +"px"
+                });
+            }
+        }
 
 
     } );

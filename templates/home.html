@@ -34,9 +34,10 @@
   <script type="text/javascript">
     // Define global variables coming from Django here
     // and pass them to client side at boot time
-    SA = {};
+    window.SA = {};
     SA.recommendations = {% autoescape off %}{{ recommendations }}{% endautoescape %};
     SA.user = {% autoescape off %}{{ user }}{% endautoescape %};
+
   </script>
   <script src="{{ MEDIA_URL }}third_party/require.js" data-main="{{ MEDIA_URL }}script/main"></script>
 

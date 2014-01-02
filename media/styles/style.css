@@ -981,7 +981,7 @@ body {
   padding: 44px 20px 20px; }
 
 header {
-  z-index: 1;
+  z-index: 13;
   border-bottom: 1px solid #cccccc;
   background: white;
   position: absolute;
