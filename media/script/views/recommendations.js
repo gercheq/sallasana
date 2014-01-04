@@ -170,13 +170,21 @@
                 }
             }
             else {
-                self._setPosition($photoCard, 0, 0);
+                self._setPosition($photoCard, 0, 0, 350);
             }
         },
 
-        _setPosition: function($el, x, y){
+        _setPosition: function($el, x, y, duration){
+            if(duration == undefined){
+                duration = 0;
+            }
+
             if(Modernizr.csstransforms3d) {
-                $el.css("transform", "translate3d("+ x +"px,"+ y +"px,0) scale3d(1,1,1)");
+                $el.css({
+                    "transform": "translate3d("+ x +"px,"+ y +"px,0) scale3d(1,1,1)",
+                    "transition-duration": duration + "ms",
+                    "transition-timing-function": "ease-in-out"//"cubic-bezier(0.1, 0.7, 1.0, 0.1)"
+                });
             }
             else if(Modernizr.csstransforms) {
                 $el.css("transform", "translate("+ x +"px,"+ y + ")");
